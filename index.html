@@ -596,8 +596,10 @@
     </div>
 
     <div class="text-center mt-16">
-      <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10 transition btn-hover shadow-lg">
-        Download Full Sustainability Report
+      <a href="https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-and-agriculture/en" 
+         target="_blank"
+         class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10 transition btn-hover shadow-lg">
+        The State of Food and Agriculture 2024 Report
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
         </svg>
@@ -609,84 +611,158 @@
 
 <!-- About Page -->
 <div id="about-page" class="page">
-  <!-- Hero Section with centered content on background image -->
+  <!-- Hero Section with parallax effect -->
   <section class="min-h-screen flex items-center justify-center bg-white relative overflow-hidden">
-    <!-- Background image with overlay -->
-    <div class="absolute inset-0 z-0">
-      <img src="https://cdn.pixabay.com/photo/2016/07/10/22/16/wheat-1508654_1280.jpg" alt="Farm background" class="w-full h-full object-cover opacity-30">
-      <div class="absolute inset-0 bg-black opacity-20"></div>
+    <!-- Parallax background with fixed attachment -->
+    <div class="fixed inset-0 z-0 h-screen w-full">
+      <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 to-primary-700/30"></div>
+      <img src="https://cdn.pixabay.com/photo/2016/07/10/22/16/wheat-1508654_1280.jpg" alt="Farm background" 
+           class="w-full h-full object-cover" id="parallax-bg">
     </div>
     
-    <!-- Centered content container -->
-    <div class="container mx-auto px-4 relative z-10 py-32">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-8">Our Story</h2>
-        <div class="prose-lg text-gray-800 space-y-6 bg-white bg-opacity-80 p-8 rounded-lg shadow-sm mx-auto">
-          <p>
-            Born in 2023, HoGo Fresh represents a new era in India's agricultural ecosystem. We recognized an opportunity to transform how food moves from farms to tables across our nation. While India's existing systems have served us well, the digital age demands a smarter, more connected approach to feeding our growing population.
+    <!-- Centered content container with animated entrance -->
+    <div class="container mx-auto px-4 relative z-10 py-32 transform transition-all duration-500 ease-out opacity-0 translate-y-10" id="hero-content">
+      <div class="max-w-4xl mx-auto text-center bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-100">
+        <h2 class="text-4xl md:text-5xl font-bold text-primary-700 mb-8 animate-fadeIn">Our Story</h2>
+        <div class="prose-lg text-gray-700 space-y-6 mx-auto">
+          <p class="animate-fadeIn [animation-delay:200ms]">
+            Born in 2023, HoGo Fresh represents a new era in India's agricultural ecosystem. We recognized an opportunity to transform how food moves from farms to tables across our nation.
           </p>
-          <p>
-           We're pioneering India's first integrated agricultural network - a seamless bridge between hardworking farmers and quality-conscious buyers. Our technology platform doesn't just connect stakeholders; it creates an optimized ecosystem where every participant thrives through greater efficiency, transparency and shared success.
+          <p class="animate-fadeIn [animation-delay:400ms]">
+            We're pioneering India's first integrated agricultural network - a seamless bridge between hardworking farmers and quality-conscious buyers. Our technology platform creates an optimized ecosystem where every participant thrives.
           </p>
-          <p>
-            Today, HoGo Fresh operates across multiple states in India, serving thousands of farmers and businesses with our innovative approach to agricultural logistics and market access.
+          <p class="animate-fadeIn [animation-delay:600ms]">
+            Today, HoGo Fresh operates across multiple states in India, serving thousands of farmers and businesses with our innovative approach to agricultural logistics.
           </p>
         </div>
       </div>
     </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-700">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
   </section>
 
-  <!-- Added space between sections -->
-  <div class="py-12"></div>
-
-  <section class="py-20 gradient-bg">
+  <!-- Approach Section with animated cards -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50 relative">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Our Approach</h2>
+        <h2 class="text-4xl font-bold text-primary-700 mb-4">Our Approach</h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">How we're different from traditional supply chains</p>
-        <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
+        <div class="w-24 h-1 bg-primary-500 mx-auto mt-4"></div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-xl shadow-sm text-center card-hover">
-          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-link text-2xl text-primary-600"></i>
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
+            <i class="fas fa-link text-2xl text-primary-600 group-hover:text-white transition-all"></i>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Direct Connections</h3>
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
           <p class="text-gray-600">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
+          <div class="mt-4">
+            <button class="text-primary-600 text-sm font-medium hover:text-primary-800 flex items-center justify-center mx-auto group-hover:underline">
+             
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
         
-        <div class="bg-white p-8 rounded-xl shadow-sm text-center card-hover">
-          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-bolt text-2xl text-primary-600"></i>
+        <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
+            <i class="fas fa-bolt text-2xl text-primary-600 group-hover:text-white transition-all"></i>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Fast Logistics</h3>
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
           <p class="text-gray-600">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
+          <div class="mt-4">
+            <button class="text-primary-600 text-sm font-medium hover:text-primary-800 flex items-center justify-center mx-auto group-hover:underline">
+             
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
         
-        <div class="bg-white p-8 rounded-xl shadow-sm text-center card-hover">
-          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-chart-line text-2xl text-primary-600"></i>
+        <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
+            <i class="fas fa-chart-line text-2xl text-primary-600 group-hover:text-white transition-all"></i>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Data-Driven</h3>
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
           <p class="text-gray-600">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
+          <div class="mt-4">
+            <button class="text-primary-600 text-sm font-medium hover:text-primary-800 flex items-center justify-center mx-auto group-hover:underline">
+             
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Team Section with interactive farmer spotlight -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-8">Our Team</h2>
-        <div class="bg-gray-100 p-8 rounded-xl">
-          <div class="w-48 h-48 rounded-full mx-auto mb-6 overflow-hidden border-4 border-primary-200">
-            <img src="https://cdn.pixabay.com/photo/2021/12/02/07/37/farmer-6839857_1280.jpg" alt="Smiling Farmer" class="w-full h-full object-cover">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-primary-700 mb-4">Our Team</h2>
+          <p class="text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
+          <div class="w-24 h-1 bg-primary-500 mx-auto mt-4"></div>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl p-8 md:p-10 shadow-inner border border-gray-100">
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="relative group w-48 h-48 shrink-0">
+              <div class="absolute inset-0 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-all duration-300"></div>
+              <img src="https://cdn.pixabay.com/photo/2021/12/02/07/37/farmer-6839857_1280.jpg" 
+                   alt="Smiling Farmer" 
+                   class="w-full h-full object-cover rounded-full border-4 border-primary-200 group-hover:border-primary-300 transition-all duration-300">
+              <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-medium whitespace-nowrap shadow-md">
+                Farmer Partner
+              </div>
+            </div>
+            <div class="text-center md:text-left">
+              <h3 class="text-2xl font-semibold mb-4 text-gray-800">Farmers Are Our Foundation</h3>
+              <p class="text-gray-600 mb-6">
+                We believe farmers are our real partners and the foundation of everything we do. Their hard work, dedication, and knowledge are what make our business possible.
+              </p>
+              <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                <button class="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-sm">
+                  <a href="https://surveyheart.com/form/684db64a9c4e9a63c2276bbc" target="_blank">Partner With Us</a>
+                </button>
+              </div>
+            </div>
           </div>
-          <h3 class="text-2xl font-semibold mb-4 text-gray-800">Each and Every Farmer is the Backbone of Our Company</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">
-            We believe farmers are our real partners and the foundation of everything we do. Their hard work, dedication, and knowledge are what make our business possible. At HoGo Fresh, we don't just work with farmers - we work for farmers, creating solutions that help them prosper and thrive in an evolving agricultural landscape.
-          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-primary-700 text-white">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+        <div class="p-6">
+          <div class="text-4xl font-bold mb-2 animate-count" data-target="59">0</div>
+          <div class="text-lg font-medium">Farmers Connected</div>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold mb-2 animate-count" data-target="36">0</div>
+          <div class="text-lg font-medium">States Served</div>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold mb-2 animate-count" data-target="10">0</div>
+          <div class="text-lg font-medium">Metric Tons Daily</div>
         </div>
       </div>
     </div>
@@ -694,11 +770,89 @@
 
   <!-- Back to Home Link -->
   <div class="container mx-auto px-4 py-12 text-center">
-    <a href="#" class="nav-link inline-flex items-center text-primary-600 hover:text-primary-800 font-medium" data-page="home">
-      <i class="fas fa-arrow-left mr-2"></i> Back to Home
+    <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium group transition-all"
+       data-page="home">
+      <span class="mr-2 group-hover:-translate-x-1 transition-transform">Back to Home</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+      </svg>
     </a>
   </div>
 </div>
+
+<style>
+  /* Animation styles */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.8s forwards;
+  }
+  
+  /* Parallax effect */
+  #parallax-bg {
+    will-change: transform;
+  }
+  
+  /* Counting animation */
+  @keyframes countUp {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-count {
+    opacity: 0;
+    animation: countUp 1s forwards;
+  }
+</style>
+
+<script>
+  // This would be implemented in your main JS file
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animate hero content in
+    document.getElementById('hero-content').classList.remove('opacity-0', 'translate-y-10');
+    
+    // Parallax effect
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.pageYOffset;
+      const parallaxBg = document.getElementById('parallax-bg');
+      parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+    });
+    
+    // Animate counting numbers
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.animate-count');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(animateCounters, 1);
+        } else {
+          counter.innerText = target;
+        }
+      });
+    };
+    
+    // Intersection Observer to trigger animations when scrolling
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('animate-count')) {
+            animateCounters();
+          }
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.animate-count').forEach(el => observer.observe(el));
+  });
+</script>
 
 <!-- Goals Page -->
 <div id="goals-page" class="page">
