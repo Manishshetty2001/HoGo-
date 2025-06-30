@@ -612,18 +612,18 @@
 <!-- About Page -->
 <div id="about-page" class="page">
   <!-- Hero Section with parallax effect -->
-  <section class="min-h-screen flex items-center justify-center bg-white relative overflow-hidden">
-    <!-- Parallax background with fixed attachment -->
-    <div class="fixed inset-0 z-0 h-screen w-full">
+  <section class="min-h-screen flex items-center justify-center bg-white relative overflow-hidden" id="hero-section">
+    <!-- Parallax background -->
+    <div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 to-primary-700/30"></div>
       <img src="https://cdn.pixabay.com/photo/2016/07/10/22/16/wheat-1508654_1280.jpg" alt="Farm background" 
            class="w-full h-full object-cover" id="parallax-bg">
     </div>
     
-    <!-- Centered content container with animated entrance -->
+    <!-- Content container -->
     <div class="container mx-auto px-4 relative z-10 py-32 transform transition-all duration-500 ease-out opacity-0 translate-y-10" id="hero-content">
       <div class="max-w-4xl mx-auto text-center bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-100">
-        <h2 class="text-4xl md:text-5xl font-bold text-primary-700 mb-8 animate-fadeIn">Our Story</h2>
+        <h2 class="text-4xl md:text-5xl font-bold text-primary-700 mb-8 animate-fadeIn" id="our-story-header">Our Story</h2>
         <div class="prose-lg text-gray-700 space-y-6 mx-auto">
           <p class="animate-fadeIn [animation-delay:200ms]">
             Born in 2023, HoGo Fresh represents a new era in India's agricultural ecosystem. We recognized an opportunity to transform how food moves from farms to tables across our nation.
@@ -646,8 +646,8 @@
     </div>
   </section>
 
-  <!-- Approach Section with animated cards -->
-  <section class="py-20 bg-gradient-to-b from-white to-gray-50 relative">
+  <!-- Approach Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold text-primary-700 mb-4">Our Approach</h2>
@@ -656,6 +656,7 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Direct Connections Card -->
         <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
           <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
@@ -663,16 +664,9 @@
           </div>
           <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
           <p class="text-gray-600">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
-          <div class="mt-4">
-            <button class="text-primary-600 text-sm font-medium hover:text-primary-800 flex items-center justify-center mx-auto group-hover:underline">
-             
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
         
+        <!-- Fast Logistics Card -->
         <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
           <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
@@ -680,16 +674,9 @@
           </div>
           <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
           <p class="text-gray-600">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
-          <div class="mt-4">
-            <button class="text-primary-600 text-sm font-medium hover:text-primary-800 flex items-center justify-center mx-auto group-hover:underline">
-             
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
         
+        <!-- Data-Driven Card -->
         <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
           <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
@@ -697,20 +684,12 @@
           </div>
           <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
           <p class="text-gray-600">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
-          <div class="mt-4">
-            <button class="text-primary-600 text-sm font-medium hover:text-primary-800 flex items-center justify-center mx-auto group-hover:underline">
-             
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Team Section with interactive farmer spotlight -->
+  <!-- Team Section -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
@@ -737,9 +716,9 @@
                 We believe farmers are our real partners and the foundation of everything we do. Their hard work, dedication, and knowledge are what make our business possible.
               </p>
               <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                <button class="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-sm">
-                  <a href="https://surveyheart.com/form/684db64a9c4e9a63c2276bbc" target="_blank">Partner With Us</a>
-                </button>
+                <a href="https://surveyheart.com/form/684db64a9c4e9a63c2276bbc" target="_blank" class="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-sm">
+                  Partner With Us
+                </a>
               </div>
             </div>
           </div>
@@ -790,11 +769,6 @@
     animation: fadeIn 0.8s forwards;
   }
   
-  /* Parallax effect */
-  #parallax-bg {
-    will-change: transform;
-  }
-  
   /* Counting animation */
   @keyframes countUp {
     from { opacity: 0; }
@@ -804,19 +778,42 @@
     opacity: 0;
     animation: countUp 1s forwards;
   }
+  
+  /* Bounce animation for scroll indicator */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+  }
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
 </style>
 
 <script>
-  // This would be implemented in your main JS file
   document.addEventListener('DOMContentLoaded', function() {
     // Animate hero content in
     document.getElementById('hero-content').classList.remove('opacity-0', 'translate-y-10');
     
-    // Parallax effect
+    // Improved parallax effect
+    const heroSection = document.getElementById('hero-section');
+    const parallaxBg = document.getElementById('parallax-bg');
+    const header = document.getElementById('our-story-header');
+    
     window.addEventListener('scroll', function() {
+      const heroHeight = heroSection.offsetHeight;
       const scrollPosition = window.pageYOffset;
-      const parallaxBg = document.getElementById('parallax-bg');
-      parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+      
+      if (scrollPosition < heroHeight) {
+        const progress = Math.min(scrollPosition / heroHeight, 1);
+        parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        header.style.transform = `translateY(${scrollPosition * 0.2}px)`;
+        parallaxBg.style.opacity = 1 - progress * 0.5;
+      } else {
+        parallaxBg.style.transform = `translateY(${heroHeight * 0.5}px)`;
+        header.style.transform = `translateY(${heroHeight * 0.2}px)`;
+        parallaxBg.style.opacity = 0.5;
+      }
     });
     
     // Animate counting numbers
@@ -838,7 +835,7 @@
       });
     };
     
-    // Intersection Observer to trigger animations when scrolling
+    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
