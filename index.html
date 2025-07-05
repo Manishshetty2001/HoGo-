@@ -244,6 +244,122 @@
     .btn-hover:active {
       transform: translateY(0);
     }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .success-message {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .success-icon {
+      color: #22c55e;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Enhanced professional styles */
+    .professional-card {
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .professional-card:hover {
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 4px;
+      bottom: -8px;
+      left: 20%;
+      background: linear-gradient(90deg, #22c55e, #86efac);
+      border-radius: 2px;
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Smiley animation styles */
+    .smiley-container {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: smileyFloat 1s ease-out forwards;
+    }
+    
+    @keyframes smileyFloat {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* Remove movey effect on hover */
+    .no-move-on-hover:hover {
+      transform: none !important;
+    }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-800 antialiased">
@@ -304,6 +420,108 @@
     }
 </style>
 
+<!-- Partner With Us Modal -->
+<div id="partnerModal" class="modal">
+  <div class="modal-content relative">
+    <span class="close-modal">&times;</span>
+    <h2 class="text-2xl font-bold mb-6 text-primary-700">Partner With Us</h2>
+    <form id="partnerForm" action="https://formspree.io/f/mgvyqjnv" method="POST">
+      <div class="mb-4">
+        <label for="partnerName" class="block text-gray-700 font-medium mb-2">Name*</label>
+        <input type="text" id="partnerName" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      </div>
+      <div class="mb-4">
+        <label for="partnerState" class="block text-gray-700 font-medium mb-2">State*</label>
+        <input type="text" id="partnerState" name="state" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      </div>
+      <div class="mb-4">
+        <label for="partnerPhone" class="block text-gray-700 font-medium mb-2">Phone Number*</label>
+        <input type="tel" id="partnerPhone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      </div>
+      <div class="mb-4">
+        <label for="partnerType" class="block text-gray-700 font-medium mb-2">Organization Type*</label>
+        <select id="partnerType" name="organization_type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+          <option value="">Select an option</option>
+          <option value="FPO">Farmer Producer Organization (FPO)</option>
+          <option value="Trader">Trader</option>
+          <option value="Processor">Processor</option>
+          <option value="Retailer">Retailer</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="partnerFoodType" class="block text-gray-700 font-medium mb-2">What type of food/products do you deal with?</label>
+        <textarea id="partnerFoodType" name="food_type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
+      </div>
+      <div class="mb-6">
+        <label class="flex items-center">
+          <input type="checkbox" name="agreement" required class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+          <span class="ml-2 text-gray-700">I agree to be contacted by HoGo Fresh regarding partnership opportunities</span>
+        </label>
+      </div>
+      <input type="hidden" name="_subject" value="New Partner Request">
+      <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition btn-hover">
+        Submit Partnership Request
+      </button>
+    </form>
+    <div id="partnerSuccess" class="success-message hidden">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Thank You! <i class="fas fa-smile ml-2"></i></h3>
+      <p class="mb-4">Your partnership request has been submitted successfully.</p>
+      <p>We'll contact you soon to discuss opportunities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Registration Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-content relative">
+    <span class="close-modal">&times;</span>
+    <h2 class="text-2xl font-bold mb-6 text-primary-700">Register With HoGo Fresh</h2>
+    <form id="registerForm" action="https://formspree.io/f/mgvyqjnv" method="POST">
+      <div class="mb-4">
+        <label for="registerName" class="block text-gray-700 font-medium mb-2">Name*</label>
+        <input type="text" id="registerName" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      </div>
+      <div class="mb-4">
+        <label for="registerPhone" class="block text-gray-700 font-medium mb-2">Phone Number*</label>
+        <input type="tel" id="registerPhone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      </div>
+      <div class="mb-4">
+        <label for="registerEmail" class="block text-gray-700 font-medium mb-2">Email (Optional)</label>
+        <input type="email" id="registerEmail" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">Register As*</label>
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <input type="radio" id="registerSupplier" name="register_as" value="Supplier" required class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300">
+            <label for="registerSupplier" class="ml-2 block text-gray-700">Supplier</label>
+          </div>
+          <div class="flex items-center">
+            <input type="radio" id="registerBuyer" name="register_as" value="Buyer" required class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300">
+            <label for="registerBuyer" class="ml-2 block text-gray-700">Buyer</label>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" name="_subject" value="New Registration">
+      <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition btn-hover">
+        Submit Registration
+      </button>
+    </form>
+    <div id="registerSuccess" class="success-message hidden">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Thank You! <i class="fas fa-smile ml-2"></i></h3>
+      <p class="mb-4">Your registration has been submitted successfully.</p>
+      <p>We'll contact you soon to complete the process.</p>
+    </div>
+  </div>
+</div>
+
 <!-- Home Page -->
 <div id="home-page" class="page active">
   <!-- Hero Section with Video Carousel -->
@@ -311,33 +529,10 @@
       <!-- Video Carousel Container -->
       <div class="absolute inset-0 z-0 overflow-hidden">
           <div class="relative w-full h-full">
-              <!-- Video 1 -->
+              <!-- Single Video (kept only the first one as requested) -->
               <div class="absolute inset-0 video-slide active">
                   <video autoplay muted loop playsinline class="w-full h-full object-cover">
                       <source src="https://cdn.pixabay.com/video/2022/06/13/120179-720140518_large.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                  </video>
-              </div>
-              
-              <!-- Video 2 -->
-              <div class="absolute inset-0 video-slide">
-                  <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                      <source src="https://cdn.pixabay.com/video/2015/08/08/151-135737478_large.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                  </video>
-              </div>
-              
-              <!-- Video 3 -->
-              <div class="absolute inset-0 video-slide">
-                  <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                      <source src="https://cdn.pixabay.com/video/2022/12/18/143479-782374009_large.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                  </video>
-              </div>
-              <!-- Video 4 -->
-              <div class="absolute inset-0 video-slide">
-                  <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                      <source src="https://cdn.pixabay.com/video/2025/03/04/262484_large.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                   </video>
               </div>
@@ -356,7 +551,7 @@
               </h1>
               <p class="text-xl md:text-2xl mb-8 text-white drop-shadow-md">Future of freshness, powered by connection.</p>
               <div class="flex flex-wrap justify-center gap-4">
-                  <a href="#" class="nav-link bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg" data-page="registration">Join Our Network</a>
+                  <button id="registerBtn" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg">Join Our Network</button>
                   <a href="#" class="nav-link bg-white hover:bg-gray-100 text-primary-700 px-8 py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg" data-page="about">Learn More</a>
               </div>
           </div>
@@ -375,12 +570,12 @@
   <div class="container mx-auto px-4 max-w-7xl">
     <div class="text-center mb-16">
       <span class="inline-block bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-4 tracking-wider uppercase">OUR SUSTAINABLE JOURNEY</span>
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">From Seed to Supper:<br>Transparent & Responsible</h2>
-      <div class="w-24 h-1.5 bg-primary-500 mx-auto"></div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 section-title">From Seed to Supper:<br>Transparent & Responsible</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">Connecting India's agricultural ecosystem through innovation and technology</p>
     </div>
 
     <!-- Full-width sustainable story -->
-    <div class="gradient-bg rounded-3xl p-8 md:p-12 mb-16 shadow-inner border border-primary-100">
+    <div class="professional-card gradient-bg rounded-3xl p-8 md:p-12 mb-16 shadow-inner border border-primary-100">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h3 class="text-2xl md:text-3xl font-bold text-primary-800 mb-6">The Clean Food Promise</h3>
@@ -415,7 +610,7 @@
           </div>
         </div>
         <div class="relative">
-          <div class="rounded-2xl overflow-hidden shadow-lg border-4 border-white card-hover">
+          <div class="rounded-2xl overflow-hidden shadow-lg border-4 border-white professional-card no-move-on-hover">
             <img src="https://cdn.pixabay.com/photo/2016/07/02/22/42/berries-1493905_1280.jpg" 
                  alt="Sustainable farming practices" 
                  class="w-full h-auto">
@@ -433,17 +628,17 @@
 
     <!-- Sustainability Impact Metrics -->
     <div class="grid md:grid-cols-3 gap-8 mb-20">
-      <div class="bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition card-hover">
+      <div class="professional-card bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
         <div class="text-primary-600 text-4xl font-bold mb-3" data-count="78">24</div>
         <h4 class="text-lg font-semibold text-gray-900 mb-2">% Less Food Waste</h4>
         <p class="text-gray-600 text-sm">Through optimized cold chain and direct-to-retail routes</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition card-hover">
+      <div class="professional-card bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
         <div class="text-primary-600 text-4xl font-bold mb-3" data-count="120">32</div>
         <h4 class="text-lg font-semibold text-gray-900 mb-2">% Farmer Income Increase</h4>
         <p class="text-gray-600 text-sm">By eliminating middlemen and premium sustainable practices</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition card-hover">
+      <div class="professional-card bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
         <div class="text-primary-600 text-4xl font-bold mb-3" data-count="42">17</div>
         <h4 class="text-lg font-semibold text-gray-900 mb-2">% Lower Emissions</h4>
         <p class="text-gray-600 text-sm">Via electric fleet and optimized routing algorithms</p>
@@ -486,7 +681,7 @@
         </div>
       </div>
       <div class="order-1 md:order-2 relative">
-        <div class="rounded-2xl overflow-hidden shadow-lg card-hover">
+        <div class="professional-card rounded-2xl overflow-hidden shadow-lg no-move-on-hover">
           <img src="https://cdn.pixabay.com/photo/2023/07/24/22/47/woman-8147979_1280.jpg" 
                alt="Sustainable supply chain" 
                class="w-full h-auto">
@@ -502,67 +697,92 @@
       </div>
     </div>
 
-    <!-- Farmer & Consumer Promise -->
-    <div class="bg-primary-800 rounded-3xl overflow-hidden">
-      <div class="grid md:grid-cols-2">
-        <div class="p-10 text-white">
-          <h3 class="text-2xl md:text-3xl font-bold mb-6">Our Double Promise</h3>
-          <div class="space-y-8">
-            <div>
-              <div class="flex items-center mb-3">
-                <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h4 class="font-semibold text-lg">To Farmers</h4>
-              </div>
-              <p class="text-primary-100 pl-11">Fair prices for sustainable practices, technical support to transition to organic, and direct market access without exploitation.</p>
-            </div>
-            <div>
-              <div class="flex items-center mb-3">
-                <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h4 class="font-semibold text-lg">To Consumers</h4>
-              </div>
-              <p class="text-primary-100 pl-11">Food you can trust - grown without harmful chemicals, transported with minimal emissions, and priced fairly for all.</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-primary-700 p-10 flex items-center justify-center">
-          <div class="text-center">
-            <div class="bg-primary-600 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+<!-- Farmer & Consumer Promise -->
+<div class="professional-card bg-primary-800 rounded-3xl overflow-hidden no-move-on-hover">
+  <div class="grid md:grid-cols-2">
+    <div class="p-10 text-white">
+      <h3 class="text-2xl md:text-3xl font-bold mb-6">Our Double Promise</h3>
+      <div class="space-y-8">
+        <div>
+          <div class="flex items-center mb-3">
+            <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h4 class="text-white font-bold text-xl mb-2">Good for You, Better for the Planet</h4>
-            <p class="text-primary-200 mb-4">We blend quality with responsibility, offering products that are fresh, ethical, and environmentally sound.</p>
-            <button class="bg-white text-primary-800 hover:bg-primary-100 px-6 py-2 rounded-full font-medium text-sm transition btn-hover">
-              Lets work for it!
-            </button>
+            <h4 class="font-semibold text-lg">To Farmers</h4>
           </div>
+          <p class="text-primary-100 pl-11">Fair prices for sustainable practices, technical support to transition to organic, and direct market access without exploitation.</p>
+        </div>
+        <div>
+          <div class="flex items-center mb-3">
+            <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-lg">To Consumers</h4>
+          </div>
+          <p class="text-primary-100 pl-11">Food you can trust - grown without harmful chemicals, transported with minimal emissions, and priced fairly for all.</p>
         </div>
       </div>
     </div>
+    <div class="bg-primary-700 p-10 flex items-center justify-center">
+      <div class="text-center">
+        <div class="bg-primary-600 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 bulb-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <!-- Light effect (hidden by default) -->
+          <div class="absolute inset-0 rounded-full bg-yellow-200 opacity-0 bulb-light transition-opacity duration-300"></div>
+        </div>
+        <h4 class="text-white font-bold text-xl mb-2">Good for You, Better for the Planet</h4>
+        <p class="text-primary-200 mb-4">We blend quality with responsibility, offering products that are fresh, ethical, and environmentally sound.</p>
+        
+        <!-- Toggle button -->
+        <button id="bulbToggle" class="bg-white text-primary-800 hover:bg-primary-100 px-4 py-1 rounded-full font-medium text-sm transition">
+          💡 Turn on the light if it’s dark 🌙
+        </button>
+      </div>
+    </div>
   </div>
+</div>
+</div>
 </section>
+
+<style>
+  .bulb-light {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 100, 0.7);
+  }
+  
+  .bulb-on .bulb-light {
+    opacity: 0.6;
+  }
+  
+  .bulb-on .bulb-icon {
+    stroke: yellow;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 100, 0.8));
+  }
+</style>
+
+<script>
+  document.getElementById('bulbToggle').addEventListener('click', function() {
+    const bulbContainer = document.querySelector('.bg-primary-600.w-20.h-20');
+    bulbContainer.classList.toggle('bulb-on');
+  });
+</script>
 
 <!-- Sustainability Goals Section -->
 <section class="py-20 gradient-bg">
   <div class="container mx-auto px-4 max-w-7xl">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-primary-800 mb-4">Our 2025 Sustainability Roadmap</h2>
+      <h2 class="text-4xl md:text-5xl font-bold text-primary-800 mb-4 section-title">Our 2025 Sustainability Roadmap</h2>
       <p class="text-xl text-gray-600 max-w-3xl mx-auto">Concrete targets for a cleaner food system</p>
-      <div class="w-24 h-1.5 bg-primary-500 mx-auto"></div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
       <!-- Goal 1 -->
-      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 card-hover">
+      <div class="professional-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 no-move-on-hover">
         <div class="text-primary-600 text-3xl font-bold mb-2">68%</div>
         <h3 class="text-xl font-semibold text-gray-900 mb-3">Organic Transition</h3>
         <p class="text-gray-600 mb-4">Converting our entire farmer network to certified organic practices by 2025</p>
@@ -573,7 +793,7 @@
       </div>
       
       <!-- Goal 2 -->
-      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 card-hover">
+      <div class="professional-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 no-move-on-hover">
         <div class="text-primary-600 text-3xl font-bold mb-2">Net Zero</div>
         <h3 class="text-xl font-semibold text-gray-900 mb-3">Carbon Neutral Logistics</h3>
         <p class="text-gray-600 mb-4">Full electrification of our transport fleet powered by renewable energy</p>
@@ -584,7 +804,7 @@
       </div>
       
       <!-- Goal 3 -->
-      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 card-hover">
+      <div class="professional-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 no-move-on-hover">
         <div class="text-primary-600 text-3xl font-bold mb-2">Zero</div>
         <h3 class="text-xl font-semibold text-gray-900 mb-3">Food Waste</h3>
         <p class="text-gray-600 mb-4">Eliminating all preventable food loss through smart cold chain solutions</p>
@@ -641,7 +861,7 @@
     <!-- Scroll indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-700">
-        <path d="M12 5v14M19 12l-7 7-7-7"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M19 12l-7 7-7-7"/>
       </svg>
     </div>
   </section>
@@ -650,14 +870,13 @@
   <section class="py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-primary-700 mb-4">Our Approach</h2>
+        <h2 class="text-4xl font-bold text-primary-700 mb-4 section-title">Our Approach</h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">How we're different from traditional supply chains</p>
-        <div class="w-24 h-1 bg-primary-500 mx-auto mt-4"></div>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <!-- Direct Connections Card -->
-        <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="group professional-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
           <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
             <i class="fas fa-link text-2xl text-primary-600 group-hover:text-white transition-all"></i>
@@ -667,7 +886,7 @@
         </div>
         
         <!-- Fast Logistics Card -->
-        <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="group professional-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
           <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
             <i class="fas fa-bolt text-2xl text-primary-600 group-hover:text-white transition-all"></i>
@@ -677,7 +896,7 @@
         </div>
         
         <!-- Data-Driven Card -->
-        <div class="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="group professional-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
           <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
             <i class="fas fa-chart-line text-2xl text-primary-600 group-hover:text-white transition-all"></i>
@@ -694,16 +913,15 @@
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-primary-700 mb-4">Our Team</h2>
+          <h2 class="text-4xl font-bold text-primary-700 mb-4 section-title">Our Team</h2>
           <p class="text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
-          <div class="w-24 h-1 bg-primary-500 mx-auto mt-4"></div>
         </div>
         
-        <div class="bg-gray-50 rounded-xl p-8 md:p-10 shadow-inner border border-gray-100">
+        <div class="professional-card bg-gray-50 rounded-xl p-8 md:p-10 shadow-inner border border-gray-100 no-move-on-hover">
           <div class="flex flex-col md:flex-row items-center gap-8">
             <div class="relative group w-48 h-48 shrink-0">
               <div class="absolute inset-0 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-all duration-300"></div>
-              <img src="https://cdn.pixabay.com/photo/2021/12/02/07/37/farmer-6839857_1280.jpg" 
+              <img src="https://cdn.pixabay.com/photo/2021/09/27/11/02/man-6660400_1280.jpg" 
                    alt="Smiling Farmer" 
                    class="w-full h-full object-cover rounded-full border-4 border-primary-200 group-hover:border-primary-300 transition-all duration-300">
               <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-medium whitespace-nowrap shadow-md">
@@ -716,9 +934,9 @@
                 We believe farmers are our real partners and the foundation of everything we do. Their hard work, dedication, and knowledge are what make our business possible.
               </p>
               <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                <a href="https://surveyheart.com/form/684db64a9c4e9a63c2276bbc" target="_blank" class="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-sm">
+                <button id="partnerBtn2" class="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-sm">
                   Partner With Us
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -851,200 +1069,273 @@
   });
 </script>
 
-<!-- Goals Page -->
+<!-- Goals Page - Redesigned -->
 <div id="goals-page" class="page">
   <section class="pt-32 bg-white">
-      <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Our Vision for Indian Agriculture</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">Empowering farmers to become the true backbone of India's economy</p>
-              <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              <div class="gradient-bg p-8 rounded-2xl shadow-sm">
-                  <div class="flex items-start mb-6">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
-                          <i class="fas fa-brain text-primary-600 text-xl"></i>
-                      </div>
-                      <div>
-                          <h3 class="text-2xl font-semibold text-gray-900 mb-3">Farmer Independence</h3>
-                          <p class="text-gray-600">Our vision is to make every farmer in India truly independent - financially stable, technologically empowered, and market-savvy. We're developing systems that give farmers direct control over their produce from farm to consumer.</p>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="gradient-bg p-8 rounded-2xl shadow-sm">
-                  <div class="flex items-start mb-6">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
-                          <i class="fas fa-chart-line text-primary-600 text-xl"></i>
-                      </div>
-                      <div>
-                          <h3 class="text-2xl font-semibold text-gray-900 mb-3">Economic Transformation</h3>
-                          <p class="text-gray-600">We aim to position farmers as the highest earners in the value chain. Our models show that with proper market access and value addition, small farmers can earn more than urban professionals.</p>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="gradient-bg p-8 rounded-2xl shadow-sm">
-                  <div class="flex items-start mb-6">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
-                          <i class="fas fa-users text-primary-600 text-xl"></i>
-                      </div>
-                      <div>
-                          <h3 class="text-2xl font-semibold text-gray-900 mb-3">Supply Chain Revolution</h3>
-                          <p class="text-gray-600">We're reengineering India's agricultural supply chain to be farmer-centric. Our innovative logistics network reduces costs by 28% while improving quality and traceability.</p>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="gradient-bg p-8 rounded-2xl shadow-sm">
-                  <div class="flex items-start mb-6">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
-                          <i class="fas fa-leaf text-primary-600 text-xl"></i>
-                      </div>
-                      <div>
-                          <h3 class="text-2xl font-semibold text-gray-900 mb-3">Sustainable Practices</h3>
-                          <p class="text-gray-600">Promoting environmentally friendly farming techniques that increase yield while preserving resources. Our network shares best practices for water conservation and organic farming.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="bg-primary-100 rounded-2xl p-8 md:p-12">
-              <div class="flex flex-col md:flex-row items-center gap-8">
-                  <div class="md:w-1/2">
-                      <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Roadmap to Farmer Prosperity</h3>
-                      <div class="space-y-6">
-                          <div class="flex items-start">
-                              <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mr-4 mt-1">
-                                  1
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold text-gray-900">Phase 1: Market Access (2024-2025)</h4>
-                                  <p class="text-gray-600">Connect 10,000+ farmers with direct market access, eliminating middlemen and ensuring fair prices.</p>
-                              </div>
-                          </div>
-                          
-                          <div class="flex items-start">
-                              <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mr-4 mt-1">
-                                  2
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold text-gray-900">Phase 2: Value Addition (2025-2026)</h4>
-                                  <p class="text-gray-600">Establish farmer-owned processing units to capture more value from their produce.</p>
-                              </div>
-                          </div>
-                          
-                          <div class="flex items-start">
-                              <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mr-4 mt-1">
-                                  3
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold text-gray-900">Phase 3: Farmer-Led Economy (2026-2030)</h4>
-                                  <p class="text-gray-600">Create an ecosystem where farmers control the entire value chain from production to retail.</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="md:w-1/2">
-                      <div class="bg-white p-6 rounded-xl shadow-sm">
-                          <h4 class="font-semibold text-gray-900 mb-4">Impact Metrics</h4>
-                          <div class="space-y-4">
-                              <div>
-                                  <div class="flex justify-between mb-1">
-                                      <span class="text-sm font-medium text-gray-700">Farmer Income Increase</span>
-                                      <span class="text-sm font-medium text-primary-600">50%</span>
-                                  </div>
-                                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                      <div class="bg-primary-600 h-2.5 rounded-full" style="width: 100%"></div>
-                                  </div>
-                              </div>
-                              
-                              <div>
-                                  <div class="flex justify-between mb-1">
-                                      <span class="text-sm font-medium text-gray-700">Waste Reduction</span>
-                                      <span class="text-sm font-medium text-primary-600">65%</span>
-                                  </div>
-                                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                      <div class="bg-primary-600 h-2.5 rounded-full" style="width: 65%"></div>
-                                  </div>
-                              </div>
-                              
-                              <div>
-                                  <div class="flex justify-between mb-1">
-                                      <span class="text-sm font-medium text-gray-700">Farmer Retention</span>
-                                      <span class="text-sm font-medium text-primary-600">92%</span>
-                                  </div>
-                                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                      <div class="bg-primary-600 h-2.5 rounded-full" style="width: 92%"></div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 section-title">Transforming Indian Agriculture</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">A 360° approach integrating farmers, technology, and supply chain innovation</p>
       </div>
+      
+      <!-- Interactive 3D Card Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- Farmer Tech Empowerment Card -->
+        <div class="innovative-card bg-gradient-to-br from-white to-primary-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
+          <div class="flex flex-col md:flex-row items-start">
+            <div class="bg-primary-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
+              <i class="fas fa-robot text-primary-600 text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Smart Farming Ecosystem</h3>
+              <p class="text-gray-600 mb-4">Deploying AI-powered precision agriculture tools, IoT sensors, and drone technology to optimize farm operations and increase yields by 30-50%.</p>
+              <div class="tech-tags flex flex-wrap gap-2">
+                <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">AI/ML</span>
+                <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">IoT</span>
+                <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">Drone Tech</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Supply Chain Innovation Card -->
+        <div class="innovative-card bg-gradient-to-br from-white to-green-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
+          <div class="flex flex-col md:flex-row items-start">
+            <div class="bg-green-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
+              <i class="fas fa-boxes text-green-600 text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Next-Gen Supply Chain</h3>
+              <p class="text-gray-600 mb-4">Blockchain-enabled traceability, hyper-local cold chain networks, and predictive logistics to reduce waste by 65% and improve farmer margins.</p>
+              <div class="tech-tags flex flex-wrap gap-2">
+                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Blockchain</span>
+                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Cold Chain</span>
+                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Predictive Analytics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Research & Development Card -->
+        <div class="innovative-card bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
+          <div class="flex flex-col md:flex-row items-start">
+            <div class="bg-blue-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
+              <i class="fas fa-flask text-blue-600 text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Agri-Research Hub</h3>
+              <p class="text-gray-600 mb-4">Partnering with agricultural universities to develop climate-resistant crops, bio-fortified varieties, and sustainable farming techniques.</p>
+              <div class="tech-tags flex flex-wrap gap-2">
+                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">BioTech</span>
+                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Climate Tech</span>
+                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Soil Science</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Market Innovation Card -->
+        <div class="innovative-card bg-gradient-to-br from-white to-purple-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
+          <div class="flex flex-col md:flex-row items-start">
+            <div class="bg-purple-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
+              <i class="fas fa-chart-network text-purple-600 text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Farmer-to-Consumer Platforms</h3>
+              <p class="text-gray-600 mb-4">Digital marketplaces connecting farmers directly with consumers, institutions, and exporters with transparent pricing and quality assurance.</p>
+              <div class="tech-tags flex flex-wrap gap-2">
+                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">E-Commerce</span>
+                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Market Linkage</span>
+                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Quality Certification</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Interactive Timeline with Supply Chain Focus -->
+      <div class="professional-card rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden">
+        <!-- Background image with overlay -->
+        <div class="absolute inset-0 bg-[url('https://cdn.pixabay.com/photo/2021/09/27/11/02/man-6660401_1280.jpg')] bg-cover bg-center opacity-70"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-50/80 to-blue-50/80"></div>
+        
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Our Integrated Development Roadmap</h3>
+          
+          <div class="timeline-container relative">
+            <!-- Timeline Line -->
+            <div class="absolute left-4 md:left-1/2 h-full w-1 md:-ml-1 bg-primary-200 rounded-full"></div>
+            
+            <!-- Timeline Items -->
+            <div class="space-y-12">
+              <!-- Phase 1 -->
+              <div class="timeline-item flex flex-col md:flex-row items-start md:odd:flex-row-reverse">
+                <div class="timeline-dot absolute left-2 md:left-1/2 w-6 h-6 rounded-full bg-primary-600 border-4 border-white -ml-3 md:-ml-3"></div>
+                <div class="timeline-content md:w-5/12 ml-12 md:ml-0 md:px-8">
+                  <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-3">
+                      <span class="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2025-2026</span>
+                      <h4 class="font-bold text-gray-900">Supply Chain Transformation</h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                      <li>Deploy integrated cold chain nodes across 100 logistics zones</li>
+                      <li>Link producer networks to market via farmer-owned brand platforms</li>
+                      <li>Launch blockchain traceability pilot</li>
+                      <li>Connect 5,000 farmers to digital markets</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Phase 2 -->
+              <div class="timeline-item flex flex-col md:flex-row items-start md:odd:flex-row-reverse">
+                <div class="timeline-dot absolute left-2 md:left-1/2 w-6 h-6 rounded-full bg-primary-600 border-4 border-white -ml-3 md:-ml-3"></div>
+                <div class="timeline-content md:w-5/12 ml-12 md:ml-0 md:px-8">
+                  <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-3">
+                      <span class="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2026-2027</span>
+                      <h4 class="font-bold text-gray-900">Tech-Enabled Foundation</h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                      <li>Scale cold chain infrastructure to 100 districts</li>
+                      <li>Establish 50 micro-processing units</li>
+                      <li>Launch farmer-owned brand initiatives</li>
+                      <li>Expand research partnerships to 10 universities</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Phase 3 -->
+              <div class="timeline-item flex flex-col md:flex-row items-start md:odd:flex-row-reverse">
+                <div class="timeline-dot absolute left-2 md:left-1/2 w-6 h-6 rounded-full bg-primary-600 border-4 border-white -ml-3 md:-ml-3"></div>
+                <div class="timeline-content md:w-5/12 ml-12 md:ml-0 md:px-8">
+                  <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-3">
+                      <span class="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2027-2030</span>
+                      <h4 class="font-bold text-gray-900">Farmer-Led Innovation Economy</h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                      <li>Establish farmer-owned enterprises</li>
+                      <li>Deploy climate-smart agriculture at scale</li>
+                      <li>Establish a national agricultural supply chain grid</li>
+                      <li>Launch agri-tech innovations</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Farmer Independence Section -->
-  <section class="py-20 gradient-bg">
-      <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Making Farmers the Highest Earners</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our blueprint for transforming agricultural economics</p>
-              <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div class="bg-white p-8 rounded-2xl shadow-sm text-center card-hover">
-                  <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <i class="fas fa-network-wired text-2xl text-primary-600"></i>
-                  </div>
-                  <h3 class="text-xl font-semibold mb-2">D2C Model</h3>
-                  <p class="text-gray-600">We connect farmers directly to markets, helping them earn 40-60% of retail value - 3x more than traditional channels</p>
-              </div>
-              
-              <div class="bg-white p-8 rounded-2xl shadow-sm text-center card-hover">
-                  <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <i class="fas fa-boxes text-2xl text-primary-600"></i>
-                  </div>
-                  <h3 class="text-xl font-semibold mb-2">Value Addition at Source</h3>
-                  <p class="text-gray-600">Establishing farmer-owned processing units to capture more value from their raw produce.</p>
-              </div>
-              
-              <div class="bg-white p-8 rounded-2xl shadow-sm text-center card-hover">
-                  <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <i class="fas fa-mobile-alt text-2xl text-primary-600"></i>
-                  </div>
-                  <h3 class="text-xl font-semibold mb-2">Guaranteed Fair Payments</h3>
-                  <p class="text-gray-600">We ensure timely, transparent payments directly to farmers upon successful delivery of their produce.</p>
-              </div>
-          </div>
+  <!-- Innovation Showcase Section -->
+  <section class="py-20 bg-gradient-to-r from-primary-50 to-blue-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Pioneering Agricultural Innovation</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Where cutting-edge technology meets sustainable farming</p>
       </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="innovation-card bg-white p-8 rounded-2xl shadow-lg transform transition hover:-translate-y-2">
+          <div class="innovation-icon bg-primary-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-dna text-3xl text-primary-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-center">Biotech Advancements</h3>
+          <p class="text-gray-600 mb-4">Driving crop innovation through strategic agri-biotech research partnerships.</p>
+          <div class="text-center">
+            <span class="inline-block bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">Research</span>
+          </div>
+        </div>
+        
+        <div class="innovation-card bg-white p-8 rounded-2xl shadow-lg transform transition hover:-translate-y-2">
+          <div class="innovation-icon bg-green-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-server text-3xl text-green-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-center">Digital Twin Farms</h3>
+          <p class="text-gray-600 mb-4">Establishing processing units alongside AI and IoT enabled digital farm twins to simulate on-ground conditions and optimize input-output flows across the value chain.</p>
+          <div class="text-center">
+            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">AI/ML</span>
+          </div>
+        </div>
+        
+        <div class="innovation-card bg-white p-8 rounded-2xl shadow-lg transform transition hover:-translate-y-2">
+          <div class="innovation-icon bg-blue-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-truck-loading text-3xl text-blue-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-center">Smart Logistics</h3>
+          <p class="text-gray-600 mb-4">Dynamic routing algorithms and shared cold storage networks to minimize post-harvest losses and transportation costs.</p>
+          <div class="text-center">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Logistics</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Back to Home Link -->
   <div class="container mx-auto px-4 py-12 text-center">
-      <a href="#" class="nav-link inline-flex items-center text-primary-600 hover:text-primary-800 font-medium" data-page="home">
-          <i class="fas fa-arrow-left mr-2"></i> Back to Home
-      </a>
+    <a href="#" class="nav-link inline-flex items-center text-primary-600 hover:text-primary-800 font-medium" data-page="home">
+      <i class="fas fa-arrow-left mr-2"></i> Back to Home
+    </a>
   </div>
 </div>
+
+<style>
+.innovative-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.innovation-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.timeline-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .timeline-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 0;
+}
+
+.data-card {
+  transition: all 0.3s ease;
+}
+
+.professional-card {
+  position: relative;
+  overflow: hidden;
+}
+</style>
 
 <!-- Registration Page -->
 <div id="registration-page" class="page">
   <section class="pt-32 bg-white">
       <div class="container mx-auto px-4">
           <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Business Registration</h2>
+              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 section-title">Business Registration</h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">Join India's most innovative agricultural supply chain network</p>
-              <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
           </div>
           
-          <div class="max-w-3xl mx-auto gradient-bg rounded-2xl p-8 shadow-sm border border-primary-100">
+          <div class="max-w-3xl mx-auto professional-card gradient-bg rounded-2xl p-8 shadow-sm border border-primary-100 no-move-on-hover">
               <div class="text-center mb-8">
                   <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <i class="fas fa-handshake text-2xl text-primary-600"></i>
@@ -1104,15 +1395,14 @@
               </div>
               
               <div class="text-center">
-                  <a href="https://surveyheart.com/form/684db64a9c4e9a63c2276bbc" target="_blank" 
-                     class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition btn-hover shadow-lg">
+                  <button id="registerBtn2" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition btn-hover shadow-lg">
                       Register Your Business
-                  </a>
+                  </button>
                   <p class="text-sm text-gray-500 mt-3">Registration takes less than 5 minutes</p>
               </div>
           </div>
           
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-primary-200 max-w-3xl mx-auto mt-12">
+          <div class="professional-card bg-white rounded-2xl p-8 shadow-lg border border-primary-200 max-w-3xl mx-auto mt-12 no-move-on-hover">
               <h3 class="text-xl font-semibold text-center mb-6">Frequently Asked Questions</h3>
               
               <div class="space-y-4">
@@ -1193,13 +1483,12 @@
   <section class="pt-32 bg-white">
       <div class="container mx-auto px-4">
           <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Agricultural Resources</h2>
+              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 section-title">Agricultural Resources</h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">Essential links for Indian farmers and agribusinesses</p>
-              <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-globe text-primary-600"></i>
@@ -1212,7 +1501,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-rupee-sign text-primary-600"></i>
@@ -1225,7 +1514,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-seedling text-primary-600"></i>
@@ -1238,7 +1527,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-tractor text-primary-600"></i>
@@ -1251,7 +1540,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-tint text-primary-600"></i>
@@ -1264,7 +1553,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-leaf text-primary-600"></i>
@@ -1277,7 +1566,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-warehouse text-primary-600"></i>
@@ -1290,7 +1579,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-hand-holding-usd text-primary-600"></i>
@@ -1303,7 +1592,7 @@
                   </a>
               </div>
               
-              <div class="bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition card-hover">
+              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
                   <div class="flex items-center mb-4">
                       <div class="bg-primary-100 p-3 rounded-full mr-4">
                           <i class="fas fa-bullhorn text-primary-600"></i>
@@ -1333,7 +1622,7 @@
       <div class="container mx-auto px-4">
           <div class="flex flex-col md:flex-row gap-12">
               <div class="md:w-1/2">
-                  <div class="gradient-bg rounded-2xl p-8 h-full">
+                  <div class="professional-card gradient-bg rounded-2xl p-8 h-full no-move-on-hover">
                       <h3 class="text-2xl font-semibold mb-6">Contact Details</h3>
                       
                       <div class="space-y-6">
@@ -1389,11 +1678,11 @@
               </div>
               
               <div class="md:w-1/2">
-                  <div class="gradient-bg rounded-2xl p-8 h-full">
+                  <div class="professional-card gradient-bg rounded-2xl p-8 h-full no-move-on-hover">
                       <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
                       
                       <!-- Contact Form -->
-                      <form id="contactFormFull" action="https://formspree.io/f/manishshetty2701@gmail.com" method="POST">
+                      <form id="contactFormFull" action="https://formspree.io/f/mgvyqjnv" method="POST">
                           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                               <div>
                                   <label for="name" class="block text-gray-700 font-medium mb-2">Name*</label>
@@ -1412,7 +1701,6 @@
                               <label for="message" class="block text-gray-700 font-medium mb-2">Message*</label>
                               <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
                           </div>
-                          <input type="hidden" name="_replyto" value="email">
                           <input type="hidden" name="_subject" value="New Contact Form Submission">
                           <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition flex items-center justify-center btn-hover">
                               <span id="submitTextFull">Send Message</span>
@@ -1427,7 +1715,7 @@
                       <div id="thankYouMessageFull" class="hidden text-center py-8">
                           <div class="bg-primary-100 border border-primary-400 text-primary-700 px-4 py-3 rounded-lg mb-4">
                               <i class="fas fa-check-circle text-3xl text-primary-500 mb-3"></i>
-                              <h3 class="text-xl font-bold mb-2">Thank You!</h3>
+                              <h3 class="text-xl font-bold mb-2">Thank You! <i class="fas fa-smile ml-2"></i></h3>
                               <p class="mb-2">Your message has been sent successfully.</p>
                               <p>We'll get back to you within 24 hours.</p>
                           </div>
@@ -1441,9 +1729,9 @@
           
           <!-- Locations Section -->
           <div class="mt-20">
-              <h3 class="text-2xl font-semibold mb-6 text-center">Our Locations</h3>
+              <h3 class="text-2xl font-semibold mb-6 text-center section-title">Our Locations</h3>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div class="bg-white p-6 rounded-xl shadow-sm border border-primary-100 card-hover">
+                  <div class="professional-card bg-white p-6 rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
                       <div class="flex items-center mb-4">
                           <div class="bg-primary-100 p-3 rounded-full mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
@@ -1454,7 +1742,7 @@
                       <p class="text-gray-600 text-sm"></p>
                   </div>
                   
-                  <div class="bg-white p-6 rounded-xl shadow-sm border border-primary-100 card-hover">
+                  <div class="professional-card bg-white p-6 rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
                       <div class="flex items-center mb-4">
                           <div class="bg-primary-100 p-3 rounded-full mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
@@ -1465,7 +1753,7 @@
                       <p class="text-gray-600 text-sm"></p>
                   </div>
                   
-                  <div class="bg-white p-6 rounded-xl shadow-sm border border-primary-100 card-hover">
+                  <div class="professional-card bg-white p-6 rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
                       <div class="flex items-center mb-4">
                           <div class="bg-primary-100 p-3 rounded-full mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
@@ -1641,24 +1929,15 @@
             }
         });
         
-        // Video carousel functionality
+        // Video carousel functionality - removed the slideshow since we only have one video now
         const videoSlides = document.querySelectorAll('.video-slide');
-        let currentVideoSlide = 0;
+        showVideoSlide(0); // Show the first (and only) video
         
         function showVideoSlide(index) {
             videoSlides.forEach((slide, i) => {
                 slide.classList.toggle('active', i === index);
             });
         }
-        
-        function nextVideoSlide() {
-            currentVideoSlide = (currentVideoSlide + 1) % videoSlides.length;
-            showVideoSlide(currentVideoSlide);
-        }
-        
-        // Start video slideshow with 8-second interval
-        showVideoSlide(0);
-        setInterval(nextVideoSlide, 8000);
         
         // FAQ toggle functionality
         document.querySelectorAll('.faq-toggle').forEach(button => {
@@ -1711,9 +1990,139 @@
             document.getElementById('contactFormFull').classList.remove('hidden');
             document.getElementById('thankYouMessageFull').classList.add('hidden');
         });
+
+        // Partner modal functionality
+        const partnerModal = document.getElementById('partnerModal');
+        const partnerForm = document.getElementById('partnerForm');
+        const partnerSuccess = document.getElementById('partnerSuccess');
+        const partnerBtns = document.querySelectorAll('#partnerBtn, #partnerBtn2');
+
+        partnerBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                partnerModal.classList.add('active');
+                partnerForm.classList.remove('hidden');
+                partnerSuccess.classList.add('hidden');
+            });
+        });
+
+        // Register modal functionality
+        const registerModal = document.getElementById('registerModal');
+        const registerForm = document.getElementById('registerForm');
+        const registerSuccess = document.getElementById('registerSuccess');
+        const registerBtns = document.querySelectorAll('#registerBtn, #registerBtn2');
+
+        registerBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                registerModal.classList.add('active');
+                registerForm.classList.remove('hidden');
+                registerSuccess.classList.add('hidden');
+            });
+        });
+
+        // Close modal functionality
+        document.querySelectorAll('.close-modal').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').classList.remove('active');
+            });
+        });
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+
+        // Partner form submission
+        partnerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const form = e.target;
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    partnerForm.classList.add('hidden');
+                    partnerSuccess.classList.remove('hidden');
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            }
+        });
+
+        // Register form submission
+        registerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const form = e.target;
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    registerForm.classList.add('hidden');
+                    registerSuccess.classList.remove('hidden');
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            }
+        });
         
-        // Initialize tilt.js for 3D card effects
-        VanillaTilt.init(document.querySelectorAll(".card-hover"), {
+        // Smiley face animation for "Let's work for it" button
+        document.getElementById('partnerBtn').addEventListener('click', function(e) {
+            createSmiley(e);
+        });
+
+        function createSmiley(e) {
+            const smiley = document.createElement('div');
+            smiley.className = 'smiley-container';
+            
+            // Randomly select between smiley face or thumbs up
+            const random = Math.random();
+            if (random > 0.5) {
+                smiley.innerHTML = '<i class="fas fa-smile text-4xl text-yellow-400"></i>';
+            } else {
+                smiley.innerHTML = '<i class="fas fa-thumbs-up text-4xl text-blue-500"></i>';
+            }
+            
+            // Position the smiley at the click location
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            smiley.style.left = `${x}px`;
+            smiley.style.top = `${y}px`;
+            
+            // Add to the button
+            e.target.appendChild(smiley);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                smiley.remove();
+            }, 1000);
+        }
+        
+        // Initialize tilt.js for 3D card effects - removed for elements with no-move-on-hover class
+        VanillaTilt.init(document.querySelectorAll(".professional-card:not(.no-move-on-hover)"), {
             max: 15,
             speed: 400,
             glare: true,
