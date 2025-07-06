@@ -17,6 +17,8 @@
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lottie Files -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -360,6 +362,55 @@
     .no-move-on-hover:hover {
       transform: none !important;
     }
+    
+    /* Store page styles */
+    .coming-soon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    
+    .tractor-animation {
+      width: 300px;
+      height: 300px;
+      margin-bottom: 2rem;
+    }
+    
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .countdown-item {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      min-width: 80px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .countdown-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #16a34a;
+    }
+    
+    .countdown-label {
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+    
+    .subscribe-form {
+      max-width: 500px;
+      width: 100%;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-800 antialiased">
@@ -378,8 +429,9 @@
         <nav class="hidden md:flex space-x-8">
             <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="home">Home</a>
             <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="about">About</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="store">Store</a>
             <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="goals">Vision</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="registration">Registration</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="registration">Join Us</a>
             <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="resources">Resources</a>
             <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="contact">Contact</a>
         </nav>
@@ -394,6 +446,7 @@
     <div class="mobile-menu hidden" id="mobileMenu">
         <a href="#" class="nav-link header-link" data-page="home">Home</a>
         <a href="#" class="nav-link header-link" data-page="about">About</a>
+        <a href="#" class="nav-link header-link" data-page="store">Store</a>
         <a href="#" class="nav-link header-link" data-page="goals">Vision</a>
         <a href="#" class="nav-link header-link" data-page="registration">Registration</a>
         <a href="#" class="nav-link header-link" data-page="resources">Resources</a>
@@ -741,7 +794,7 @@
         
         <!-- Toggle button -->
         <button id="bulbToggle" class="bg-white text-primary-800 hover:bg-primary-100 px-4 py-1 rounded-full font-medium text-sm transition">
-          💡 Turn on the light if it’s dark 🌙
+          💡 Click For Support
         </button>
       </div>
     </div>
@@ -1067,6 +1120,171 @@
     
     document.querySelectorAll('.animate-count').forEach(el => observer.observe(el));
   });
+</script>
+
+<!-- Store Page -->
+<div id="store-page" class="page">
+  <section class="pt-32 pb-20 bg-gradient-to-b from-primary-50 to-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-primary-700 mb-4 section-title">HoGo Fresh Store</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Coming soon - Direct from farm to your doorstep</p>
+      </div>
+      
+      <div class="coming-soon-container">
+        <!-- Tractor Animation - Fixed by adding Lottie script -->
+        <div class="tractor-animation">
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin: 0 auto;" loop autoplay></lottie-player>
+        </div>
+        
+        <h3 class="text-3xl font-bold text-gray-800 mb-4">Our Online Store is Coming Soon!</h3>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+          We're working hard to bring you fresh, organic produce directly from our partner farms. 
+          Sign up to be notified when we launch and get exclusive early access offers.
+        </p>
+        
+        <!-- Countdown Timer - Fixed with working JavaScript -->
+        <div class="countdown">
+          <div class="countdown-item">
+            <div class="countdown-value" id="days">00</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-value" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-value" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-value" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+        
+        <!-- Subscription Form with Formspree integration -->
+        <div class="subscribe-form professional-card bg-white p-8 rounded-xl shadow-sm">
+          <h4 class="text-xl font-semibold text-center mb-4">Get Notified When We Launch</h4>
+          <form id="notify-form" action="https://formspree.io/f/mgvyqjnv" method="POST" class="space-y-4">
+            <div>
+              <input type="email" name="email" placeholder="Your email address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" required>
+            </div>
+            <div>
+              <input type="text" name="location" placeholder="Your location (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            </div>
+            <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition btn-hover">
+              Notify Me
+            </button>
+          </form>
+          <div id="form-success" class="hidden mt-4 text-center">
+            <p class="text-green-600 font-medium">Thank you! 😊 We'll notify you when we launch.</p>
+          </div>
+        </div>
+        
+        <div class="mt-8 text-center">
+          <h4 class="text-xl font-semibold mb-4">What to Expect</h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-primary-600 text-2xl mb-2">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h5 class="font-medium mb-2">Fresh Organic Produce</h5>
+              <p class="text-sm text-gray-600">Direct from farms with full traceability</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-primary-600 text-2xl mb-2">
+                <i class="fas fa-truck"></i>
+              </div>
+              <h5 class="font-medium mb-2">Fast Delivery</h5>
+              <p class="text-sm text-gray-600">Fastest delivery options</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-primary-600 text-2xl mb-2">
+                <i class="fas fa-rupee-sign"></i>
+              </div>
+              <h5 class="font-medium mb-2">Fair Prices</h5>
+              <p class="text-sm text-gray-600">Better for farmers, better for you</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Home Link -->
+  <div class="container mx-auto px-4 py-12 text-center">
+    <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium group transition-all"
+       data-page="home">
+      <span class="mr-2 group-hover:-translate-x-1 transition-transform">Back to Home</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+</div>
+
+<script>
+// Countdown Timer Script - Set to 1 month from now
+document.addEventListener('DOMContentLoaded', function() {
+  // Set the date we're counting down to (1 month from now)
+  const countDownDate = new Date();
+  countDownDate.setMonth(countDownDate.getMonth() + 1);
+  
+  // Update the count down every 1 second
+  const x = setInterval(function() {
+    // Get today's date and time
+    const now = new Date().getTime();
+    
+    // Find the distance between now and the count down date
+    const distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Display the result
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    
+    // If the count down is finished, clear interval
+    if (distance < 0) {
+      clearInterval(x);
+      document.querySelector(".countdown").innerHTML = "<div class='text-2xl font-bold text-primary-600'>We're Live!</div>";
+    }
+  }, 1000);
+
+  // Form submission handler
+  const form = document.getElementById('notify-form');
+  const formSuccess = document.getElementById('form-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        form.reset();
+        form.style.display = 'none';
+        formSuccess.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  });
+});
 </script>
 
 <!-- Goals Page - Redesigned -->
@@ -1796,6 +2014,7 @@
                 <ul class="space-y-2">
                     <li><a href="#" class="nav-link hover:text-white transition" data-page="home">Home</a></li>
                     <li><a href="#" class="nav-link hover:text-white transition" data-page="about">About Us</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition" data-page="store">Store</a></li>
                     <li><a href="#" class="nav-link hover:text-white transition" data-page="goals">Our Vision</a></li>
                     <li><a href="#" class="nav-link hover:text-white transition" data-page="registration">Registration</a></li>
                     <li><a href="#" class="nav-link hover:text-white transition" data-page="resources">Resources</a></li>
@@ -2128,6 +2347,40 @@
             glare: true,
             "max-glare": 0.1,
         });
+        
+        // Countdown timer for store page
+        function updateCountdown() {
+            const countdownDate = new Date();
+            countdownDate.setDate(countdownDate.getDate() + 30); // Set launch date to 30 days from now
+            
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            // Time calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display results
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // If the countdown is finished
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+        
+        // Update the countdown every 1 second
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
         
         // Animate stats counting
         const animateCounters = () => {
