@@ -108,7 +108,7 @@
       top: 100%;
       right: 0;
       background-color: white;
-      width: 250px;
+      width: 100%;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
       border-radius: 0.5rem;
       z-index: 50;
@@ -383,6 +383,8 @@
       display: flex;
       gap: 1rem;
       margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     
     .countdown-item {
@@ -411,6 +413,190 @@
       width: 100%;
       margin-top: 2rem;
     }
+
+    /* Floating contact button */
+    .floating-contact-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #22c55e;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    
+    .floating-contact-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* News ticker styles */
+    .news-ticker {
+      width: 100%;
+      overflow: hidden;
+      background-color: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+      border-bottom: 1px solid #e9ecef;
+      padding: 10px 0;
+    }
+    
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: ticker 30s linear infinite;
+    }
+    
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    .ticker-item {
+      display: inline-block;
+      padding: 0 20px;
+      color: #333;
+      font-size: 14px;
+    }
+    
+    .ticker-item a {
+      color: #22c55e;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+    
+    .ticker-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* FSSAI certification section */
+    .fssai-section {
+      background-color: #f8f9fa;
+      padding: 40px 0;
+      border-top: 1px solid #e9ecef;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .fssai-logo {
+      height: 80px;
+      margin-bottom: 20px;
+    }
+
+    /* Business registration background */
+    .registration-bg {
+      background-image: url('https://images.unsplash.com/photo-1581093196276-6357f7a6f1c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    
+    .registration-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255,255,255,0.9);
+    }
+    
+    .registration-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 767px) {
+      /* Header adjustments */
+      header.scrolled #headerLogo {
+        height: 3rem;
+      }
+      
+      /* Hero section text sizing */
+      .hero-section h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+      }
+      
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+      
+      /* Button sizing */
+      .hero-section .flex-wrap {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero-section .flex-wrap button, 
+      .hero-section .flex-wrap a {
+        width: 100%;
+        padding: 0.75rem 1rem;
+      }
+      
+      /* Section padding */
+      section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+      
+      /* Card layouts */
+      .grid-cols-3, .grid-cols-4 {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Timeline adjustments */
+      .timeline-item {
+        flex-direction: column;
+      }
+      
+      .timeline-content {
+        width: 100% !important;
+        margin-left: 2rem !important;
+        margin-top: 1rem;
+      }
+      
+      /* Form inputs */
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+      
+      /* Hide some decorative elements on mobile */
+      .absolute.hidden.md\\:block {
+        display: none;
+      }
+      
+      /* Mobile menu full width */
+      .mobile-menu {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      /* Tablet adjustments */
+      .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      /* Slightly smaller text on tablets */
+      .hero-section h1 {
+        font-size: 3.5rem;
+      }
+    }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-800 antialiased">
@@ -421,19 +607,18 @@
         <!-- Logo - Made bigger -->
         <div class="flex items-center">
             <a href="#" class="home-link">
-                <img src="https://i.ibb.co/Xf25JMp0/1000282093.png" alt="HoGo Fresh Logo" class="h-20 transition-all duration-300 hover:opacity-90" id="headerLogo">
+                <img src="https://i.ibb.co/Xf25JMp0/1000282093.png" alt="HoGo Fresh Logo" class="h-16 md:h-20 transition-all duration-300 hover:opacity-90" id="headerLogo">
             </a>
         </div>
         
         <!-- Navigation Menu -->
-        <nav class="hidden md:flex space-x-8">
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="home">Home</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="about">About</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="store">Store</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="goals">Vision</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="registration">Join Us</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="resources">Resources</a>
-            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-base header-link px-2 py-1" data-page="contact">Contact</a>
+        <nav class="hidden md:flex space-x-4 lg:space-x-8">
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-sm lg:text-base header-link px-2 py-1" data-page="home">Home</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-sm lg:text-base header-link px-2 py-1" data-page="about">About</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-sm lg:text-base header-link px-2 py-1" data-page="store">Store</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-sm lg:text-base header-link px-2 py-1" data-page="goals">Vision</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-sm lg:text-base header-link px-2 py-1" data-page="registration">Join Us</a>
+            <a href="#" class="nav-link text-white hover:text-primary-100 font-medium transition-all duration-200 text-sm lg:text-base header-link px-2 py-1" data-page="resources">Resources</a>
         </nav>
         
         <!-- Mobile Menu Button -->
@@ -450,7 +635,6 @@
         <a href="#" class="nav-link header-link" data-page="goals">Vision</a>
         <a href="#" class="nav-link header-link" data-page="registration">Registration</a>
         <a href="#" class="nav-link header-link" data-page="resources">Resources</a>
-        <a href="#" class="nav-link header-link" data-page="contact">Contact</a>
     </div>
 </header>
 
@@ -463,15 +647,20 @@
     
     /* Make the container slightly smaller when scrolled */
     header.scrolled .container {
-        padding-top: 0.75rem; /* Reduced from py-4 (1rem) */
-        padding-bottom: 0.75rem; /* Reduced from py-4 (1rem) */
+        padding-top: 0.5rem; /* Reduced from py-4 (1rem) */
+        padding-bottom: 0.5rem; /* Reduced from py-4 (1rem) */
     }
     
     /* Optional: You can also make the logo slightly smaller when scrolled */
     header.scrolled #headerLogo {
-        height: 3.5rem; /* Reduced from h-20 (5rem) - adjust as needed */
+        height: 3rem; /* Reduced from h-20 (5rem) - adjust as needed */
     }
 </style>
+
+<!-- Floating Contact Button -->
+<div class="floating-contact-btn" id="floatingContactBtn">
+    <i class="fas fa-user"></i>
+</div>
 
 <!-- Partner With Us Modal -->
 <div id="partnerModal" class="modal">
@@ -597,15 +786,15 @@
       
       <!-- Content -->
       <div class="container mx-auto px-4 text-center relative z-20">
-          <div class="max-w-4xl mx-auto p-8 md:p-12">
-              <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+          <div class="max-w-4xl mx-auto p-4 md:p-8 lg:p-12">
+              <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-lg">
                   <span class="text-primary-300 font-display">Freshness</span>, 
                   <span class="font-display">Simplified!</span>
               </h1>
-              <p class="text-xl md:text-2xl mb-8 text-white drop-shadow-md">Future of freshness, powered by connection.</p>
-              <div class="flex flex-wrap justify-center gap-4">
-                  <button id="registerBtn" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg">Join Our Network</button>
-                  <a href="#" class="nav-link bg-white hover:bg-gray-100 text-primary-700 px-8 py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg" data-page="about">Learn More</a>
+              <p class="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-white drop-shadow-md">Future of freshness, powered by connection.</p>
+              <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
+                  <button id="registerBtn" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg">Join Our Network</button>
+                  <a href="#" class="nav-link bg-white hover:bg-gray-100 text-primary-700 px-6 py-3 md:px-8 md:py-3 rounded-full font-medium transition transform hover:scale-105 btn-hover shadow-lg" data-page="about">Learn More</a>
               </div>
           </div>
       </div>
@@ -619,58 +808,58 @@
   </section>
 
  <!-- Sustainable Agriculture Story Section -->
-<section class="py-20 bg-white">
+<section class="py-12 md:py-20 bg-white">
   <div class="container mx-auto px-4 max-w-7xl">
-    <div class="text-center mb-16">
-      <span class="inline-block bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-4 tracking-wider uppercase">OUR SUSTAINABLE JOURNEY</span>
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 section-title">From Seed to Supper:<br>Transparent & Responsible</h2>
-      <p class="text-lg text-gray-600 max-w-3xl mx-auto">Connecting India's agricultural ecosystem through innovation and technology</p>
+    <div class="text-center mb-8 md:mb-16">
+      <span class="inline-block bg-primary-50 text-primary-700 px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4 tracking-wider uppercase">OUR SUSTAINABLE JOURNEY</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4 section-title">From Seed to Supper:<br>Transparent & Responsible</h2>
+      <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">Connecting India's agricultural ecosystem through innovation and technology</p>
     </div>
 
     <!-- Full-width sustainable story -->
-    <div class="professional-card gradient-bg rounded-3xl p-8 md:p-12 mb-16 shadow-inner border border-primary-100">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="professional-card gradient-bg rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 mb-12 md:mb-16 shadow-inner border border-primary-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
         <div>
-          <h3 class="text-2xl md:text-3xl font-bold text-primary-800 mb-6">The Clean Food Promise</h3>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+          <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-primary-800 mb-4 md:mb-6">The Clean Food Promise</h3>
+          <p class="text-base md:text-lg text-gray-700 mb-4 md:mb-6 leading-relaxed">
             Every bite should nourish both people and planet. We're rebuilding India's agricultural supply chain to eliminate harmful practices, reduce food miles, and ensure what grows in our soil sustains our future.
           </p>
-          <div class="space-y-4">
+          <div class="space-y-3 md:space-y-4">
             <div class="flex items-start">
-              <div class="bg-primary-100 p-2 rounded-full mr-4 flex-shrink-0">
+              <div class="bg-primary-100 p-2 rounded-full mr-3 md:mr-4 flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <p class="text-gray-700">Zero residue produce with verifiable farming practices</p>
+              <p class="text-gray-700 text-sm md:text-base">Zero residue produce with verifiable farming practices</p>
             </div>
             <div class="flex items-start">
-              <div class="bg-primary-100 p-2 rounded-full mr-4 flex-shrink-0">
+              <div class="bg-primary-100 p-2 rounded-full mr-3 md:mr-4 flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <p class="text-gray-700">Reduced carbon-negative logistics from farm to market</p>
+              <p class="text-gray-700 text-sm md:text-base">Reduced carbon-negative logistics from farm to market</p>
             </div>
             <div class="flex items-start">
-              <div class="bg-primary-100 p-2 rounded-full mr-4 flex-shrink-0">
+              <div class="bg-primary-100 p-2 rounded-full mr-3 md:mr-4 flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <p class="text-gray-700">From sourcing to delivery, our model eliminates middlemen, cuts waste, and supports climate-resilient supply chains that work for both people and the planet.</p>
+              <p class="text-gray-700 text-sm md:text-base">From sourcing to delivery, our model eliminates middlemen, cuts waste, and supports climate-resilient supply chains that work for both people and the planet.</p>
             </div>
           </div>
         </div>
         <div class="relative">
-          <div class="rounded-2xl overflow-hidden shadow-lg border-4 border-white professional-card no-move-on-hover">
+          <div class="rounded-xl md:rounded-2xl overflow-hidden shadow-lg border-4 border-white professional-card no-move-on-hover">
             <img src="https://cdn.pixabay.com/photo/2016/07/02/22/42/berries-1493905_1280.jpg" 
                  alt="Sustainable farming practices" 
                  class="w-full h-auto">
           </div>
-          <div class="absolute -bottom-5 -right-5 bg-white p-2 rounded-full shadow-xl border border-primary-200">
-            <div class="bg-primary-600 text-white w-14 h-14 rounded-full flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="absolute -bottom-3 -right-3 md:-bottom-5 md:-right-5 bg-white p-2 md:p-3 rounded-full shadow-xl border border-primary-200 hidden md:block">
+            <div class="bg-primary-600 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
@@ -679,122 +868,147 @@
       </div>
     </div>
 
+    <!-- FSSAI Certification Section - Added after Clean Food Promise -->
+    <section class="fssai-section py-12 md:py-16 scroll-fade-in">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto bg-white rounded-xl md:rounded-2xl shadow-md overflow-hidden border border-gray-100">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/3 bg-primary-50 flex items-center justify-center p-6 md:p-8">
+              <img src="https://upload.wikimedia.org/wikipedia/hi/thumb/8/84/FSSAI_Logo.png/640px-FSSAI_Logo.png" 
+                   alt="FSSAI Certified" 
+                   class="h-24 md:h-32 object-contain">
+            </div>
+            <div class="md:w-2/3 p-6 md:p-8 lg:p-10">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">FSSAI Certified Operations</h3>
+              <p class="text-gray-600 mb-4">We are proud to be certified by the Food Safety and Standards Authority of India (FSSAI), ensuring that all our food handling and distribution processes meet the highest standards of safety and hygiene.</p>
+              <div class="bg-gray-50 p-3 md:p-4 rounded-lg">
+                <p class="text-primary-600 font-medium"><span class="font-semibold">License Number:</span> 21225077000381</p>
+                <p class="text-xs md:text-sm text-gray-500 mt-1">Valid through: July 2026</p>
+              </div>
+              <a href="#" class="inline-block mt-4 md:mt-6 text-primary-600 hover:text-primary-800 font-medium">
+              
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Sustainability Impact Metrics -->
-    <div class="grid md:grid-cols-3 gap-8 mb-20">
-      <div class="professional-card bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
-        <div class="text-primary-600 text-4xl font-bold mb-3" data-count="78">24</div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">% Less Food Waste</h4>
-        <p class="text-gray-600 text-sm">Through optimized cold chain and direct-to-retail routes</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20 scroll-fade-in">
+      <div class="professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
+        <div class="text-primary-600 text-3xl md:text-4xl font-bold mb-3" data-count="78">24</div>
+        <h4 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">% Less Food Waste</h4>
+        <p class="text-gray-600 text-sm md:text-base">Through optimized cold chain and direct-to-retail routes</p>
       </div>
-      <div class="professional-card bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
-        <div class="text-primary-600 text-4xl font-bold mb-3" data-count="120">32</div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">% Farmer Income Increase</h4>
-        <p class="text-gray-600 text-sm">By eliminating middlemen and premium sustainable practices</p>
+      <div class="professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
+        <div class="text-primary-600 text-3xl md:text-4xl font-bold mb-3" data-count="120">32</div>
+        <h4 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">% Farmer Income Increase</h4>
+        <p class="text-gray-600 text-sm md:text-base">By eliminating middlemen and premium sustainable practices</p>
       </div>
-      <div class="professional-card bg-white p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
-        <div class="text-primary-600 text-4xl font-bold mb-3" data-count="42">17</div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">% Lower Emissions</h4>
-        <p class="text-gray-600 text-sm">Via electric fleet and optimized routing algorithms</p>
+      <div class="professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm border border-primary-50 hover:shadow-md transition no-move-on-hover">
+        <div class="text-primary-600 text-3xl md:text-4xl font-bold mb-3" data-count="42">17</div>
+        <h4 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">% Lower Emissions</h4>
+        <p class="text-gray-600 text-sm md:text-base">Via electric fleet and optimized routing algorithms</p>
       </div>
     </div>
 
     <!-- Sustainable Supply Chain Story -->
-    <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-20 scroll-fade-in">
       <div class="order-2 md:order-1">
         <span class="inline-block bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-xs font-medium mb-3">HOW IT WORKS</span>
-        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">The Clean Supply Chain</h3>
-        <div class="space-y-6">
+        <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6">The Clean Supply Chain</h3>
+        <div class="space-y-4 md:space-y-6">
           <div class="flex">
-            <div class="mr-4">
-              <div class="bg-primary-100 text-primary-700 w-12 h-12 rounded-full flex items-center justify-center font-bold">1</div>
+            <div class="mr-3 md:mr-4">
+              <div class="bg-primary-100 text-primary-700 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold">1</div>
             </div>
             <div>
               <h4 class="font-semibold text-gray-900 mb-2">Integrated Supply Chain Platform</h4>
-              <p class="text-gray-600">HoGo Fresh connects producers to consumers across agriculture, dairy, fisheries, and textiles, streamlining procurement, warehousing, and delivery to ensure freshness at every stage.</p>
+              <p class="text-gray-600 text-sm md:text-base">HoGo Fresh connects producers to consumers across agriculture, dairy, fisheries, and textiles, streamlining procurement, warehousing, and delivery to ensure freshness at every stage.</p>
             </div>
           </div>
           <div class="flex">
-            <div class="mr-4">
-              <div class="bg-primary-100 text-primary-700 w-12 h-12 rounded-full flex items-center justify-center font-bold">2</div>
+            <div class="mr-3 md:mr-4">
+              <div class="bg-primary-100 text-primary-700 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold">2</div>
             </div>
             <div>
               <h4 class="font-semibold text-gray-900 mb-2">Local Sourcing & Reduced Food Miles</h4>
-              <p class="text-gray-600">HoGo Fresh partners with local farmers, fisheries, and textile producers, minimizing long-distance transportation. This reduces carbon emissions, supports rural economies, and ensures fresher products with less spoilage.</p>
+              <p class="text-gray-600 text-sm md:text-base">HoGo Fresh partners with local farmers, fisheries, and textile producers, minimizing long-distance transportation. This reduces carbon emissions, supports rural economies, and ensures fresher products with less spoilage.</p>
             </div>
           </div>
           <div class="flex">
-            <div class="mr-4">
-              <div class="bg-primary-100 text-primary-700 w-12 h-12 rounded-full flex items-center justify-center font-bold">3</div>
+            <div class="mr-3 md:mr-4">
+              <div class="bg-primary-100 text-primary-700 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold">3</div>
             </div>
             <div>
               <h4 class="font-semibold text-gray-900 mb-2">Minimal Waste Supply Chain</h4>
-              <p class="text-gray-600">Our optimized logistics and storage solutions minimize product waste throughout the supply chain, ensuring maximum value for producers and fresher products for consumers.</p>
+              <p class="text-gray-600 text-sm md:text-base">Our optimized logistics and storage solutions minimize product waste throughout the supply chain, ensuring maximum value for producers and fresher products for consumers.</p>
             </div>
           </div>
         </div>
       </div>
       <div class="order-1 md:order-2 relative">
-        <div class="professional-card rounded-2xl overflow-hidden shadow-lg no-move-on-hover">
+        <div class="professional-card rounded-xl md:rounded-2xl overflow-hidden shadow-lg no-move-on-hover">
           <img src="https://cdn.pixabay.com/photo/2023/07/24/22/47/woman-8147979_1280.jpg" 
                alt="Sustainable supply chain" 
                class="w-full h-auto">
         </div>
-        <div class="absolute -left-6 -top-6 bg-white p-3 rounded-xl shadow-md border border-primary-100 hidden md:block">
-          <div class="text-primary-700 font-bold">Traceability</div>
-          <div class="text-xs text-gray-500"></div>
+        <div class="absolute -left-4 -top-4 md:-left-6 md:-top-6 bg-white p-2 md:p-3 rounded-lg shadow-md border border-primary-100 hidden md:block">
+          <div class="text-primary-700 font-bold text-sm md:text-base">Traceability</div>
         </div>
-        <div class="absolute -right-6 -bottom-6 bg-white p-3 rounded-xl shadow-md border border-primary-100 hidden md:block">
-          <div class="text-primary-700 font-bold">0% Waste</div>
+        <div class="absolute -right-4 -bottom-4 md:-right-6 md:-bottom-6 bg-white p-2 md:p-3 rounded-lg shadow-md border border-primary-100 hidden md:block">
+          <div class="text-primary-700 font-bold text-sm md:text-base">0% Waste</div>
           <div class="text-xs text-gray-500">Our 2025 goal</div>
         </div>
       </div>
     </div>
 
 <!-- Farmer & Consumer Promise -->
-<div class="professional-card bg-primary-800 rounded-3xl overflow-hidden no-move-on-hover">
-  <div class="grid md:grid-cols-2">
-    <div class="p-10 text-white">
-      <h3 class="text-2xl md:text-3xl font-bold mb-6">Our Double Promise</h3>
-      <div class="space-y-8">
+<div class="professional-card bg-primary-800 rounded-2xl md:rounded-3xl overflow-hidden no-move-on-hover scroll-fade-in">
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="p-6 md:p-8 lg:p-10 text-white">
+      <h3 class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6">Our Double Promise</h3>
+      <div class="space-y-6 md:space-y-8">
         <div>
           <div class="flex items-center mb-3">
-            <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="bg-primary-600 text-white w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h4 class="font-semibold text-lg">To Farmers</h4>
+            <h4 class="font-semibold text-base md:text-lg">To Farmers</h4>
           </div>
-          <p class="text-primary-100 pl-11">Fair prices for sustainable practices, technical support to transition to organic, and direct market access without exploitation.</p>
+          <p class="text-primary-100 pl-9 md:pl-11 text-sm md:text-base">Fair prices for sustainable practices, technical support to transition to organic, and direct market access without exploitation.</p>
         </div>
         <div>
           <div class="flex items-center mb-3">
-            <div class="bg-primary-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="bg-primary-600 text-white w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h4 class="font-semibold text-lg">To Consumers</h4>
+            <h4 class="font-semibold text-base md:text-lg">To Consumers</h4>
           </div>
-          <p class="text-primary-100 pl-11">Food you can trust - grown without harmful chemicals, transported with minimal emissions, and priced fairly for all.</p>
+          <p class="text-primary-100 pl-9 md:pl-11 text-sm md:text-base">Food you can trust - grown without harmful chemicals, transported with minimal emissions, and priced fairly for all.</p>
         </div>
       </div>
     </div>
-    <div class="bg-primary-700 p-10 flex items-center justify-center">
+    <div class="bg-primary-700 p-6 md:p-8 lg:p-10 flex items-center justify-center">
       <div class="text-center">
-        <div class="bg-primary-600 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 bulb-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="bg-primary-600 text-white w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 relative">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10 bulb-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
           <!-- Light effect (hidden by default) -->
           <div class="absolute inset-0 rounded-full bg-yellow-200 opacity-0 bulb-light transition-opacity duration-300"></div>
         </div>
-        <h4 class="text-white font-bold text-xl mb-2">Good for You, Better for the Planet</h4>
-        <p class="text-primary-200 mb-4">We blend quality with responsibility, offering products that are fresh, ethical, and environmentally sound.</p>
+        <h4 class="text-white font-bold text-lg md:text-xl mb-2">Good for You, Better for the Planet</h4>
+        <p class="text-primary-200 mb-4 text-sm md:text-base">We blend quality with responsibility, offering products that are fresh, ethical, and environmentally sound.</p>
         
         <!-- Toggle button -->
-        <button id="bulbToggle" class="bg-white text-primary-800 hover:bg-primary-100 px-4 py-1 rounded-full font-medium text-sm transition">
-          💡 Click For Support
+        <button id="bulbToggle" class="bg-white text-primary-800 hover:bg-primary-100 px-4 py-1 rounded-full font-medium text-xs md:text-sm transition">
+          Lets do it Togeather!
         </button>
       </div>
     </div>
@@ -803,7 +1017,65 @@
 </div>
 </section>
 
+<!-- Sustainability Goals Section -->
+<section class="py-12 md:py-16 lg:py-20 gradient-bg scroll-fade-in">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="text-center mb-8 md:mb-12 lg:mb-16">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary-800 mb-3 md:mb-4 section-title">Our 2025 Sustainability Roadmap</h2>
+      <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Concrete targets for a cleaner food system</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <!-- Goal 1 -->
+      <div class="professional-card bg-white p-6 md:p-8 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border-t-4 border-primary-500 no-move-on-hover">
+        <div class="text-primary-600 text-2xl md:text-3xl font-bold mb-2">68%</div>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-3">Organic Transition</h3>
+        <p class="text-gray-600 mb-4 text-sm md:text-base">Converting our entire farmer network to certified organic practices by 2025</p>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-primary-600 h-2.5 rounded-full" style="width: 65%"></div>
+        </div>
+        <div class="text-right text-xs md:text-sm text-gray-500 mt-1">8% completed</div>
+      </div>
+      
+      <!-- Goal 2 -->
+      <div class="professional-card bg-white p-6 md:p-8 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border-t-4 border-primary-500 no-move-on-hover">
+        <div class="text-primary-600 text-2xl md:text-3xl font-bold mb-2">Net Zero</div>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-3">Carbon Neutral Logistics</h3>
+        <p class="text-gray-600 mb-4 text-sm md:text-base">Full electrification of our transport fleet powered by renewable energy</p>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-primary-600 h-2.5 rounded-full" style="width: 40%"></div>
+        </div>
+        <div class="text-right text-xs md:text-sm text-gray-500 mt-1">12% completed</div>
+      </div>
+      
+      <!-- Goal 3 -->
+      <div class="professional-card bg-white p-6 md:p-8 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border-t-4 border-primary-500 no-move-on-hover">
+        <div class="text-primary-600 text-2xl md:text-3xl font-bold mb-2">Zero</div>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-3">Food Waste</h3>
+        <p class="text-gray-600 mb-4 text-sm md:text-base">Eliminating all preventable food loss through smart cold chain solutions</p>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-primary-600 h-2.5 rounded-full" style="width: 78%"></div>
+        </div>
+        <div class="text-right text-xs md:text-sm text-gray-500 mt-1">6% completed</div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 md:mt-16">
+      <a href="https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-and-agriculture/en" 
+         target="_blank"
+         class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-3 lg:px-10 lg:py-4 border border-transparent text-base font-medium rounded-full text-white bg-primary-600 hover:bg-primary-700 transition btn-hover shadow-lg">
+        The State of Food and Agriculture 2024 Report
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+</div>
+
 <style>
+  /* Bulb styles */
   .bulb-light {
     box-shadow: 0 0 20px 10px rgba(255, 255, 100, 0.7);
   }
@@ -816,178 +1088,164 @@
     stroke: yellow;
     filter: drop-shadow(0 0 4px rgba(255, 255, 100, 0.8));
   }
+  
+  /* Scroll animation styles */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* FSSAI section specific styles */
+  .fssai-section {
+    background: linear-gradient(to right, #f8fafc, #f0fdf4);
+    margin: 2rem 0;
+  }
+  
+  .fssai-logo {
+    max-height: 120px;
+    margin-bottom: 1.5rem;
+  }
 </style>
 
 <script>
+  // Bulb toggle functionality
   document.getElementById('bulbToggle').addEventListener('click', function() {
     const bulbContainer = document.querySelector('.bg-primary-600.w-20.h-20');
     bulbContainer.classList.toggle('bulb-on');
   });
+  
+  // Scroll animation functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollElements = document.querySelectorAll('.scroll-fade-in');
+    
+    const elementInView = (el) => {
+      const elementTop = el.getBoundingClientRect().top;
+      return (
+        elementTop <= (window.innerHeight || document.documentElement.clientHeight) * 0.75
+      );
+    };
+    
+    const displayScrollElement = (element) => {
+      element.classList.add('visible');
+    };
+    
+    const handleScrollAnimation = () => {
+      scrollElements.forEach((el) => {
+        if (elementInView(el)) {
+          displayScrollElement(el);
+        }
+      });
+    };
+    
+    // Initialize - check if elements are already in view on load
+    handleScrollAnimation();
+    
+    // Add event listener
+    window.addEventListener('scroll', () => {
+      handleScrollAnimation();
+    });
+  });
 </script>
-
-<!-- Sustainability Goals Section -->
-<section class="py-20 gradient-bg">
-  <div class="container mx-auto px-4 max-w-7xl">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-primary-800 mb-4 section-title">Our 2025 Sustainability Roadmap</h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">Concrete targets for a cleaner food system</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Goal 1 -->
-      <div class="professional-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 no-move-on-hover">
-        <div class="text-primary-600 text-3xl font-bold mb-2">68%</div>
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Organic Transition</h3>
-        <p class="text-gray-600 mb-4">Converting our entire farmer network to certified organic practices by 2025</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-primary-600 h-2.5 rounded-full" style="width: 65%"></div>
-        </div>
-        <div class="text-right text-sm text-gray-500 mt-1">8% completed</div>
-      </div>
-      
-      <!-- Goal 2 -->
-      <div class="professional-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 no-move-on-hover">
-        <div class="text-primary-600 text-3xl font-bold mb-2">Net Zero</div>
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Carbon Neutral Logistics</h3>
-        <p class="text-gray-600 mb-4">Full electrification of our transport fleet powered by renewable energy</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-primary-600 h-2.5 rounded-full" style="width: 40%"></div>
-        </div>
-        <div class="text-right text-sm text-gray-500 mt-1">12% completed</div>
-      </div>
-      
-      <!-- Goal 3 -->
-      <div class="professional-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border-t-4 border-primary-500 no-move-on-hover">
-        <div class="text-primary-600 text-3xl font-bold mb-2">Zero</div>
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Food Waste</h3>
-        <p class="text-gray-600 mb-4">Eliminating all preventable food loss through smart cold chain solutions</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-primary-600 h-2.5 rounded-full" style="width: 78%"></div>
-        </div>
-        <div class="text-right text-sm text-gray-500 mt-1">6% completed</div>
-      </div>
-    </div>
-
-    <div class="text-center mt-16">
-      <a href="https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-and-agriculture/en" 
-         target="_blank"
-         class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10 transition btn-hover shadow-lg">
-        The State of Food and Agriculture 2024 Report
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-</div>
 
 <!-- About Page -->
 <div id="about-page" class="page">
-  <!-- Hero Section with parallax effect -->
+  <!-- Hero Section with image carousel -->
   <section class="min-h-screen flex items-center justify-center bg-white relative overflow-hidden" id="hero-section">
-    <!-- Parallax background -->
+    <!-- Image carousel -->
     <div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 to-primary-700/30"></div>
-      <img src="https://cdn.pixabay.com/photo/2016/07/10/22/16/wheat-1508654_1280.jpg" alt="Farm background" 
-           class="w-full h-full object-cover" id="parallax-bg">
-    </div>
-    
-    <!-- Content container -->
-    <div class="container mx-auto px-4 relative z-10 py-32 transform transition-all duration-500 ease-out opacity-0 translate-y-10" id="hero-content">
-      <div class="max-w-4xl mx-auto text-center bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-100">
-        <h2 class="text-4xl md:text-5xl font-bold text-primary-700 mb-8 animate-fadeIn" id="our-story-header">Our Story</h2>
-        <div class="prose-lg text-gray-700 space-y-6 mx-auto">
-          <p class="animate-fadeIn [animation-delay:200ms]">
-            Born in 2023, HoGo Fresh represents a new era in India's agricultural ecosystem. We recognized an opportunity to transform how food moves from farms to tables across our nation.
-          </p>
-          <p class="animate-fadeIn [animation-delay:400ms]">
-            We're pioneering India's first integrated agricultural network - a seamless bridge between hardworking farmers and quality-conscious buyers. Our technology platform creates an optimized ecosystem where every participant thrives.
-          </p>
-          <p class="animate-fadeIn [animation-delay:600ms]">
-            Today, HoGo Fresh operates across multiple states in India, serving thousands of farmers and businesses with our innovative approach to agricultural logistics.
-          </p>
-        </div>
+      <!-- Slide 1 -->
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" id="slide1">
+        <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" 
+             class="w-full h-full object-contain md:object-cover">
       </div>
-    </div>
-    
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-700">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M19 12l-7 7-7-7"/>
-      </svg>
+      <!-- Slide 2 -->
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" id="slide2">
+        <img src="https://i.ibb.co/7JbFzcvy/8807fc0b-43a8-473c-b278-958ce16fe615.jpg" 
+             class="w-full h-full object-contain md:object-cover">
+      </div>
+      <!-- Slide 3 -->
+      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" id="slide3">
+        <img src="https://i.ibb.co/7NpwjcQj/1-orig-1.jpg" alt="Fresh produce" 
+             class="w-full h-full object-contain md:object-cover">
+      </div>
     </div>
   </section>
 
   <!-- Approach Section -->
-  <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+  <section class="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-primary-700 mb-4 section-title">Our Approach</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">How we're different from traditional supply chains</p>
+      <div class="text-center mb-8 md:mb-16">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4 section-title">Our Approach</h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">How we're different from traditional supply chains</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
         <!-- Direct Connections Card -->
-        <div class="group professional-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
+        <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 md:hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
-            <i class="fas fa-link text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+          <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
+            <i class="fas fa-link text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
-          <p class="text-gray-600">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
+          <p class="text-gray-600 text-sm md:text-base">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
         </div>
         
         <!-- Fast Logistics Card -->
-        <div class="group professional-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
+        <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 md:hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
-            <i class="fas fa-bolt text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+          <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
+            <i class="fas fa-bolt text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
-          <p class="text-gray-600">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
+          <p class="text-gray-600 text-sm md:text-base">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
         </div>
         
         <!-- Data-Driven Card -->
-        <div class="group professional-card bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
+        <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 md:hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
           <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-          <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
-            <i class="fas fa-chart-line text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+          <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
+            <i class="fas fa-chart-line text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
-          <p class="text-gray-600">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
+          <p class="text-gray-600 text-sm md:text-base">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Team Section -->
-  <section class="py-20 bg-white">
+  <section class="py-12 md:py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-primary-700 mb-4 section-title">Our Team</h2>
-          <p class="text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
+        <div class="text-center mb-8 md:mb-12">
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4 section-title">Our Team</h2>
+          <p class="text-lg md:text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
         </div>
         
-        <div class="professional-card bg-gray-50 rounded-xl p-8 md:p-10 shadow-inner border border-gray-100 no-move-on-hover">
-          <div class="flex flex-col md:flex-row items-center gap-8">
-            <div class="relative group w-48 h-48 shrink-0">
+        <div class="professional-card bg-gray-50 rounded-xl p-6 md:p-8 lg:p-10 shadow-inner border border-gray-100 no-move-on-hover">
+          <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            <div class="relative group w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
               <div class="absolute inset-0 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-all duration-300"></div>
               <img src="https://cdn.pixabay.com/photo/2021/09/27/11/02/man-6660400_1280.jpg" 
                    alt="Smiling Farmer" 
                    class="w-full h-full object-cover rounded-full border-4 border-primary-200 group-hover:border-primary-300 transition-all duration-300">
-              <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-medium whitespace-nowrap shadow-md">
+              <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary-600 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-sm font-medium whitespace-nowrap shadow-md">
                 Farmer Partner
               </div>
             </div>
             <div class="text-center md:text-left">
-              <h3 class="text-2xl font-semibold mb-4 text-gray-800">Farmers Are Our Foundation</h3>
-              <p class="text-gray-600 mb-6">
+              <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Farmers Are Our Foundation</h3>
+              <p class="text-gray-600 text-sm md:text-base mb-4 md:mb-6">
                 We believe farmers are our real partners and the foundation of everything we do. Their hard work, dedication, and knowledge are what make our business possible.
               </p>
-              <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                <button id="partnerBtn2" class="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-sm">
+              <div class="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4">
+                <button id="partnerBtn2" class="px-3 py-1 md:px-4 md:py-2 border border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all text-xs md:text-sm">
                   Partner With Us
                 </button>
               </div>
@@ -999,27 +1257,27 @@
   </section>
 
   <!-- Stats Section -->
-  <section class="py-16 bg-primary-700 text-white">
+  <section class="py-12 md:py-16 bg-primary-700 text-white">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
-        <div class="p-6">
-          <div class="text-4xl font-bold mb-2 animate-count" data-target="59">0</div>
-          <div class="text-lg font-medium">Farmers Connected</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto text-center">
+        <div class="p-4 md:p-6">
+          <div class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-count" data-target="59">0</div>
+          <div class="text-sm md:text-base lg:text-lg font-medium">Farmers Connected</div>
         </div>
-        <div class="p-6">
-          <div class="text-4xl font-bold mb-2 animate-count" data-target="36">0</div>
-          <div class="text-lg font-medium">States Served</div>
+        <div class="p-4 md:p-6">
+          <div class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-count" data-target="36">0</div>
+          <div class="text-sm md:text-base lg:text-lg font-medium">States Served</div>
         </div>
-        <div class="p-6">
-          <div class="text-4xl font-bold mb-2 animate-count" data-target="10">0</div>
-          <div class="text-lg font-medium">Metric Tons Daily</div>
+        <div class="p-4 md:p-6">
+          <div class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-count" data-target="10">0</div>
+          <div class="text-sm md:text-base lg:text-lg font-medium">Metric Tons Daily</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Back to Home Link -->
-  <div class="container mx-auto px-4 py-12 text-center">
+  <div class="container mx-auto px-4 py-8 md:py-12 text-center">
     <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium group transition-all"
        data-page="home">
       <span class="mr-2 group-hover:-translate-x-1 transition-transform">Back to Home</span>
@@ -1049,51 +1307,53 @@
     opacity: 0;
     animation: countUp 1s forwards;
   }
-  
-  /* Bounce animation for scroll indicator */
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-20px);}
-    60% {transform: translateY(-10px);}
-  }
-  .animate-bounce {
-    animation: bounce 2s infinite;
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 767px) {
+    #hero-section .absolute.inset-0 img {
+      object-position: center top;
+    }
+    
+    /* Approach section mobile spacing */
+    .professional-card {
+      margin-bottom: 1rem;
+    }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Animate hero content in
-    document.getElementById('hero-content').classList.remove('opacity-0', 'translate-y-10');
+    // Image carousel functionality
+    let currentSlide = 0;
+    const slides = [
+      document.getElementById('slide1'),
+      document.getElementById('slide2'),
+      document.getElementById('slide3')
+    ];
     
-    // Improved parallax effect
-    const heroSection = document.getElementById('hero-section');
-    const parallaxBg = document.getElementById('parallax-bg');
-    const header = document.getElementById('our-story-header');
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('opacity-0', i !== index);
+        slide.classList.toggle('opacity-100', i === index);
+      });
+    }
     
-    window.addEventListener('scroll', function() {
-      const heroHeight = heroSection.offsetHeight;
-      const scrollPosition = window.pageYOffset;
-      
-      if (scrollPosition < heroHeight) {
-        const progress = Math.min(scrollPosition / heroHeight, 1);
-        parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-        header.style.transform = `translateY(${scrollPosition * 0.2}px)`;
-        parallaxBg.style.opacity = 1 - progress * 0.5;
-      } else {
-        parallaxBg.style.transform = `translateY(${heroHeight * 0.5}px)`;
-        header.style.transform = `translateY(${heroHeight * 0.2}px)`;
-        parallaxBg.style.opacity = 0.5;
-      }
-    });
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    // Start the carousel
+    showSlide(0);
+    setInterval(nextSlide, 7000); // 7 second interval
     
     // Animate counting numbers
     const animateCounters = () => {
-      const counters = document.querySelectorAll('.animate-count');
+      const counters = document.querySelectorAll('[data-count]');
       const speed = 200;
       
       counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
+        const target = +counter.getAttribute('data-count');
         const count = +counter.innerText;
         const increment = target / speed;
         
@@ -1106,19 +1366,21 @@
       });
     };
     
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('animate-count')) {
+          if (entry.target.classList.contains('stat-card')) {
             animateCounters();
           }
-          entry.target.classList.add('animated');
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
     
-    document.querySelectorAll('.animate-count').forEach(el => observer.observe(el));
+    document.querySelectorAll('.stat-card').forEach(card => {
+      observer.observe(card);
+    });
   });
 </script>
 
@@ -1126,9 +1388,9 @@
 <div id="store-page" class="page">
   <section class="pt-32 pb-20 bg-gradient-to-b from-primary-50 to-white">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-primary-700 mb-4 section-title">HoGo Fresh Store</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Coming soon - Direct from farm to your doorstep</p>
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-700 mb-4 section-title">HoGo Fresh Store</h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Coming soon - Direct from farm to your doorstep</p>
       </div>
       
       <div class="coming-soon-container">
@@ -1138,8 +1400,8 @@
           <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin: 0 auto;" loop autoplay></lottie-player>
         </div>
         
-        <h3 class="text-3xl font-bold text-gray-800 mb-4">Our Online Store is Coming Soon!</h3>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Our Online Store is Coming Soon!</h3>
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-6">
           We're working hard to bring you fresh, organic produce directly from our partner farms. 
           Sign up to be notified when we launch and get exclusive early access offers.
         </p>
@@ -1165,8 +1427,8 @@
         </div>
         
         <!-- Subscription Form with Formspree integration -->
-        <div class="subscribe-form professional-card bg-white p-8 rounded-xl shadow-sm">
-          <h4 class="text-xl font-semibold text-center mb-4">Get Notified When We Launch</h4>
+        <div class="subscribe-form professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm">
+          <h4 class="text-lg md:text-xl font-semibold text-center mb-4">Get Notified When We Launch</h4>
           <form id="notify-form" action="https://formspree.io/f/mgvyqjnv" method="POST" class="space-y-4">
             <div>
               <input type="email" name="email" placeholder="Your email address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" required>
@@ -1184,28 +1446,28 @@
         </div>
         
         <div class="mt-8 text-center">
-          <h4 class="text-xl font-semibold mb-4">What to Expect</h4>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <h4 class="text-lg md:text-xl font-semibold mb-4">What to Expect</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             <div class="bg-white p-4 rounded-lg shadow-sm">
               <div class="text-primary-600 text-2xl mb-2">
                 <i class="fas fa-leaf"></i>
               </div>
               <h5 class="font-medium mb-2">Fresh Organic Produce</h5>
-              <p class="text-sm text-gray-600">Direct from farms with full traceability</p>
+              <p class="text-xs md:text-sm text-gray-600">Direct from farms with full traceability</p>
             </div>
             <div class="bg-white p-4 rounded-lg shadow-sm">
               <div class="text-primary-600 text-2xl mb-2">
                 <i class="fas fa-truck"></i>
               </div>
               <h5 class="font-medium mb-2">Fast Delivery</h5>
-              <p class="text-sm text-gray-600">Fastest delivery options</p>
+              <p class="text-xs md:text-sm text-gray-600">Fastest delivery options</p>
             </div>
             <div class="bg-white p-4 rounded-lg shadow-sm">
               <div class="text-primary-600 text-2xl mb-2">
                 <i class="fas fa-rupee-sign"></i>
               </div>
               <h5 class="font-medium mb-2">Fair Prices</h5>
-              <p class="text-sm text-gray-600">Better for farmers, better for you</p>
+              <p class="text-xs md:text-sm text-gray-600">Better for farmers, better for you</p>
             </div>
           </div>
         </div>
@@ -1286,352 +1548,663 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-
-<!-- Goals Page - Redesigned -->
+<!-- Goals Page - Curved Roadmap Redesign -->
 <div id="goals-page" class="page">
-  <section class="pt-32 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 section-title">Transforming Indian Agriculture</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">A 360° approach integrating farmers, technology, and supply chain innovation</p>
-      </div>
-      
-      <!-- Interactive 3D Card Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        <!-- Farmer Tech Empowerment Card -->
-        <div class="innovative-card bg-gradient-to-br from-white to-primary-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
-          <div class="flex flex-col md:flex-row items-start">
-            <div class="bg-primary-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
-              <i class="fas fa-robot text-primary-600 text-2xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Smart Farming Ecosystem</h3>
-              <p class="text-gray-600 mb-4">Deploying AI-powered precision agriculture tools, IoT sensors, and drone technology to optimize farm operations and increase yields by 30-50%.</p>
-              <div class="tech-tags flex flex-wrap gap-2">
-                <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">AI/ML</span>
-                <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">IoT</span>
-                <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">Drone Tech</span>
-              </div>
-            </div>
+  <section class="pt-12 md:pt-20 pb-12 bg-white">
+      <div class="container mx-auto px-4 sm:px-6">
+          <!-- Header Section -->
+          <div class="text-center mb-12 md:mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Agricultural Innovation Pathway</h2>
+              <div class="w-24 h-1 bg-primary-600 mx-auto mb-6"></div>
+              <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">A nonlinear journey of transformation connecting farming, technology, and markets</p>
           </div>
-        </div>
-        
-        <!-- Supply Chain Innovation Card -->
-        <div class="innovative-card bg-gradient-to-br from-white to-green-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
-          <div class="flex flex-col md:flex-row items-start">
-            <div class="bg-green-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
-              <i class="fas fa-boxes text-green-600 text-2xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Next-Gen Supply Chain</h3>
-              <p class="text-gray-600 mb-4">Blockchain-enabled traceability, hyper-local cold chain networks, and predictive logistics to reduce waste by 65% and improve farmer margins.</p>
-              <div class="tech-tags flex flex-wrap gap-2">
-                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Blockchain</span>
-                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Cold Chain</span>
-                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Predictive Analytics</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Research & Development Card -->
-        <div class="innovative-card bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
-          <div class="flex flex-col md:flex-row items-start">
-            <div class="bg-blue-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
-              <i class="fas fa-flask text-blue-600 text-2xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Agri-Research Hub</h3>
-              <p class="text-gray-600 mb-4">Partnering with agricultural universities to develop climate-resistant crops, bio-fortified varieties, and sustainable farming techniques.</p>
-              <div class="tech-tags flex flex-wrap gap-2">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">BioTech</span>
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Climate Tech</span>
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Soil Science</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Market Innovation Card -->
-        <div class="innovative-card bg-gradient-to-br from-white to-purple-50 p-8 rounded-2xl shadow-lg transform transition-all hover:scale-[1.02] hover:shadow-xl">
-          <div class="flex flex-col md:flex-row items-start">
-            <div class="bg-purple-100 p-3 rounded-xl mr-4 mb-4 md:mb-0 flex-shrink-0">
-              <i class="fas fa-chart-network text-purple-600 text-2xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-gray-900 mb-3">Farmer-to-Consumer Platforms</h3>
-              <p class="text-gray-600 mb-4">Digital marketplaces connecting farmers directly with consumers, institutions, and exporters with transparent pricing and quality assurance.</p>
-              <div class="tech-tags flex flex-wrap gap-2">
-                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">E-Commerce</span>
-                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Market Linkage</span>
-                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Quality Certification</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Interactive Timeline with Supply Chain Focus -->
-      <div class="professional-card rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden">
-        <!-- Background image with overlay -->
-        <div class="absolute inset-0 bg-[url('https://cdn.pixabay.com/photo/2021/09/27/11/02/man-6660401_1280.jpg')] bg-cover bg-center opacity-70"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-primary-50/80 to-blue-50/80"></div>
-        
-        <div class="relative z-10">
-          <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Our Integrated Development Roadmap</h3>
           
-          <div class="timeline-container relative">
-            <!-- Timeline Line -->
-            <div class="absolute left-4 md:left-1/2 h-full w-1 md:-ml-1 bg-primary-200 rounded-full"></div>
-            
-            <!-- Timeline Items -->
-            <div class="space-y-12">
-              <!-- Phase 1 -->
-              <div class="timeline-item flex flex-col md:flex-row items-start md:odd:flex-row-reverse">
-                <div class="timeline-dot absolute left-2 md:left-1/2 w-6 h-6 rounded-full bg-primary-600 border-4 border-white -ml-3 md:-ml-3"></div>
-                <div class="timeline-content md:w-5/12 ml-12 md:ml-0 md:px-8">
-                  <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-3">
-                      <span class="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2025-2026</span>
-                      <h4 class="font-bold text-gray-900">Supply Chain Transformation</h4>
-                    </div>
-                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
-                      <li>Deploy integrated cold chain nodes across 100 logistics zones</li>
-                      <li>Link producer networks to market via farmer-owned brand platforms</li>
-                      <li>Launch blockchain traceability pilot</li>
-                      <li>Connect 5,000 farmers to digital markets</li>
-                    </ul>
+          <!-- Value Proposition Cards -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-16 md:mb-20">
+              <!-- Farmer Tech Empowerment -->
+              <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex flex-col md:flex-row items-start mb-6">
+                      <div class="bg-primary-50 p-3 rounded-xl mb-4 md:mb-0 md:mr-5">
+                          <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                          </svg>
+                      </div>
+                      <div>
+                          <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">Precision Farming Network</h3>
+                          <p class="text-gray-600 mb-4 leading-relaxed">AI-driven agricultural systems with IoT monitoring and drone technology to optimize yields and resource usage.</p>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="bg-primary-50 text-primary-700 text-xs font-medium px-3 py-1 rounded-full">AI/ML</span>
+                              <span class="bg-primary-50 text-primary-700 text-xs font-medium px-3 py-1 rounded-full">IoT</span>
+                              <span class="bg-primary-50 text-primary-700 text-xs font-medium px-3 py-1 rounded-full">Automation</span>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
               
-              <!-- Phase 2 -->
-              <div class="timeline-item flex flex-col md:flex-row items-start md:odd:flex-row-reverse">
-                <div class="timeline-dot absolute left-2 md:left-1/2 w-6 h-6 rounded-full bg-primary-600 border-4 border-white -ml-3 md:-ml-3"></div>
-                <div class="timeline-content md:w-5/12 ml-12 md:ml-0 md:px-8">
-                  <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-3">
-                      <span class="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2026-2027</span>
-                      <h4 class="font-bold text-gray-900">Tech-Enabled Foundation</h4>
-                    </div>
-                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
-                      <li>Scale cold chain infrastructure to 100 districts</li>
-                      <li>Establish 50 micro-processing units</li>
-                      <li>Launch farmer-owned brand initiatives</li>
-                      <li>Expand research partnerships to 10 universities</li>
-                    </ul>
+              <!-- Supply Chain Innovation -->
+              <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex flex-col md:flex-row items-start mb-6">
+                      <div class="bg-green-50 p-3 rounded-xl mb-4 md:mb-0 md:mr-5">
+                          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                          </svg>
+                      </div>
+                      <div>
+                          <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">Smart Supply Web</h3>
+                          <p class="text-gray-600 mb-4 leading-relaxed">Decentralized logistics network with blockchain verification and dynamic routing algorithms.</p>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full">Blockchain</span>
+                              <span class="bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full">Logistics</span>
+                              <span class="bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full">Analytics</span>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
               
-              <!-- Phase 3 -->
-              <div class="timeline-item flex flex-col md:flex-row items-start md:odd:flex-row-reverse">
-                <div class="timeline-dot absolute left-2 md:left-1/2 w-6 h-6 rounded-full bg-primary-600 border-4 border-white -ml-3 md:-ml-3"></div>
-                <div class="timeline-content md:w-5/12 ml-12 md:ml-0 md:px-8">
-                  <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-3">
-                      <span class="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2027-2030</span>
-                      <h4 class="font-bold text-gray-900">Farmer-Led Innovation Economy</h4>
-                    </div>
-                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
-                      <li>Establish farmer-owned enterprises</li>
-                      <li>Deploy climate-smart agriculture at scale</li>
-                      <li>Establish a national agricultural supply chain grid</li>
-                      <li>Launch agri-tech innovations</li>
-                    </ul>
+              <!-- Research & Development -->
+              <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex flex-col md:flex-row items-start mb-6">
+                      <div class="bg-blue-50 p-3 rounded-xl mb-4 md:mb-0 md:mr-5">
+                          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                          </svg>
+                      </div>
+                      <div>
+                          <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">Agri-Science Hub</h3>
+                          <p class="text-gray-600 mb-4 leading-relaxed">Collaborative research center developing climate-resilient crops and sustainable methodologies.</p>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">Biotech</span>
+                              <span class="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">Research</span>
+                              <span class="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">Sustainability</span>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
+              
+              <!-- Market Innovation -->
+              <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div class="flex flex-col md:flex-row items-start mb-6">
+                      <div class="bg-purple-50 p-3 rounded-xl mb-4 md:mb-0 md:mr-5">
+                          <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                          </svg>
+                      </div>
+                      <div>
+                          <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-3">Farmer Marketplaces</h3>
+                          <p class="text-gray-600 mb-4 leading-relaxed">Direct digital platforms connecting producers with global buyers and local consumers.</p>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="bg-purple-50 text-purple-700 text-xs font-medium px-3 py-1 rounded-full">E-Commerce</span>
+                              <span class="bg-purple-50 text-purple-700 text-xs font-medium px-3 py-1 rounded-full">Market Access</span>
+                              <span class="bg-purple-50 text-purple-700 text-xs font-medium px-3 py-1 rounded-full">Quality Cert</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Innovation Pathway Redesign -->
+<div id="innovation-pathway" class="py-12 md:py-20 bg-gray-50 relative overflow-hidden">
+  <!-- Background image with very low opacity -->
+  <div class="absolute inset-0 z-0 opacity-30">
+    <img src="https://cdn.pixabay.com/photo/2022/04/26/13/04/sky-7158340_1280.jpg" 
+         alt="Farm landscape background" 
+         class="w-full h-full object-cover object-center">
+  </div>
+  
+  <div class="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Agricultural Innovation Pathway</h2>
+      <div class="w-24 h-1.5 bg-green-600 mx-auto mb-6"></div>
+      <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">A connected journey from farm to future</p>
+    </div>
+
+    <!-- Integrated Pathway Visualization -->
+    <div class="relative">
+      <!-- Main Pathway Line -->
+      <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 to-blue-500 transform -translate-x-1/2 hidden md:block"></div>
+      
+      <!-- Pathway Nodes -->
+      <div class="space-y-16 md:space-y-24 py-8 md:py-12">
+        <!-- Phase 1 -->
+        <div class="relative flex flex-col md:flex-row justify-between items-center pathway-phase">
+          <div class="w-full md:w-5/12 mb-8 md:mb-0">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div class="flex flex-col md:flex-row items-center md:items-start mb-4">
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-0 md:mr-4 mb-3 md:mb-0">
+                  <span class="text-green-800 font-bold text-xl">1</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 text-center md:text-left">Foundation Phase</h3>
+              </div>
+              <p class="text-gray-600 mb-4 text-center md:text-left">Establishing core infrastructure and digital frameworks</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Cold chain infrastructure</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Farmer digital onboarding</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Pilot deployments</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-4 border-green-500 shadow-lg flex items-center justify-center my-4 md:my-0">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          
+          <div class="w-full md:w-5/12"></div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="relative flex flex-col md:flex-row justify-between items-center pathway-phase">
+          <div class="w-full md:w-5/12 order-2 md:order-1"></div>
+          
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-4 border-blue-400 shadow-lg flex items-center justify-center my-4 md:my-0">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          
+          <div class="w-full md:w-5/12 order-1 md:order-2 mb-8 md:mb-0">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div class="flex flex-col md:flex-row items-center md:items-start mb-4">
+                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-0 md:mr-4 mb-3 md:mb-0">
+                  <span class="text-blue-800 font-bold text-xl">2</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 text-center md:text-left">Technology Scaling</h3>
+              </div>
+              <p class="text-gray-600 mb-4 text-center md:text-left">Expanding successful pilots to district-wide implementations</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>District-level cold chain</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Micro-processing units</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Farmer-owned brands</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
+
+        <!-- Phase 3 -->
+        <div class="relative flex flex-col md:flex-row justify-between items-center pathway-phase">
+          <div class="w-full md:w-5/12 mb-8 md:mb-0">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div class="flex flex-col md:flex-row items-center md:items-start mb-4">
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-0 md:mr-4 mb-3 md:mb-0">
+                  <span class="text-purple-800 font-bold text-xl">3</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 text-center md:text-left">System Integration</h3>
+              </div>
+              <p class="text-gray-600 mb-4 text-center md:text-left">Connecting all components into a seamless ecosystem</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Full supply chain digitization</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Predictive analytics</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Climate adaptation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-4 border-purple-500 shadow-lg flex items-center justify-center my-4 md:my-0">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+            </svg>
+          </div>
+          
+          <div class="w-full md:w-5/12"></div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="relative flex flex-col md:flex-row justify-between items-center pathway-phase">
+          <div class="w-full md:w-5/12 order-2 md:order-1"></div>
+          
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-4 border-yellow-400 shadow-lg flex items-center justify-center my-4 md:my-0">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+            </svg>
+          </div>
+          
+          <div class="w-full md:w-5/12 order-1 md:order-2 mb-8 md:mb-0">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div class="flex flex-col md:flex-row items-center md:items-start mb-4">
+                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-0 md:mr-4 mb-3 md:mb-0">
+                  <span class="text-yellow-800 font-bold text-xl">4</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 text-center md:text-left">Market Expansion</h3>
+              </div>
+              <p class="text-gray-600 mb-4 text-center md:text-left">Connecting producers with global markets and premium buyers</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Global market platforms</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Premium brand development</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Export certification</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="relative flex flex-col md:flex-row justify-between items-center pathway-phase">
+          <div class="w-full md:w-5/12 mb-8 md:mb-0">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div class="flex flex-col md:flex-row items-center md:items-start mb-4">
+                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-0 md:mr-4 mb-3 md:mb-0">
+                  <span class="text-red-800 font-bold text-xl">5</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 text-center md:text-left">Ecosystem Maturity</h3>
+              </div>
+              <p class="text-gray-600 mb-4 text-center md:text-left">Sustainable, farmer-led innovation at scale</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Farmer-led innovation</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Circular economy models</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>National supply grid</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-4 border-red-500 shadow-lg flex items-center justify-center my-4 md:my-0">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          
+          <div class="w-full md:w-5/12"></div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Innovation Showcase Section -->
-  <section class="py-20 bg-gradient-to-r from-primary-50 to-blue-50">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4">Pioneering Agricultural Innovation</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Where cutting-edge technology meets sustainable farming</p>
+    <!-- Supporting Technologies -->
+    <div class="mt-16 md:mt-32">
+      <div class="text-center mb-12 md:mb-16">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Enabling Technologies</h3>
+        <div class="w-20 h-1.5 bg-blue-600 mx-auto"></div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="innovation-card bg-white p-8 rounded-2xl shadow-lg transform transition hover:-translate-y-2">
-          <div class="innovation-icon bg-primary-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-dna text-3xl text-primary-600"></i>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
+          <div class="bg-green-50 w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-6 mx-auto">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-3 text-center">Biotech Advancements</h3>
-          <p class="text-gray-600 mb-4">Driving crop innovation through strategic agri-biotech research partnerships.</p>
-          <div class="text-center">
-            <span class="inline-block bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full">Research</span>
-          </div>
+          <h4 class="text-lg md:text-xl font-bold text-center text-gray-800 mb-3">Precision Agriculture</h4>
+          <p class="text-gray-600 text-center text-sm md:text-base">IoT sensors, drones, and AI for optimized farming</p>
         </div>
         
-        <div class="innovation-card bg-white p-8 rounded-2xl shadow-lg transform transition hover:-translate-y-2">
-          <div class="innovation-icon bg-green-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-server text-3xl text-green-600"></i>
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
+          <div class="bg-blue-50 w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-6 mx-auto">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-3 text-center">Digital Twin Farms</h3>
-          <p class="text-gray-600 mb-4">Establishing processing units alongside AI and IoT enabled digital farm twins to simulate on-ground conditions and optimize input-output flows across the value chain.</p>
-          <div class="text-center">
-            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">AI/ML</span>
-          </div>
+          <h4 class="text-lg md:text-xl font-bold text-center text-gray-800 mb-3">Blockchain Traceability</h4>
+          <p class="text-gray-600 text-center text-sm md:text-base">Transparent supply chains from farm to consumer</p>
         </div>
         
-        <div class="innovation-card bg-white p-8 rounded-2xl shadow-lg transform transition hover:-translate-y-2">
-          <div class="innovation-icon bg-blue-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-truck-loading text-3xl text-blue-600"></i>
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
+          <div class="bg-purple-50 w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-6 mx-auto">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-3 text-center">Smart Logistics</h3>
-          <p class="text-gray-600 mb-4">Dynamic routing algorithms and shared cold storage networks to minimize post-harvest losses and transportation costs.</p>
-          <div class="text-center">
-            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Logistics</span>
-          </div>
+          <h4 class="text-lg md:text-xl font-bold text-center text-gray-800 mb-3">Smart Logistics</h4>
+          <p class="text-gray-600 text-center text-sm md:text-base">AI-optimized routing and shared cold storage</p>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+          <!-- Innovation Showcase -->
+          <div class="py-12 md:py-16">
+              <div class="text-center mb-12 md:mb-16">
+                  <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Core Innovations</h2>
+                  <div class="w-20 h-1 bg-primary-600 mx-auto mb-6"></div>
+                  <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Technologies driving our transformation pathway</p>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                      <div class="bg-primary-50 w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
+                          <svg class="w-6 h-6 md:w-8 md:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                          </svg>
+                      </div>
+                      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800 mb-4">Digital Twins</h3>
+                      <p class="text-gray-600 text-center text-sm md:text-base mb-5">Virtual farm replicas for simulation and optimization of agricultural operations.</p>
+                      <div class="flex justify-center gap-2">
+                          <span class="bg-primary-50 text-primary-700 text-xs font-medium px-3 py-1 rounded-full">AI Modeling</span>
+                          <span class="bg-primary-50 text-primary-700 text-xs font-medium px-3 py-1 rounded-full">IoT</span>
+                      </div>
+                  </div>
+                  
+                  <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                      <div class="bg-green-50 w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
+                          <svg class="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                          </svg>
+                      </div>
+                      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800 mb-4">Smart Logistics</h3>
+                      <p class="text-gray-600 text-center text-sm md:text-base mb-5">AI-optimized routing and shared cold storage networks to minimize waste.</p>
+                      <div class="flex justify-center">
+                          <span class="bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full">AI Optimization</span>
+                      </div>
+                  </div>
+                  
+                  <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                      <div class="bg-blue-50 w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
+                          <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                          </svg>
+                      </div>
+                      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800 mb-4">Bio-Innovation</h3>
+                      <p class="text-gray-600 text-center text-sm md:text-base mb-5">Climate-resilient crop varieties and sustainable cultivation techniques.</p>
+                      <div class="flex justify-center gap-2">
+                          <span class="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">Biotech</span>
+                          <span class="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">Genomics</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </section>
 
-  <!-- Back to Home Link -->
-  <div class="container mx-auto px-4 py-12 text-center">
-    <a href="#" class="nav-link inline-flex items-center text-primary-600 hover:text-primary-800 font-medium" data-page="home">
-      <i class="fas fa-arrow-left mr-2"></i> Back to Home
-    </a>
+  <!-- Navigation -->
+  <div class="container mx-auto px-6 py-8 md:py-12 text-center">
+      <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-800 font-medium transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Return to Overview
+      </a>
   </div>
 </div>
 
 <style>
-.innovative-card {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.05);
+.page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.innovation-card {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.05);
+.container {
+  max-width: 1280px;
 }
 
-.timeline-container {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.rounded-xl {
+  border-radius: 1rem;
 }
 
-@media (min-width: 768px) {
-  .timeline-container {
-    padding-left: 0;
-    padding-right: 0;
+.border-gray-100 {
+  border-color: rgba(243, 244, 246, 0.8);
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Animation classes */
+.pathway-phase {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.pathway-phase.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pathway-phase:nth-child(1) { transition-delay: 0.1s; }
+.pathway-phase:nth-child(2) { transition-delay: 0.3s; }
+.pathway-phase:nth-child(3) { transition-delay: 0.5s; }
+.pathway-phase:nth-child(4) { transition-delay: 0.7s; }
+.pathway-phase:nth-child(5) { transition-delay: 0.9s; }
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  #innovation-pathway .relative {
+    padding-left: 2rem;
+  }
+  
+  #innovation-pathway .absolute.left-1\/2 {
+    left: 1rem !important;
+    transform: translateX(0) !important;
+  }
+  
+  .pathway-phase {
+    margin-bottom: 3rem;
   }
 }
-
-.timeline-item {
-  position: relative;
-}
-
-.timeline-dot {
-  position: absolute;
-  top: 0;
-}
-
-.data-card {
-  transition: all 0.3s ease;
-}
-
-.professional-card {
-  position: relative;
-  overflow: hidden;
-}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Configure the Intersection Observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  // Callback for when elements intersect
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+  
+  // Create the observer
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  
+  // Observe all pathway phases
+  const phases = document.querySelectorAll('.pathway-phase');
+  phases.forEach(phase => {
+    observer.observe(phase);
+  });
+  
+  // Fallback in case IntersectionObserver is not supported
+  if (!('IntersectionObserver' in window)) {
+    phases.forEach((phase, index) => {
+      setTimeout(() => {
+        phase.classList.add('active');
+      }, index * 300);
+    });
+  }
+});
+</script>
 
 <!-- Registration Page -->
 <div id="registration-page" class="page">
   <section class="pt-32 bg-white">
       <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 section-title">Business Registration</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">Join India's most innovative agricultural supply chain network</p>
+          <div class="text-center mb-12 md:mb-16">
+              <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-4 section-title">Business Registration</h2>
+              <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Join India's most innovative agricultural supply chain network</p>
           </div>
           
-          <div class="max-w-3xl mx-auto professional-card gradient-bg rounded-2xl p-8 shadow-sm border border-primary-100 no-move-on-hover">
-              <div class="text-center mb-8">
-                  <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <i class="fas fa-handshake text-2xl text-primary-600"></i>
-                  </div>
-                  <h3 class="text-xl font-semibold mb-2">One Registration for All Business Needs</h3>
-                  <p class="text-gray-600 text-sm">Whether you're a producer, buyer, or service provider, our single registration process connects you to the right partners.</p>
+          <div class="max-w-3xl mx-auto professional-card gradient-bg rounded-xl md:rounded-2xl p-6 md:p-8 shadow-sm border border-primary-100 no-move-on-hover relative overflow-hidden">
+              <!-- Background image with low opacity -->
+              <div class="absolute inset-0 z-0 opacity-10">
+                  <img src="https://cdn.pixabay.com/photo/2018/06/10/17/39/market-3466906_1280.jpg" 
+                       alt="Business network background" 
+                       class="w-full h-full object-cover">
               </div>
               
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <div class="bg-white p-6 rounded-xl">
-                      <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
-                          <i class="fas fa-check-circle text-primary-500 mr-2"></i> For Producers
-                      </h4>
-                      <ul class="space-y-2 text-sm text-gray-600">
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Direct market access</span>
-                          </li>
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Fair pricing</span>
-                          </li>
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Technical support</span>
-                          </li>
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Training programs</span>
-                          </li>
-                      </ul>
+              <div class="relative z-10">
+                  <div class="text-center mb-6 md:mb-8">
+                      <div class="bg-primary-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <i class="fas fa-handshake text-xl md:text-2xl text-primary-600"></i>
+                      </div>
+                      <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">One Registration for All Business Needs</h3>
+                      <p class="text-gray-600 text-sm md:text-base">Whether you're a producer, buyer, or service provider, our single registration process connects you to the right partners.</p>
                   </div>
                   
-                  <div class="bg-white p-6 rounded-xl">
-                      <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
-                          <i class="fas fa-check-circle text-primary-500 mr-2"></i> For Buyers
-                      </h4>
-                      <ul class="space-y-2 text-sm text-gray-600">
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Fresh produce</span>
-                          </li>
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Reliable supply</span>
-                          </li>
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Traceability</span>
-                          </li>
-                          <li class="flex items-start">
-                              <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
-                              <span>Fast delivery</span>
-                          </li>
-                      </ul>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                      <div class="bg-white bg-opacity-90 p-4 md:p-6 rounded-lg md:rounded-xl">
+                          <h4 class="font-semibold text-gray-900 mb-2 md:mb-3 flex items-center">
+                              <i class="fas fa-check-circle text-primary-500 mr-2"></i> For Producers
+                          </h4>
+                          <ul class="space-y-2 text-xs md:text-sm text-gray-600">
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Direct market access</span>
+                              </li>
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Fair pricing</span>
+                              </li>
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Technical support</span>
+                              </li>
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Training programs</span>
+                              </li>
+                          </ul>
+                      </div>
+                      
+                      <div class="bg-white bg-opacity-90 p-4 md:p-6 rounded-lg md:rounded-xl">
+                          <h4 class="font-semibold text-gray-900 mb-2 md:mb-3 flex items-center">
+                              <i class="fas fa-check-circle text-primary-500 mr-2"></i> For Buyers
+                          </h4>
+                          <ul class="space-y-2 text-xs md:text-sm text-gray-600">
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Fresh produce</span>
+                              </li>
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Reliable supply</span>
+                              </li>
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Traceability</span>
+                              </li>
+                              <li class="flex items-start">
+                                  <i class="fas fa-check text-primary-500 mt-1 mr-2 text-xs"></i>
+                                  <span>Fast delivery</span>
+                              </li>
+                          </ul>
+                      </div>
                   </div>
-              </div>
-              
-              <div class="text-center">
-                  <button id="registerBtn2" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition btn-hover shadow-lg">
-                      Register Your Business
-                  </button>
-                  <p class="text-sm text-gray-500 mt-3">Registration takes less than 5 minutes</p>
+                  
+                  <div class="text-center">
+                      <button id="registerBtn2" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-medium transition btn-hover shadow-lg">
+                          Register Your Business
+                      </button>
+                      <p class="text-xs md:text-sm text-gray-500 mt-2 md:mt-3">Registration takes less than 5 minutes</p>
+                  </div>
               </div>
           </div>
           
-          <div class="professional-card bg-white rounded-2xl p-8 shadow-lg border border-primary-200 max-w-3xl mx-auto mt-12 no-move-on-hover">
-              <h3 class="text-xl font-semibold text-center mb-6">Frequently Asked Questions</h3>
+          <div class="professional-card bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-primary-200 max-w-3xl mx-auto mt-8 md:mt-12 no-move-on-hover">
+              <h3 class="text-lg md:text-xl font-semibold text-center mb-4 md:mb-6">Frequently Asked Questions</h3>
               
-              <div class="space-y-4">
-                  <div class="border-b border-gray-200 pb-4">
+              <div class="space-y-3 md:space-y-4">
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
                       <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
-                          <span>Who can register with HoGo Fresh?</span>
+                          <span class="text-sm md:text-base">Who can register with HoGo Fresh?</span>
                           <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
                       </button>
-                      <div class="hidden mt-2 text-gray-600 faq-content">
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
                           <p>We welcome all agricultural businesses including:</p>
-                          <ul class="list-disc pl-5 mt-2 space-y-1">
+                          <ul class="list-disc pl-4 md:pl-5 mt-2 space-y-1">
                               <li>Farmers and producer cooperatives</li>
                               <li>Food processors and manufacturers</li>
                               <li>Retailers and wholesalers</li>
@@ -1641,24 +2214,24 @@ document.addEventListener('DOMContentLoaded', function() {
                       </div>
                   </div>
                   
-                  <div class="border-b border-gray-200 pb-4">
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
                       <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
-                          <span>What are the costs involved?</span>
+                          <span class="text-sm md:text-base">What are the costs involved?</span>
                           <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
                       </button>
-                      <div class="hidden mt-2 text-gray-600 faq-content">
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
                           <p>Join HoGo Fresh for free we only succeed when you do. Pay a small fee per successful order, nothing upfront. Grow your business risk-free.</p>
                       </div>
                   </div>
                   
-                  <div class="border-b border-gray-200 pb-4">
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
                       <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
-                          <span>How does the delivery system work?</span>
+                          <span class="text-sm md:text-base">How does the delivery system work?</span>
                           <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
                       </button>
-                      <div class="hidden mt-2 text-gray-600 faq-content">
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
                           <p>Our optimized cold chain logistics ensure:</p>
-                          <ul class="list-disc pl-5 mt-2 space-y-1">
+                          <ul class="list-disc pl-4 md:pl-5 mt-2 space-y-1">
                               <li>Daily collection from farms</li>
                               <li>Temperature-controlled transportation</li>
                               <li>3-day delivery guarantee to buyers</li>
@@ -1667,14 +2240,14 @@ document.addEventListener('DOMContentLoaded', function() {
                       </div>
                   </div>
                   
-                  <div class="border-b border-gray-200 pb-4">
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
                       <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
-                          <span>What products does HoGo Fresh handle?</span>
+                          <span class="text-sm md:text-base">What products does HoGo Fresh handle?</span>
                           <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
                       </button>
-                      <div class="hidden mt-2 text-gray-600 faq-content">
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
                           <p>We currently work with:</p>
-                          <ul class="list-disc pl-5 mt-2 space-y-1">
+                          <ul class="list-disc pl-4 md:pl-5 mt-2 space-y-1">
                               <li>Fruits & vegetables</li>
                               <li>Dairy products & Poultary </li>
                               <li>Fisheries</li>
@@ -1700,125 +2273,136 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id="resources-page" class="page">
   <section class="pt-32 bg-white">
       <div class="container mx-auto px-4">
-          <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 section-title">Agricultural Resources</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">Essential links for Indian farmers and agribusinesses</p>
+          <div class="text-center mb-12 md:mb-16">
+              <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-4 section-title">Agricultural Resources</h2>
+              <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Essential links for Indian farmers and agribusinesses</p>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+          <!-- Agro Market News Ticker -->
+          <div class="news-ticker mb-8 md:mb-12">
+            <div class="ticker-content">
+              <div class="ticker-item">Agri commodity prices rise as monsoon advances <a href="#" target="_blank">Read more</a></div>
+              <div class="ticker-item">Government announces new MSP for Kharif crops <a href="#" target="_blank">Read more</a></div>
+              <div class="ticker-item">Organic farming gains traction in Karnataka <a href="#" target="_blank">Read more</a></div>
+              <div class="ticker-item">New cold storage facilities to be built across Maharashtra <a href="#" target="_blank">Read more</a></div>
+              <div class="ticker-item">FPOs see 30% increase in farmer participation <a href="#" target="_blank">Read more</a></div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-globe text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">Ministry of Agriculture</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">Ministry of Agriculture</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Official website with schemes, policies and programs for Indian farmers.</p>
-                  <a href="https://agriwelfare.gov.in/" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Official website with schemes, policies and programs for Indian farmers.</p>
+                  <a href="https://agriwelfare.gov.in/" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-rupee-sign text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">eNAM National Market</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">eNAM National Market</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">National agricultural market for transparent price discovery.</p>
-                  <a href="https://www.enam.gov.in/web/" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">National agricultural market for transparent price discovery.</p>
+                  <a href="https://www.enam.gov.in/web/" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-seedling text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">ICAR - Indian Council of Agricultural Research</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">ICAR - Indian Council of Agricultural Research</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Premier research institution for agricultural technologies.</p>
-                  <a href="https://www.icar.org.in/" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Premier research institution for agricultural technologies.</p>
+                  <a href="https://www.icar.org.in/" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-tractor text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">Farm Machinery Training Centers</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">Farm Machinery Training Centers</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Government centers for modern farming equipment training.</p>
-                  <a href="https://fmttibudni.gov.in/index.php/en/" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Government centers for modern farming equipment training.</p>
+                  <a href="https://fmttibudni.gov.in/index.php/en/" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-tint text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">PMKSY - Water Conservation</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">PMKSY - Water Conservation</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Pradhan Mantri Krishi Sinchayee Yojana for irrigation solutions.</p>
-                  <a href="https://pmksy.gov.in//" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Pradhan Mantri Krishi Sinchayee Yojana for irrigation solutions.</p>
+                  <a href="https://pmksy.gov.in//" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-leaf text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">Organic Farming Portal</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">Organic Farming Portal</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Complete resource for organic farming practices in India.</p>
-                  <a href="https://nconf.dac.gov.in/" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Complete resource for organic farming practices in India.</p>
+                  <a href="https://nconf.dac.gov.in/" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-warehouse text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">Warehousing Development Authority</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">Warehousing Development Authority</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Information on storage solutions and warehouse receipts.</p>
-                  <a href="https://dfpd.gov.in/warehousing-development-and-regulatory-authority/en/" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Information on storage solutions and warehouse receipts.</p>
+                  <a href="https://dfpd.gov.in/warehousing-development-and-regulatory-authority/en/" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-hand-holding-usd text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">NABARD - Financing</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">NABARD - Financing</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">Agricultural credit and rural development financing.</p>
-                  <a href="https://www.nabard.org/EngDefault.aspx" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Agricultural credit and rural development financing.</p>
+                  <a href="https://www.nabard.org/EngDefault.aspx" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
               
-              <div class="professional-card bg-white border border-primary-100 rounded-xl p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
-                  <div class="flex items-center mb-4">
-                      <div class="bg-primary-100 p-3 rounded-full mr-4">
+              <div class="professional-card bg-white border border-primary-100 rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition no-move-on-hover">
+                  <div class="flex items-center mb-3 md:mb-4">
+                      <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                           <i class="fas fa-bullhorn text-primary-600"></i>
                       </div>
-                      <h3 class="text-lg font-semibold">Kisan Call Center</h3>
+                      <h3 class="text-sm md:text-base lg:text-lg font-semibold">Kisan Call Center</h3>
                   </div>
-                  <p class="text-gray-600 text-sm mb-4">24/7 helpline for farmer queries and support.</p>
-                  <a href="https://pmkisan.gov.in/contacts.aspx" target="_blank" class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">24/7 helpline for farmer queries and support.</p>
+                  <a href="https://pmkisan.gov.in/contacts.aspx" target="_blank" class="text-primary-600 hover:text-primary-800 text-xs md:text-sm font-medium">
                       Visit Site <i class="fas fa-external-link-alt ml-1"></i>
                   </a>
               </div>
@@ -1838,56 +2422,56 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id="contact-page" class="page">
   <section class="pt-32 bg-white">
       <div class="container mx-auto px-4">
-          <div class="flex flex-col md:flex-row gap-12">
+          <div class="flex flex-col md:flex-row gap-8 md:gap-12">
               <div class="md:w-1/2">
-                  <div class="professional-card gradient-bg rounded-2xl p-8 h-full no-move-on-hover">
-                      <h3 class="text-2xl font-semibold mb-6">Contact Details</h3>
+                  <div class="professional-card gradient-bg rounded-xl md:rounded-2xl p-6 md:p-8 h-full no-move-on-hover">
+                      <h3 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6">Contact Details</h3>
                       
-                      <div class="space-y-6">
+                      <div class="space-y-4 md:space-y-6">
                           <div class="flex items-start">
-                              <div class="bg-primary-100 p-3 rounded-full mr-4">
+                              <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                                   <i class="fas fa-envelope text-primary-600"></i>
                               </div>
                               <div>
-                                  <h4 class="font-medium text-gray-800">Email</h4>
-                                  <a href="mailto:Sales@hogofresh.com" class="text-gray-600 hover:text-primary-600 transition">Sales@hogofresh.com</a>
+                                  <h4 class="font-medium text-gray-800 text-sm md:text-base">Email</h4>
+                                  <a href="mailto:Sales@hogofresh.com" class="text-gray-600 hover:text-primary-600 transition text-sm md:text-base">Sales@hogofresh.com</a>
                               </div>
                           </div>
                           
                           <div class="flex items-start">
-                              <div class="bg-primary-100 p-3 rounded-full mr-4">
+                              <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                                   <i class="fas fa-phone-alt text-primary-600"></i>
                               </div>
                               <div>
-                                  <h4 class="font-medium text-gray-800">Phone</h4>
-                                  <a href="tel:+918095924220" class="text-gray-600 hover:text-primary-600 transition">+91 8095924220</a>
+                                  <h4 class="font-medium text-gray-800 text-sm md:text-base">Phone</h4>
+                                  <a href="tel:+918095924220" class="text-gray-600 hover:text-primary-600 transition text-sm md:text-base">+91 8095924220</a>
                               </div>
                           </div>
                           
                           <div class="flex items-start">
-                              <div class="bg-primary-100 p-3 rounded-full mr-4">
+                              <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                                   <i class="fas fa-map-marker-alt text-primary-600"></i>
                               </div>
                               <div>
-                                  <h4 class="font-medium text-gray-800">Headquarters</h4>
-                                  <p class="text-gray-600">Karnataka, India</p>
+                                  <h4 class="font-medium text-gray-800 text-sm md:text-base">Headquarters</h4>
+                                  <p class="text-gray-600 text-sm md:text-base">Karnataka, India</p>
                               </div>
                           </div>
                       </div>
                       
-                      <div class="mt-10">
-                          <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
-                          <div class="flex space-x-4">
-                              <a href="https://www.linkedin.com/company/hogofresh/" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-10 h-10 rounded-full flex items-center justify-center text-primary-600 transition">
+                      <div class="mt-8 md:mt-10">
+                          <h4 class="font-medium text-gray-800 mb-3 md:mb-4 text-sm md:text-base">Follow Us</h4>
+                          <div class="flex space-x-3 md:space-x-4">
+                              <a href="https://www.linkedin.com/company/hogofresh/" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
                                   <i class="fab fa-linkedin-in"></i>
                               </a>
-                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-10 h-10 rounded-full flex items-center justify-center text-primary-600 transition">
+                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
                                   <i class="fab fa-twitter"></i>
                               </a>
-                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-10 h-10 rounded-full flex items-center justify-center text-primary-600 transition">
+                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
                                   <i class="fab fa-facebook-f"></i>
                               </a>
-                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-10 h-10 rounded-full flex items-center justify-center text-primary-600 transition">
+                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
                                   <i class="fab fa-instagram"></i>
                               </a>
                           </div>
@@ -1896,33 +2480,33 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
               
               <div class="md:w-1/2">
-                  <div class="professional-card gradient-bg rounded-2xl p-8 h-full no-move-on-hover">
-                      <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+                  <div class="professional-card gradient-bg rounded-xl md:rounded-2xl p-6 md:p-8 h-full no-move-on-hover">
+                      <h3 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6">Send Us a Message</h3>
                       
                       <!-- Contact Form -->
                       <form id="contactFormFull" action="https://formspree.io/f/mgvyqjnv" method="POST">
-                          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                               <div>
-                                  <label for="name" class="block text-gray-700 font-medium mb-2">Name*</label>
-                                  <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                  <label for="name" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Name*</label>
+                                  <input type="text" id="name" name="name" required class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base">
                               </div>
                               <div>
-                                  <label for="email" class="block text-gray-700 font-medium mb-2">Email*</label>
-                                  <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                  <label for="email" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Email*</label>
+                                  <input type="email" id="email" name="email" required class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base">
                               </div>
                           </div>
-                          <div class="mb-6">
-                              <label for="subject" class="block text-gray-700 font-medium mb-2">Subject*</label>
-                              <input type="text" id="subject" name="subject" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                          <div class="mb-4 md:mb-6">
+                              <label for="subject" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Subject*</label>
+                              <input type="text" id="subject" name="subject" required class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base">
                           </div>
-                          <div class="mb-6">
-                              <label for="message" class="block text-gray-700 font-medium mb-2">Message*</label>
-                              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
+                          <div class="mb-4 md:mb-6">
+                              <label for="message" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Message*</label>
+                              <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"></textarea>
                           </div>
                           <input type="hidden" name="_subject" value="New Contact Form Submission">
-                          <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition flex items-center justify-center btn-hover">
-                              <span id="submitTextFull">Send Message</span>
-                              <svg id="submitSpinnerFull" class="hidden w-5 h-5 ml-2 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-medium transition flex items-center justify-center btn-hover">
+                              <span id="submitTextFull" class="text-sm md:text-base">Send Message</span>
+                              <svg id="submitSpinnerFull" class="hidden w-4 h-4 md:w-5 md:h-5 ml-2 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                               </svg>
@@ -1930,14 +2514,14 @@ document.addEventListener('DOMContentLoaded', function() {
                       </form>
                       
                       <!-- Thank You Message -->
-                      <div id="thankYouMessageFull" class="hidden text-center py-8">
-                          <div class="bg-primary-100 border border-primary-400 text-primary-700 px-4 py-3 rounded-lg mb-4">
-                              <i class="fas fa-check-circle text-3xl text-primary-500 mb-3"></i>
-                              <h3 class="text-xl font-bold mb-2">Thank You! <i class="fas fa-smile ml-2"></i></h3>
-                              <p class="mb-2">Your message has been sent successfully.</p>
-                              <p>We'll get back to you within 24 hours.</p>
+                      <div id="thankYouMessageFull" class="hidden text-center py-6 md:py-8">
+                          <div class="bg-primary-100 border border-primary-400 text-primary-700 px-3 py-3 md:px-4 md:py-3 rounded-lg mb-3 md:mb-4">
+                              <i class="fas fa-check-circle text-2xl md:text-3xl text-primary-500 mb-2 md:mb-3"></i>
+                              <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Thank You! <i class="fas fa-smile ml-2"></i></h3>
+                              <p class="mb-1 md:mb-2 text-sm md:text-base">Your message has been sent successfully.</p>
+                              <p class="text-sm md:text-base">We'll get back to you within 24 hours.</p>
                           </div>
-                          <button id="sendAnotherFull" class="mt-4 text-primary-600 hover:text-primary-800 font-medium">
+                          <button id="sendAnotherFull" class="mt-3 md:mt-4 text-primary-600 hover:text-primary-800 font-medium text-sm md:text-base">
                               <i class="fas fa-arrow-left mr-1"></i> Send another message
                           </button>
                       </div>
@@ -1946,40 +2530,40 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           
           <!-- Locations Section -->
-          <div class="mt-20">
-              <h3 class="text-2xl font-semibold mb-6 text-center section-title">Our Locations</h3>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div class="professional-card bg-white p-6 rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
-                      <div class="flex items-center mb-4">
-                          <div class="bg-primary-100 p-3 rounded-full mr-4">
+          <div class="mt-12 md:mt-20">
+              <h3 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-center section-title">Our Locations</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                  <div class="professional-card bg-white p-4 md:p-6 rounded-lg md:rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
+                      <div class="flex items-center mb-3 md:mb-4">
+                          <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold">North Office</h4>
+                          <h4 class="font-semibold text-sm md:text-base">North Office</h4>
                       </div>
-                      <p class="text-gray-600 text-sm">Hissar, Haryana</p>
-                      <p class="text-gray-600 text-sm"></p>
+                      <p class="text-gray-600 text-xs md:text-sm">Hissar, Haryana</p>
+                      <p class="text-gray-600 text-xs md:text-sm"></p>
                   </div>
                   
-                  <div class="professional-card bg-white p-6 rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
-                      <div class="flex items-center mb-4">
-                          <div class="bg-primary-100 p-3 rounded-full mr-4">
+                  <div class="professional-card bg-white p-4 md:p-6 rounded-lg md:rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
+                      <div class="flex items-center mb-3 md:mb-4">
+                          <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold">South Office</h4>
+                          <h4 class="font-semibold text-sm md:text-base">South Office</h4>
                       </div>
-                      <p class="text-gray-600 text-sm">Hubballi, Karnataka</p>
-                      <p class="text-gray-600 text-sm"></p>
+                      <p class="text-gray-600 text-xs md:text-sm">Hubballi, Karnataka</p>
+                      <p class="text-gray-600 text-xs md:text-sm"></p>
                   </div>
                   
-                  <div class="professional-card bg-white p-6 rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
-                      <div class="flex items-center mb-4">
-                          <div class="bg-primary-100 p-3 rounded-full mr-4">
+                  <div class="professional-card bg-white p-4 md:p-6 rounded-lg md:rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
+                      <div class="flex items-center mb-3 md:mb-4">
+                          <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold">Pan India Office</h4>
+                          <h4 class="font-semibold text-sm md:text-base">Pan India Office</h4>
                       </div>
-                      <p class="text-gray-600 text-sm">Banglore, Karnataka</p>
-                      <p class="text-gray-600 text-sm"></p>
+                      <p class="text-gray-600 text-xs md:text-sm">Banglore, Karnataka</p>
+                      <p class="text-gray-600 text-xs md:text-sm"></p>
                   </div>
               </div>
           </div>
@@ -1995,13 +2579,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-gray-400 py-12">
+<footer class="bg-gray-900 text-gray-400 py-8 md:py-12">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
             <div>
-                <img src="https://i.ibb.co/Xf25JMp0/1000282093.png" alt="HoGo Fresh Logo" class="h-24 mb-4">
-                <p class="mb-4">Bridging India's producers with markets through transparent, efficient supply chains.</p>
-                <div class="flex space-x-4">
+                <img src="https://i.ibb.co/Xf25JMp0/1000282093.png" alt="HoGo Fresh Logo" class="h-16 md:h-24 mb-3 md:mb-4">
+                <p class="mb-3 md:mb-4 text-sm md:text-base">Bridging India's producers with markets through transparent, efficient supply chains.</p>
+                <div class="flex space-x-3 md:space-x-4">
                     <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.linkedin.com/company/hogofresh/" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
@@ -2010,43 +2594,42 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div>
-                <h3 class="text-white font-semibold mb-4 text-lg">Quick Links</h3>
+                <h3 class="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="about">About Us</a></li>
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="store">Store</a></li>
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="goals">Our Vision</a></li>
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="registration">Registration</a></li>
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="resources">Resources</a></li>
-                    <li><a href="#" class="nav-link hover:text-white transition" data-page="contact">Contact</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition text-sm md:text-base" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition text-sm md:text-base" data-page="about">About Us</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition text-sm md:text-base" data-page="store">Store</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition text-sm md:text-base" data-page="goals">Our Vision</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition text-sm md:text-base" data-page="registration">Registration</a></li>
+                    <li><a href="#" class="nav-link hover:text-white transition text-sm md:text-base" data-page="resources">Resources</a></li>
                 </ul>
             </div>
             
             <div>
-                <h3 class="text-white font-semibold mb-4 text-lg">Sectors</h3>
+                <h3 class="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">Sectors</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition">Agriculture</a></li>
-                    <li><a href="#" class="hover:text-white transition">Dairy</a></li>
-                    <li><a href="#" class="hover:text-white transition">Fisheries</a></li>
-                    <li><a href="#" class="hover:text-white transition">Textiles</a></li>
-                    <li><a href="#" class="hover:text-white transition">Cold Chain</a></li>
-                    <li><a href="#" class="hover:text-white transition">Logistics</a></li>
+                    <li><a href="#" class="hover:text-white transition text-sm md:text-base">Agriculture</a></li>
+                    <li><a href="#" class="hover:text-white transition text-sm md:text-base">Dairy</a></li>
+                    <li><a href="#" class="hover:text-white transition text-sm md:text-base">Fisheries</a></li>
+                    <li><a href="#" class="hover:text-white transition text-sm md:text-base">Textiles</a></li>
+                    <li><a href="#" class="hover:text-white transition text-sm md:text-base">Cold Chain</a></li>
+                    <li><a href="#" class="hover:text-white transition text-sm md:text-base">Logistics</a></li>
                 </ul>
             </div>
             
             <div>
-                <h3 class="text-white font-semibold mb-4 text-lg">Newsletter</h3>
-                <p class="mb-4">Subscribe to get updates on our initiatives and opportunities.</p>
+                <h3 class="text-white font-semibold mb-3 md:mb-4 text-base md:text-lg">Newsletter</h3>
+                <p class="mb-3 md:mb-4 text-sm md:text-base">Subscribe to get updates on our initiatives and opportunities.</p>
                 <form class="flex">
-                    <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                    <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-r-lg transition btn-hover">
+                    <input type="email" placeholder="Your email" class="px-3 py-2 md:px-4 md:py-2 rounded-l-lg focus:outline-none text-gray-800 w-full text-sm md:text-base">
+                    <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-3 py-2 md:px-4 md:py-2 rounded-r-lg transition btn-hover">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
             </div>
         </div>
         
-        <div class="pt-8 border-t border-gray-800 text-sm text-center">
+        <div class="pt-6 md:pt-8 border-t border-gray-800 text-xs md:text-sm text-center">
             <p>&copy; 2025 HoGo Fresh. All rights reserved.</p>
         </div>
     </div>
@@ -2099,6 +2682,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+        });
+        
+        // Floating contact button functionality
+        const floatingContactBtn = document.getElementById('floatingContactBtn');
+        floatingContactBtn.addEventListener('click', function() {
+            showPage('contact');
         });
         
         // Show specific page and hide others
@@ -2231,14 +2820,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const registerBtns = document.querySelectorAll('#registerBtn, #registerBtn2');
 
         registerBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+              btn.addEventListener('click', function() {
                 registerModal.classList.add('active');
                 registerForm.classList.remove('hidden');
                 registerSuccess.classList.add('hidden');
             });
         });
 
-        // Close modal functionality
+        // Close modal when clicking X
         document.querySelectorAll('.close-modal').forEach(closeBtn => {
             closeBtn.addEventListener('click', function() {
                 this.closest('.modal').classList.remove('active');
@@ -2254,25 +2843,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Partner form submission
+        // Form submissions
         partnerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             try {
-                const form = e.target;
-                const response = await fetch(form.action, {
+                const response = await fetch(this.action, {
                     method: 'POST',
-                    body: new FormData(form),
+                    body: new FormData(this),
                     headers: {
                         'Accept': 'application/json'
                     }
                 });
                 
                 if (response.ok) {
-                    partnerForm.classList.add('hidden');
+                    this.classList.add('hidden');
                     partnerSuccess.classList.remove('hidden');
-                } else {
-                    throw new Error('Form submission failed');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -2280,115 +2866,35 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Register form submission
         registerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             try {
-                const form = e.target;
-                const response = await fetch(form.action, {
+                const response = await fetch(this.action, {
                     method: 'POST',
-                    body: new FormData(form),
+                    body: new FormData(this),
                     headers: {
                         'Accept': 'application/json'
                     }
                 });
                 
                 if (response.ok) {
-                    registerForm.classList.add('hidden');
+                    this.classList.add('hidden');
                     registerSuccess.classList.remove('hidden');
-                } else {
-                    throw new Error('Form submission failed');
                 }
             } catch (error) {
                 console.error('Error:', error);
                 alert('There was an error submitting your form. Please try again.');
             }
         });
-        
-        // Smiley face animation for "Let's work for it" button
-        document.getElementById('partnerBtn').addEventListener('click', function(e) {
-            createSmiley(e);
-        });
 
-        function createSmiley(e) {
-            const smiley = document.createElement('div');
-            smiley.className = 'smiley-container';
-            
-            // Randomly select between smiley face or thumbs up
-            const random = Math.random();
-            if (random > 0.5) {
-                smiley.innerHTML = '<i class="fas fa-smile text-4xl text-yellow-400"></i>';
-            } else {
-                smiley.innerHTML = '<i class="fas fa-thumbs-up text-4xl text-blue-500"></i>';
-            }
-            
-            // Position the smiley at the click location
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            smiley.style.left = `${x}px`;
-            smiley.style.top = `${y}px`;
-            
-            // Add to the button
-            e.target.appendChild(smiley);
-            
-            // Remove after animation completes
-            setTimeout(() => {
-                smiley.remove();
-            }, 1000);
-        }
-        
-        // Initialize tilt.js for 3D card effects - removed for elements with no-move-on-hover class
-        VanillaTilt.init(document.querySelectorAll(".professional-card:not(.no-move-on-hover)"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.1,
-        });
-        
-        // Countdown timer for store page
-        function updateCountdown() {
-            const countdownDate = new Date();
-            countdownDate.setDate(countdownDate.getDate() + 30); // Set launch date to 30 days from now
-            
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-            
-            // Time calculations
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Display results
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            
-            // If the countdown is finished
-            if (distance < 0) {
-                clearInterval(countdownTimer);
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-            }
-        }
-        
-        // Update the countdown every 1 second
-        const countdownTimer = setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
-        
-        // Animate stats counting
+        // Count animation for stats
         const animateCounters = () => {
-            const counters = document.querySelectorAll('[data-count]');
+            const counters = document.querySelectorAll('.animate-count');
             const speed = 200;
             
             counters.forEach(counter => {
-                const target = +counter.getAttribute('data-count');
+                const target = +counter.getAttribute('data-target');
                 const count = +counter.innerText;
                 const increment = target / speed;
                 
@@ -2400,28 +2906,88 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         };
-        
+
         // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('stat-card')) {
+                    if (entry.target.classList.contains('animate-count')) {
                         animateCounters();
                     }
+                    entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
-        
-        document.querySelectorAll('.stat-card').forEach(card => {
-            observer.observe(card);
+        }, { threshold: 0.1 });
+
+        // Observe elements that should animate when scrolled into view
+        document.querySelectorAll('.scroll-fade-in, .animate-count').forEach(el => {
+            observer.observe(el);
         });
+
+        // Initialize tilt effects on cards
+        VanillaTilt.init(document.querySelectorAll(".professional-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.1,
+        });
+
+        // Smiley animation for form submissions
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-hover')) {
+                const smiley = document.createElement('div');
+                smiley.className = 'smiley-container';
+                smiley.innerHTML = '😊';
+                smiley.style.left = e.clientX + 'px';
+                smiley.style.top = e.clientY + 'px';
+                document.body.appendChild(smiley);
+                
+                setTimeout(() => {
+                    smiley.remove();
+                }, 1000);
+            }
+        });
+
+        // Bulb toggle functionality
+        document.getElementById('bulbToggle').addEventListener('click', function() {
+            const bulbContainer = document.querySelector('.bg-primary-600.w-20.h-20');
+            bulbContainer.classList.toggle('bulb-on');
+        });
+
+        // Mobile menu close when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#mobileMenu') && !e.target.closest('#mobileMenuButton')) {
+                mobileMenu.classList.remove('active');
+                mobileMenuButton.querySelector('i').classList.remove('fa-times');
+                mobileMenuButton.querySelector('i').classList.add('fa-bars');
+            }
+        });
+
+        // Image carousel functionality
+        let currentSlide = 0;
+        const slides = [
+            document.getElementById('slide1'),
+            document.getElementById('slide2'),
+            document.getElementById('slide3')
+        ];
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('opacity-0', i !== index);
+                slide.classList.toggle('opacity-100', i === index);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Start the carousel
+        showSlide(0);
+        setInterval(nextSlide, 7000); // 7 second interval
     });
 </script>
-
 </body>
 </html>
