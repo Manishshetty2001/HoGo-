@@ -1155,71 +1155,88 @@
 
 <!-- About Page -->
 <div id="about-page" class="page">
-  <!-- Hero Section with image carousel -->
-  <section class="min-h-screen flex items-center justify-center bg-white relative overflow-hidden" id="hero-section">
-    <!-- Image carousel -->
-    <div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
-      <!-- Slide 1 -->
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100" id="slide1">
-        <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" 
-             class="w-full h-full object-contain md:object-cover">
-      </div>
-      <!-- Slide 2 -->
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" id="slide2">
-        <img src="https://i.ibb.co/cS6pkTwh/762e3fb3-0c02-448c-adc8-7e1a7e11a2f8.jpg" 
-             class="w-full h-full object-contain md:object-cover">
-      </div>
-      <!-- Slide 3 -->
-      <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" id="slide3">
-        <img src="https://i.ibb.co/Y4NRqzMc/47b6533c-43df-49bc-950e-f03882fdbd47.jpg" alt="Fresh produce" 
-             class="w-full h-full object-contain md:object-cover">
-      </div>
+  <!-- Improved Hero Section -->
+  <section class="relative h-[60vh] md:h-screen w-full bg-white overflow-hidden" id="hero-section">
+    <!-- Hero Image - Improved for both desktop and mobile -->
+    <div class="absolute inset-0 w-full h-full">
+      <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" 
+           alt="Hero Image"
+           class="w-full h-full object-cover object-center"
+           loading="eager">
     </div>
+    
+    <!-- Optional overlay if needed -->
+    <div class="absolute inset-0 bg-black/10"></div>
   </section>
 
-  <!-- Approach Section -->
+  <!-- Rest of your content remains exactly the same -->
   <section class="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-8 md:mb-16">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4 section-title">Our Approach</h2>
-        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">How we're different from traditional supply chains</p>
-      </div>
+      <div class="flex flex-col lg:flex-row items-stretch gap-8 md:gap-12">
+        <!-- Image Column - Perfectly aligned with 3 sections -->
+        <div class="lg:w-5/12 xl:w-2/5 flex items-center">
+          <img src="https://i.ibb.co/Y4NRqzMc/47b6533c-43df-49bc-950e-f03882fdbd47.jpg" 
+               alt="Our Approach" 
+               class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-md">
+        </div>
+        
+        <!-- Content Column - Matches image height -->
+        <div class="lg:w-7/12 xl:w-3/5 flex flex-col justify-center">
+          <div class="text-center lg:text-left mb-8 md:mb-12">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4 section-title">Our Approach</h2>
+            <p class="text-lg md:text-xl text-gray-600">How we're different from traditional supply chains</p>
+          </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-        <!-- Direct Connections Card -->
-        <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 md:hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
-          <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-          <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
-            <i class="fas fa-link text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+          <!-- Three approach cards with perfect height matching -->
+          <div class="grid grid-cols-1 gap-6 md:gap-8 h-full">
+            <!-- Direct Connections Card -->
+            <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 relative overflow-hidden h-full">
+              <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+              <div class="flex items-start gap-4 h-full">
+                <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mt-1 group-hover:bg-primary-600 group-hover:text-white transition-all flex-shrink-0">
+                  <i class="fas fa-link text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
+                  <p class="text-gray-600 text-sm md:text-base">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Fast Logistics Card -->
+            <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 relative overflow-hidden h-full">
+              <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+              <div class="flex items-start gap-4 h-full">
+                <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mt-1 group-hover:bg-primary-600 group-hover:text-white transition-all flex-shrink-0">
+                  <i class="fas fa-bolt text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
+                  <p class="text-gray-600 text-sm md:text-base">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Data-Driven Card -->
+            <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 relative overflow-hidden h-full">
+              <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+              <div class="flex items-start gap-4 h-full">
+                <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mt-1 group-hover:bg-primary-600 group-hover:text-white transition-all flex-shrink-0">
+                  <i class="fas fa-chart-line text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
+                  <p class="text-gray-600 text-sm md:text-base">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
-          <p class="text-gray-600 text-sm md:text-base">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
-        </div>
-        
-        <!-- Fast Logistics Card -->
-        <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 md:hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
-          <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-          <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
-            <i class="fas fa-bolt text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
-          <p class="text-gray-600 text-sm md:text-base">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
-        </div>
-        
-        <!-- Data-Driven Card -->
-        <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 md:hover:-translate-y-2 relative overflow-hidden no-move-on-hover">
-          <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-          <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all">
-            <i class="fas fa-chart-line text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
-          <p class="text-gray-600 text-sm md:text-base">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Team Section -->
+  <!-- Rest of your content remains the same -->
   <section class="py-12 md:py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
@@ -1228,7 +1245,7 @@
           <p class="text-lg md:text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
         </div>
         
-        <div class="professional-card bg-gray-50 rounded-xl p-6 md:p-8 lg:p-10 shadow-inner border border-gray-100 no-move-on-hover">
+        <div class="professional-card bg-gray-50 rounded-xl p-6 md:p-8 lg:p-10 shadow-inner border border-gray-100">
           <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
             <div class="relative group w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
               <div class="absolute inset-0 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-all duration-300"></div>
@@ -1309,77 +1326,104 @@
   }
 
   /* Mobile-specific adjustments */
-  @media (max-width: 767px) {
-    #hero-section .absolute.inset-0 img {
-      object-position: center top;
+  @media (max-width: 1023px) {
+    /* Stack image above content on mobile/tablet */
+    .lg\:flex-row {
+      flex-direction: column;
     }
     
-    /* Approach section mobile spacing */
-    .professional-card {
-      margin-bottom: 1rem;
+    /* Full width for both columns on mobile */
+    .lg\:w-5\/12, .lg\:w-7\/12 {
+      width: 100%;
+    }
+    
+    /* Adjust image height on mobile */
+    .max-h-\[500px\] {
+      max-height: 350px;
+    }
+    
+    /* Reduce vertical spacing on mobile */
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    
+    .py-20 {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    /* Center align text on mobile */
+    .lg\:text-left {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 767px) {
+    /* Further reduce spacing on small mobile */
+    #hero-section {
+      height: 50vh;
+    }
+    
+    .py-12 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    
+    .py-20 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    
+    /* Reduce image height on small screens */
+    .max-h-\[500px\] {
+      max-height: 300px;
     }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Image carousel functionality
-    let currentSlide = 0;
-    const slides = [
-      document.getElementById('slide1'),
-      document.getElementById('slide2'),
-      document.getElementById('slide3')
-    ];
-    
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('opacity-0', i !== index);
-        slide.classList.toggle('opacity-100', i === index);
-      });
-    }
-    
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-    
-    // Start the carousel
-    showSlide(0);
-    setInterval(nextSlide, 7000); // 7 second interval
-    
     // Animate counting numbers
     const animateCounters = () => {
-      const counters = document.querySelectorAll('[data-count]');
-      const speed = 200;
+      const counters = document.querySelectorAll('.animate-count');
       
       counters.forEach(counter => {
-        const target = +counter.getAttribute('data-count');
-        const count = +counter.innerText;
-        const increment = target / speed;
+        const target = +counter.getAttribute('data-target');
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
         
-        if (count < target) {
-          counter.innerText = Math.ceil(count + increment);
-          setTimeout(animateCounters, 1);
-        } else {
-          counter.innerText = target;
-        }
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            counter.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
       });
     };
     
     // Intersection Observer for animations
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('stat-card')) {
+          if (entry.target.classList.contains('animate-count')) {
             animateCounters();
           }
+          entry.target.classList.add('animate-fadeIn');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
     
-    document.querySelectorAll('.stat-card').forEach(card => {
-      observer.observe(card);
+    // Observe elements that need animation
+    document.querySelectorAll('.animate-count, .section-title').forEach(el => {
+      observer.observe(el);
     });
   });
 </script>
@@ -1394,12 +1438,6 @@
       </div>
       
       <div class="coming-soon-container">
-        <!-- Tractor Animation - Fixed by adding Lottie script -->
-        <div class="tractor-animation">
-          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin: 0 auto;" loop autoplay></lottie-player>
-        </div>
-        
         <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Our Online Store is Coming Soon!</h3>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-6">
           We're working hard to bring you fresh, organic produce directly from our partner farms. 
@@ -1488,11 +1526,20 @@
 </div>
 
 <script>
-// Countdown Timer Script - Set to 1 month from now
+// Countdown Timer Script - Now persists across page reloads
 document.addEventListener('DOMContentLoaded', function() {
-  // Set the date we're counting down to (1 month from now)
-  const countDownDate = new Date();
-  countDownDate.setMonth(countDownDate.getMonth() + 1);
+  // Check if we already have a target date in localStorage
+  let countDownDate = localStorage.getItem('hogoLaunchDate');
+  
+  if (!countDownDate) {
+    // If not, set a new target date (30 days from now)
+    countDownDate = new Date();
+    countDownDate.setDate(countDownDate.getDate() + 30);
+    localStorage.setItem('hogoLaunchDate', countDownDate.toString());
+  } else {
+    // If we have a stored date, convert it back to a Date object
+    countDownDate = new Date(countDownDate);
+  }
   
   // Update the count down every 1 second
   const x = setInterval(function() {
@@ -1518,6 +1565,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (distance < 0) {
       clearInterval(x);
       document.querySelector(".countdown").innerHTML = "<div class='text-2xl font-bold text-primary-600'>We're Live!</div>";
+      localStorage.removeItem('hogoLaunchDate');
     }
   }, 1000);
 
@@ -1548,6 +1596,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 <!-- Goals Page - Curved Roadmap Redesign -->
 <div id="goals-page" class="page">
   <section class="pt-12 md:pt-20 pb-12 bg-white">
@@ -2538,7 +2587,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold text-sm md:text-base">North Office</h4>
+                          <h4 class="font-semibold text-sm md:text-base">North Section</h4>
                       </div>
                       <p class="text-gray-600 text-xs md:text-sm">Hissar, Haryana</p>
                       <p class="text-gray-600 text-xs md:text-sm"></p>
@@ -2549,7 +2598,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold text-sm md:text-base">South Office</h4>
+                          <h4 class="font-semibold text-sm md:text-base">South Section</h4>
                       </div>
                       <p class="text-gray-600 text-xs md:text-sm">Hubballi, Karnataka</p>
                       <p class="text-gray-600 text-xs md:text-sm"></p>
@@ -2560,7 +2609,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold text-sm md:text-base">Pan India Office</h4>
+                          <h4 class="font-semibold text-sm md:text-base">Pan India Section</h4>
                       </div>
                       <p class="text-gray-600 text-xs md:text-sm">Banglore, Karnataka</p>
                       <p class="text-gray-600 text-xs md:text-sm"></p>
