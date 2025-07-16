@@ -1154,97 +1154,84 @@
 
 <!-- About Page -->
 <div id="about-page" class="page">
-  <!-- Improved Hero Section -->
-  <section class="relative h-[60vh] md:h-screen w-full bg-white overflow-hidden" id="hero-section">
-    <!-- Hero Image - Improved for both desktop and mobile -->
-    <div class="absolute inset-0 w-full h-full">
-      <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" 
-           alt="Hero Image"
-           class="w-full h-full object-cover object-center"
-           loading="eager">
+  <!-- Hero Section -->
+  <section class="relative h-screen w-full bg-white overflow-hidden" id="hero-section">
+    <div class="absolute inset-0 w-full h-full slider-container">
+      <!-- Slides -->
+      <div class="slider-slide active">
+        <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" alt="Hero Image 1" class="w-full h-full object-cover object-center" loading="eager">
+      </div>
+      <div class="slider-slide">
+        <img src="https://i.ibb.co/QFTrfP7F/ca529c35-1760-4847-8e2a-6bb314b2e154.jpg" alt="Hero Image 2" class="w-full h-full object-cover object-center">
+      </div>
+      <div class="slider-slide">
+        <img src="https://i.ibb.co/spGqjQPx/6d014614-f024-41a6-b923-dd8629909959.jpg" alt="Hero Image 3" class="w-full h-full object-cover object-center">
+      </div>
     </div>
     
-    <!-- Optional overlay if needed -->
     <div class="absolute inset-0 bg-black/10"></div>
+    
+    <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+      <button class="slider-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all active" data-slide="0"></button>
+      <button class="slider-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="1"></button>
+      <button class="slider-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="2"></button>
+    </div>
   </section>
 
-  <!-- Rest of your content remains exactly the same -->
-  <section class="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
+  <!-- Hogo Fresh in Making Section -->
+  <section class="py-12 md:py-20 bg-white overflow-hidden">
     <div class="container mx-auto px-4">
-      <div class="flex flex-col lg:flex-row items-stretch gap-8 md:gap-12">
-        <!-- Image Column - Perfectly aligned with 3 sections -->
-        <div class="lg:w-5/12 xl:w-2/5 flex items-center">
-          <img src="https://i.ibb.co/Y4NRqzMc/47b6533c-43df-49bc-950e-f03882fdbd47.jpg" 
-               alt="Our Approach" 
-               class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-md">
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-12 xl:gap-16 max-w-6xl mx-auto">
+        <!-- Image Column - Modified for desktop length -->
+        <div class="w-full lg:w-1/2 h-full scroll-animate">
+          <div class="relative rounded-xl overflow-hidden shadow-lg h-auto lg:h-[600px]"> <!-- Increased height for desktop -->
+            <img src="https://cdn.pixabay.com/photo/2014/03/09/13/49/rice-sacks-283750_1280.jpg" 
+                 alt="Hogo Fresh in Making"
+                 class="w-full h-full object-cover object-center">
+          </div>
         </div>
         
-        <!-- Content Column - Matches image height -->
-        <div class="lg:w-7/12 xl:w-3/5 flex flex-col justify-center">
-          <div class="text-center lg:text-left mb-8 md:mb-12">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4 section-title">Our Approach</h2>
-            <p class="text-lg md:text-xl text-gray-600">How we're different from traditional supply chains</p>
+        <!-- Content Column -->
+        <div class="w-full lg:w-1/2 scroll-animate">
+          <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-700 relative inline-block">
+              <span class="relative">
+                HoGo in Making
+                <span class="absolute bottom-[-10px] left-0 h-[3px] bg-primary-600 underline-animate"></span>
+              </span>
+            </h2>
           </div>
-
-          <!-- Three approach cards with perfect height matching -->
-          <div class="grid grid-cols-1 gap-6 md:gap-8 h-full">
-            <!-- Direct Connections Card -->
-            <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 relative overflow-hidden h-full">
-              <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-              <div class="flex items-start gap-4 h-full">
-                <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mt-1 group-hover:bg-primary-600 group-hover:text-white transition-all flex-shrink-0">
-                  <i class="fas fa-link text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
-                </div>
-                <div>
-                  <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Direct Connections</h3>
-                  <p class="text-gray-600 text-sm md:text-base">We connect farmers directly with retailers, restaurants, and processors, eliminating layers of middlemen.</p>
-                </div>
-              </div>
-            </div>
+          
+          <div class="space-y-4 text-gray-600">
+            <p>India made a relatively late decision to prioritize agriculture as a primary driving force in its economy,this shift began notably in the early 2000s. However, for the past two decades, we've aspired to see Indian agriculture recognized as a benchmark by international organizations and forums.</p>
             
-            <!-- Fast Logistics Card -->
-            <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 relative overflow-hidden h-full">
-              <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-              <div class="flex items-start gap-4 h-full">
-                <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mt-1 group-hover:bg-primary-600 group-hover:text-white transition-all flex-shrink-0">
-                  <i class="fas fa-bolt text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
-                </div>
-                <div>
-                  <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Fast Logistics</h3>
-                  <p class="text-gray-600 text-sm md:text-base">Our optimized cold chain network delivers produce faster and fresher than traditional methods.</p>
-                </div>
-              </div>
-            </div>
+            <p class="font-medium text-primary-600">At Hogo Fresh, we're working to make that vision a reality.</p>
             
-            <!-- Data-Driven Card -->
-            <div class="group professional-card bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary-100 transform hover:-translate-y-1 relative overflow-hidden h-full">
-              <div class="absolute inset-0 bg-primary-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-              <div class="flex items-start gap-4 h-full">
-                <div class="bg-primary-100 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mt-1 group-hover:bg-primary-600 group-hover:text-white transition-all flex-shrink-0">
-                  <i class="fas fa-chart-line text-lg md:text-xl lg:text-2xl text-primary-600 group-hover:text-white transition-all"></i>
-                </div>
-                <div>
-                  <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary-700 transition-all">Data-Driven</h3>
-                  <p class="text-gray-600 text-sm md:text-base">Advanced analytics help farmers make better planting decisions and buyers optimize inventory.</p>
-                </div>
-              </div>
-            </div>
+            <p>Hogo Fresh isn't just a logistics company that moves goods and satisfies clients. It's not just another agri-supply chain business. It's a brand with a mission: to transform the way agriculture is perceived and practiced globally.</p>
+            
+            <p>As founders who come from agricultural science backgrounds, we've seen the gap between what's written in books and the reality on the ground. We've seen how difficult it is to convince farmers to adopt new technologies, not because they're unwilling, but because they lack the right support and trust.</p>
+            
+            <p>That's why we aim to build more than just a business, we're building a movement. A setup where every farmer becomes an entrepreneur, the owner of their journey, and someone who can sleep peacefully, knowing they have control over their livelihood.</p>
+            
+            <p>Yes, there are many startups trying to help farmers and that's a good thing. But within those efforts, there are still critical gaps. At Hogo, we want to lay the foundation strong, inclusive, and empowering that addresses those gaps and truly uplifts Indian agriculture to global standards.</p>
+            
+            <p>Our vision extends beyond borders. We're creating a model that can be replicated across developing nations, proving that sustainable agriculture and profitable farming can coexist. Through technology, education, and genuine partnership, we're rewriting the story of Indian agriculture one farmer, one harvest at a time.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Rest of your content remains the same -->
-  <section class="py-12 md:py-20 bg-white">
+  <!-- Our Team Section -->
+  <section class="py-12 md:py-20 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-8 md:mb-12">
-          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4 section-title">Our Team</h2>
+        <div class="text-center mb-8 md:mb-12 scroll-animate">
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4">Our Team</h2>
           <p class="text-lg md:text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
         </div>
         
-        <div class="professional-card bg-gray-50 rounded-xl p-6 md:p-8 lg:p-10 shadow-inner border border-gray-100">
+        <div class="professional-card bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-sm border border-gray-100 scroll-animate">
           <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
             <div class="relative group w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
               <div class="absolute inset-0 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-all duration-300"></div>
@@ -1276,15 +1263,15 @@
   <section class="py-12 md:py-16 bg-primary-700 text-white">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto text-center">
-        <div class="p-4 md:p-6">
+        <div class="p-4 md:p-6 scroll-animate">
           <div class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-count" data-target="59">0</div>
           <div class="text-sm md:text-base lg:text-lg font-medium">Farmers Connected</div>
         </div>
-        <div class="p-4 md:p-6">
+        <div class="p-4 md:p-6 scroll-animate" style="transition-delay: 100ms">
           <div class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-count" data-target="36">0</div>
           <div class="text-sm md:text-base lg:text-lg font-medium">States Served</div>
         </div>
-        <div class="p-4 md:p-6">
+        <div class="p-4 md:p-6 scroll-animate" style="transition-delay: 200ms">
           <div class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 animate-count" data-target="10">0</div>
           <div class="text-sm md:text-base lg:text-lg font-medium">Metric Tons Daily</div>
         </div>
@@ -1305,13 +1292,47 @@
 </div>
 
 <style>
-  /* Animation styles */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* Hero Slider Styles */
+  .slider-container {
+    position: relative;
   }
-  .animate-fadeIn {
-    animation: fadeIn 0.8s forwards;
+  
+  .slider-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .slider-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  /* Scroll Animation Styles */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animated Underline Styles */
+  .underline-animate {
+    width: 0;
+    transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
+    transform-origin: left center;
+  }
+  
+  .scroll-animate.visible .underline-animate {
+    width: 100%;
   }
   
   /* Counting animation */
@@ -1319,29 +1340,26 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
+  
   .animate-count {
     opacity: 0;
     animation: countUp 1s forwards;
   }
 
-  /* Mobile-specific adjustments */
+  /* Responsive adjustments */
   @media (max-width: 1023px) {
-    /* Stack image above content on mobile/tablet */
     .lg\:flex-row {
       flex-direction: column;
     }
     
-    /* Full width for both columns on mobile */
-    .lg\:w-5\/12, .lg\:w-7\/12 {
+    .lg\:w-1\/2 {
       width: 100%;
     }
     
-    /* Adjust image height on mobile */
-    .max-h-\[500px\] {
-      max-height: 350px;
+    .lg\:h-\[600px\] {
+      height: auto; /* Reset height for mobile */
     }
     
-    /* Reduce vertical spacing on mobile */
     .py-12 {
       padding-top: 3rem;
       padding-bottom: 3rem;
@@ -1351,17 +1369,11 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
-    
-    /* Center align text on mobile */
-    .lg\:text-left {
-      text-align: center;
-    }
   }
 
   @media (max-width: 767px) {
-    /* Further reduce spacing on small mobile */
     #hero-section {
-      height: 50vh;
+      height: 100vh;
     }
     
     .py-12 {
@@ -1373,24 +1385,53 @@
       padding-top: 3rem;
       padding-bottom: 3rem;
     }
-    
-    /* Reduce image height on small screens */
-    .max-h-\[500px\] {
-      max-height: 300px;
-    }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Hero Slider
+    const sliderSlides = document.querySelectorAll('.slider-slide');
+    const sliderIndicators = document.querySelectorAll('.slider-indicator');
+    let currentSlide = 0;
+    let slideInterval;
+    
+    function showSlide(index) {
+      sliderSlides.forEach(slide => slide.classList.remove('active'));
+      sliderIndicators.forEach(indicator => indicator.classList.remove('active'));
+      
+      sliderSlides[index].classList.add('active');
+      sliderIndicators[index].classList.add('active');
+      currentSlide = index;
+    }
+    
+    function nextSlide() {
+      let newIndex = (currentSlide + 1) % sliderSlides.length;
+      showSlide(newIndex);
+    }
+    
+    function startSlider() {
+      slideInterval = setInterval(nextSlide, 7000);
+    }
+    
+    sliderIndicators.forEach(indicator => {
+      indicator.addEventListener('click', function() {
+        clearInterval(slideInterval);
+        showSlide(parseInt(this.getAttribute('data-slide')));
+        startSlider();
+      });
+    });
+    
+    startSlider();
+    
     // Animate counting numbers
     const animateCounters = () => {
       const counters = document.querySelectorAll('.animate-count');
       
       counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
+        const duration = 2000;
+        const increment = target / (duration / 16);
         let current = 0;
         
         const updateCounter = () => {
@@ -1407,21 +1448,22 @@
       });
     };
     
-    // Intersection Observer for animations
+    // Scroll Animation Trigger with Intersection Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('animate-count')) {
+          entry.target.classList.add('visible');
+          
+          // Special handling for counters
+          if (entry.target.querySelector('.animate-count')) {
             animateCounters();
           }
-          entry.target.classList.add('animate-fadeIn');
-          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
     
-    // Observe elements that need animation
-    document.querySelectorAll('.animate-count, .section-title').forEach(el => {
+    // Observe all scroll-animate elements
+    document.querySelectorAll('.scroll-animate').forEach(el => {
       observer.observe(el);
     });
   });
