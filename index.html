@@ -19,6 +19,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lottie Files -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -71,7 +76,338 @@
   <link href="https://fonts.cdnfonts.com/css/southern-aire" rel="stylesheet">
   
   <style>
-    /* Custom Styles */
+    /* Loading Screen Styles - Enhanced with vivid gradient */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, 
+        #1a6b5e 0%, 
+        #4caf7d 50%, 
+        #c5e86c 100%);
+      background-size: 200% 200%;
+      animation: gradientPulse 15s ease infinite;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    @keyframes gradientPulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .loading-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 150px 150px, 75px 75px;
+      background-position: 0 0, 37.5px 37.5px;
+      opacity: 0.5;
+      z-index: 0;
+      animation: cellWallDrift 120s linear infinite;
+    }
+    
+    @keyframes cellWallDrift {
+      0% { background-position: 0 0, 37.5px 37.5px; }
+      100% { background-position: 150px 150px, 187.5px 187.5px; }
+    }
+    
+    /* Centered loader container */
+    .loader-wrapper {
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    
+    /* Logo orb - responsive sizing */
+    .logo-orb {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 20px;
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    }
+    
+    @media (max-width: 640px) {
+      .logo-orb {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: 
+        drop-shadow(0 0 15px rgba(255, 255, 255, 0.6))
+        brightness(1.1)
+        saturate(1.2);
+      opacity: 0;
+      animation: 
+        logoAppear 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        subtleGlow 4s ease-in-out infinite alternate;
+      animation-delay: 0.4s;
+      transform-origin: center;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    }
+    
+    @keyframes logoAppear {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes subtleGlow {
+      0% { 
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)) brightness(1.1) saturate(1.2); 
+        box-shadow: inset 0 0 30px rgba(197, 232, 108, 0.3); 
+      }
+      100% { 
+        filter: drop-shadow(0 0 25px rgba(197, 232, 108, 0.8)) brightness(1.15) saturate(1.3); 
+        box-shadow: inset 0 0 50px rgba(197, 232, 108, 0.5); 
+      }
+    }
+    
+    /* Progress bar - centered and responsive */
+    .progress-container {
+      width: 100%;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+    
+    .progress-3d {
+      width: 100%;
+      height: 8px;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+      animation-delay: 0.8s;
+    }
+    
+    .progress-track {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 
+        0 2px 10px rgba(0,0,0,0.1),
+        inset 0 1px 2px rgba(255,255,255,0.1);
+    }
+    
+    .progress-fill {
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(197, 232, 108, 0.95) 100%);
+      border-radius: 10px;
+      transition: width 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+      box-shadow: 
+        0 0 15px rgba(197, 232, 108, 0.5),
+        inset 0 1px 2px rgba(255,255,255,0.3);
+      overflow: hidden;
+    }
+    
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.6) 50%, 
+        rgba(255,255,255,0) 100%);
+      animation: shine 2.5s infinite;
+      transform: translateX(-100%);
+    }
+    
+    @keyframes shine {
+      100% { transform: translateX(100%); }
+    }
+    
+    /* Progress text - centered */
+    .progress-text {
+      margin-top: 10px;
+      font-size: 14px;
+      color: white;
+      font-weight: 500;
+      opacity: 0;
+      text-align: center;
+      width: 100%;
+      animation: fadeInUp 1s ease-out forwards;
+      animation-delay: 1s;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Quote container - responsive */
+    .quote-container {
+      width: 100%;
+      max-width: 320px;
+      margin: 20px auto;
+      position: relative;
+    }
+    
+    .quote-card {
+      width: 100%;
+      min-height: 70px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .quote-text {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      opacity: 0.95;
+      margin: 0;
+    }
+    
+    .quote-author {
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 8px;
+      font-weight: 300;
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 640px) {
+      .quote-text {
+        font-size: 13px;
+      }
+      .quote-author {
+        font-size: 11px;
+      }
+    }
+    
+    /* Loading line animation */
+    .loading-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255,255,255,0.9), 
+        transparent);
+      z-index: 20;
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.3s ease-out;
+    }
+    
+    .loading-line.active {
+      animation: loadingLine 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes loadingLine {
+      0% { transform: translateX(-100%) scaleX(0.5); }
+      100% { transform: translateX(100%) scaleX(0.5); }
+    }
+    
+    /* Completion effect */
+    .completion-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, 
+        rgba(255,255,255,0.8) 0%, 
+        transparent 70%);
+      opacity: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+    
+    /* Three.js container - full screen behind content */
+    #threejs-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .particle {
+      position: absolute;
+      background-color: rgba(197, 232, 108, 0.6);
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+    }
+    
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(20px);
+        opacity: 0;
+      }
+    }
+
+    /* Main Website Styles */
     .video-slide {
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -600,11 +936,47 @@
   </style>
 </head>
 <body class="font-sans bg-white text-gray-800 antialiased">
+<!-- Loading Screen - Enhanced with vivid gradient -->
+<div class="loading-screen" id="loadingScreen">
+  <!-- Three.js Container -->
+  <div id="threejs-container"></div>
+  
+  <!-- Floating Particles -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Completion Effect -->
+  <div class="completion-effect" id="completionEffect"></div>
+  
+  <!-- Loading Line -->
+  <div class="loading-line active" id="loadingLine"></div>
+
+  <!-- Centered Loader Content -->
+  <div class="loader-wrapper">
+    <div class="logo-orb">
+      <img src="https://i.ibb.co/TxkzTR6y/1000281790.png" class="logo-img" alt="HoGo Fresh Logo" id="logoImg">
+    </div>
+
+    <div class="quote-container">
+      <div class="quote-card" id="quoteContainer">
+        <p class="quote-text" id="quoteText">"In every walk with nature one receives far more than he seeks."</p>
+        <div class="quote-author" id="quoteAuthor">- John Muir</div>
+      </div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-3d">
+        <div class="progress-track"></div>
+        <div class="progress-fill" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+</div>
 
 <!-- Smart Scrolling Header -->
 <header class="fixed w-full z-50 transition-all duration-300" id="mainHeader">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <!-- Logo - Made bigger -->
+        <!-- Logo -->
         <div class="flex items-center">
             <a href="#" class="home-link">
                 <img src="https://i.ibb.co/Xf25JMp0/1000282093.png" alt="HoGo Fresh Logo" class="h-16 md:h-20 transition-all duration-300 hover:opacity-90" id="headerLogo">
@@ -763,6 +1135,528 @@
     </div>
   </div>
 </div>
+
+<!-- Main Content -->
+<main id="mainContent" style="display: none;">
+  <!-- Your existing main content goes here -->
+  <!-- This is where all your current website content would be placed -->
+</main>
+
+<script>
+  // Loading Screen Script - Enhanced with vivid gradient
+  document.addEventListener('DOMContentLoaded', function() {
+    // Three.js Scene Setup
+    const threeContainer = document.getElementById('threejs-container');
+    const scene = new THREE.Scene();
+    scene.background = null;
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ 
+      alpha: true, 
+      antialias: true,
+      powerPreference: "high-performance"
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    threeContainer.appendChild(renderer.domElement);
+
+    // Create organic leaf vein structures
+    const createVein = () => {
+      const curve = new THREE.CubicBezierCurve3(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(
+          (Math.random() - 0.5) * 2,
+          (Math.random() - 0.5) * 2,
+          (Math.random() - 0.5) * 2
+        ),
+        new THREE.Vector3(
+          (Math.random() - 0.5) * 4,
+          (Math.random() - 0.5) * 4,
+          (Math.random() - 0.5) * 4
+        ),
+        new THREE.Vector3(
+          (Math.random() - 0.5) * 6,
+          (Math.random() - 0.5) * 6,
+          (Math.random() - 0.5) * 6
+        )
+      );
+      
+      const points = curve.getPoints(50 + Math.floor(Math.random() * 30));
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      
+      const material = new THREE.LineBasicMaterial({
+        color: new THREE.Color(`hsl(${100 + Math.random() * 40}, 70%, 60%)`),
+        transparent: true,
+        opacity: 0.2 + Math.random() * 0.2,
+        linewidth: 1,
+        linecap: 'round',
+        linejoin: 'round'
+      });
+      
+      const line = new THREE.Line(geometry, material);
+      line.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10
+      );
+      
+      line.userData = {
+        speed: 0.005 + Math.random() * 0.01,
+        rotationSpeed: (Math.random() - 0.5) * 0.005,
+        offset: Math.random() * Math.PI * 2
+      };
+      
+      scene.add(line);
+      return line;
+    };
+
+    // Create all cell components with reduced quantities
+    const veins = [];
+    for (let i = 0; i < 6; i++) {
+      veins.push(createVein());
+    }
+
+    // Add lighting
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+    scene.add(ambientLight);
+    
+    const directionalLight1 = new THREE.DirectionalLight(0xc5e86c, 0.4);
+    directionalLight1.position.set(1, 1, 1);
+    scene.add(directionalLight1);
+    
+    const directionalLight2 = new THREE.DirectionalLight(0x4caf7d, 0.3);
+    directionalLight2.position.set(-1, -1, -1);
+    scene.add(directionalLight2);
+    
+    const pointLight = new THREE.PointLight(0xffffff, 0.6, 15);
+    pointLight.position.set(0, 0, 5);
+    scene.add(pointLight);
+    
+    // Add subtle fog for depth
+    scene.fog = new THREE.FogExp2(0x1a6b5e, 0.02);
+
+    // Camera position
+    camera.position.z = 8;
+    camera.lookAt(0, 0, 0);
+
+    // Animation loop for Three.js
+    const animate = () => {
+      requestAnimationFrame(animate);
+      
+      const time = Date.now() * 0.001;
+      
+      // Animate veins
+      veins.forEach(vein => {
+        vein.rotation.x += vein.userData.rotationSpeed;
+        vein.rotation.y += vein.userData.rotationSpeed;
+        
+        vein.position.y += Math.sin(time + vein.userData.offset) * 0.002;
+        vein.position.x += Math.cos(time * 0.5 + vein.userData.offset) * 0.001;
+        
+        if (vein.position.y > 6) {
+          vein.position.y = -6;
+        }
+      });
+      
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Handle window resize
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    // Create floating particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 80; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.opacity = 0.1 + Math.random() * 0.3;
+      particle.style.width = `${1 + Math.random() * 2}px`;
+      particle.style.height = particle.style.width;
+      particle.style.animationDuration = `${30 + Math.random() * 60}s`;
+      particle.style.animationDelay = `${Math.random() * 10}s`;
+      particle.style.backgroundColor = `hsl(${80 + Math.random() * 40}, 60%, 70%)`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // DOM Elements
+    const progressText = document.getElementById('progressText');
+    const progressBar = document.getElementById('progressBar');
+    const quoteContainer = document.getElementById('quoteContainer');
+    const quoteText = document.getElementById('quoteText');
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    const completionEffect = document.getElementById('completionEffect');
+    const loadingLine = document.getElementById('loadingLine');
+    const logoImg = document.getElementById('logoImg');
+    const loadingScreen = document.getElementById('loadingScreen');
+
+    // Nature quotes
+    const natureQuotes = [
+      {
+        text: "The global food supply chain must become more resilient, more transparent, and more inclusive to sustainably feed the world..",
+        author: "Jim Borel "
+      },
+      {
+        text: "Sustainability and traceability are no longer optional in the ag supply chain they are demanded by customers and consumers alike.",
+        author: "David MacLennan"
+      },
+      {
+        text: "In every walk with nature one receives far more than he seeks.",
+        author: "John Muir"
+      },
+      {
+        text: "We cannot close our eyes to where and how our food is grown. A fair, inclusive agricultural value chain is essential for global stability.",
+        author: "Paul Polman"
+      },
+      {
+        text: "Supply chains determine the footprint of agriculture. If we fix the chain, we fix food.",
+        author: "Dr. Jason Clay "
+      },
+      {
+        text: "To sit in the shade on a fine day and look upon verdure is the most perfect refreshment.",
+        author: "Jane Austen"
+      },
+      {
+        text: "Nature does not hurry, yet everything is accomplished.",
+        author: "Lao Tzu"
+      },
+      {
+        text: "The clearest way into the Universe is through a forest wilderness.",
+        author: "John Muir"
+      },
+      {
+        text: "Plants are the young of the world, vessels of health and vigor.",
+        author: "Ralph Waldo Emerson"
+      },
+      {
+        text: "A leaf of grass is no less than the journey-work of the stars.",
+        author: "Walt Whitman"
+      }
+    ];
+
+    // Loading stages with cell biology theme
+    const stages = [
+      { progress: 0, label: "Initializing Cell Membrane..." },
+      { progress: 8, label: "Synthesizing Cytoplasm..." },
+      { progress: 18, label: "Assembling Nucleus..." },
+      { progress: 28, label: "Generating Chloroplasts..." },
+      { progress: 40, label: "Forming Mitochondria..." },
+      { progress: 52, label: "Developing Vacuoles..." },
+      { progress: 65, label: "Creating Ribosomes..." },
+      { progress: 75, label: "Building Cell Wall..." },
+      { progress: 85, label: "Activating Photosynthesis..." },
+      { progress: 92, label: "Final Cellular Adjustments..." },
+      { progress: 100, label: "Cell Fully Functional!" }
+    ];
+
+    let currentStage = 0;
+    let isComplete = false;
+
+    // Show random quote with smoother transition
+    const showQuote = () => {
+      if (isComplete) return;
+      
+      gsap.to(quoteContainer, {
+        opacity: 0,
+        y: 10,
+        scale: 0.95,
+        duration: 0.6,
+        ease: "power2.inOut",
+        onComplete: () => {
+          const randomQuote = natureQuotes[Math.floor(Math.random() * natureQuotes.length)];
+          quoteText.textContent = `"${randomQuote.text}"`;
+          quoteAuthor.textContent = `- ${randomQuote.author}`;
+          
+          gsap.to(quoteContainer, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "elastic.out(1, 0.3)"
+          });
+        }
+      });
+    };
+
+    // Update progress through stages
+    const updateProgress = () => {
+      if (currentStage < stages.length) {
+        const stage = stages[currentStage];
+        
+        gsap.to(progressBar, {
+          width: `${stage.progress}%`,
+          duration: 1.2,
+          ease: "sine.inOut",
+          onUpdate: () => {
+            const currentWidth = parseFloat(progressBar.style.width) || 0;
+            progressText.textContent = `${Math.floor(currentWidth)}%`;
+            
+            if (Math.floor(currentWidth) % 25 === 0) {
+              gsap.to(progressBar, {
+                scaleY: 1.4,
+                duration: 0.5,
+                yoyo: true,
+                repeat: 1,
+                ease: "elastic.out(1, 0.5)"
+              });
+            }
+          }
+        });
+        
+        const chars = stage.label.split('');
+        progressText.textContent = '';
+        
+        chars.forEach((char, i) => {
+          setTimeout(() => {
+            progressText.textContent += char;
+            gsap.to(progressText, {
+              y: -2,
+              duration: 0.1,
+              yoyo: true,
+              repeat: 1,
+              ease: "power1.out"
+            });
+          }, i * 20);
+        });
+        
+        currentStage++;
+        
+        let delay;
+        if (stage.progress < 30) {
+          delay = 800 + Math.random() * 400;
+        } else if (stage.progress < 70) {
+          delay = 500 + Math.random() * 300;
+        } else {
+          delay = 200 + Math.random() * 100;
+        }
+        
+        setTimeout(updateProgress, delay);
+      } else {
+        isComplete = true;
+        completeAnimation();
+      }
+    };
+
+    // Completion animation
+    const completeAnimation = () => {
+      gsap.to(progressBar, {
+        boxShadow: '0 0 30px rgba(197, 232, 108, 0.9)',
+        duration: 1.5,
+        repeat: 3,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+      
+      gsap.to(completionEffect, {
+        opacity: 0.8,
+        duration: 2,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.to(completionEffect, {
+            opacity: 0,
+            duration: 1.5,
+            ease: "power2.in"
+          });
+        }
+      });
+      
+      gsap.to(loadingLine, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        onComplete: () => {
+          loadingLine.style.display = 'none';
+        }
+      });
+      
+      setTimeout(() => {
+        gsap.to(quoteContainer, {
+          backgroundColor: 'rgba(197, 232, 108, 0.25)',
+          duration: 1.5,
+          ease: "power2.inOut",
+          onComplete: () => {
+            quoteText.textContent = '"The cell is the fundamental unit of life."';
+            quoteAuthor.textContent = '- Matthias Schleiden';
+            gsap.to(quoteContainer, {
+              scale: 1.05,
+              duration: 0.5,
+              yoyo: true,
+              repeat: 1
+            });
+            
+            // Fade out loading screen and show main content
+            gsap.to(loadingScreen, {
+              opacity: 0,
+              duration: 1.5,
+              ease: "power2.out",
+              onComplete: () => {
+                loadingScreen.style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                
+                // Trigger any animations for the main content
+                gsap.from('#mainContent', {
+                  opacity: 0,
+                  y: 20,
+                  duration: 1,
+                  ease: "power2.out"
+                });
+              }
+            });
+          }
+        });
+      }, 1500);
+    };
+
+    // Initialize animations
+    setTimeout(() => {
+      setTimeout(showQuote, 500);
+      setTimeout(updateProgress, 1000);
+      setInterval(showQuote, 7000 + Math.random() * 2000);
+    }, 1500);
+
+    // Logo interaction effects
+    logoImg.addEventListener('mouseenter', () => {
+      gsap.to(logoImg, {
+        scale: 1.05,
+        filter: 'drop-shadow(0 0 30px rgba(197, 232, 108, 0.9)) brightness(1.2) saturate(1.4)',
+        duration: 0.5,
+        ease: "elastic.out(1, 0.5)"
+      });
+    });
+
+    logoImg.addEventListener('mouseleave', () => {
+      gsap.to(logoImg, {
+        scale: 1,
+        filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)) brightness(1.1) saturate(1.2)',
+        duration: 0.5,
+        ease: "elastic.out(1, 0.5)"
+      });
+    });
+
+    logoImg.addEventListener('click', () => {
+      gsap.to(logoImg, {
+        scale: 0.95,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut"
+      });
+      
+      const ripple = document.createElement('div');
+      ripple.style.position = 'absolute';
+      ripple.style.width = '100%';
+      ripple.style.height = '100%';
+      ripple.style.borderRadius = '50%';
+      ripple.style.background = 'radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%)';
+      ripple.style.transform = 'scale(0)';
+      ripple.style.opacity = '1';
+      ripple.style.pointerEvents = 'none';
+      document.querySelector('.logo-orb').appendChild(ripple);
+      
+      gsap.to(ripple, {
+        scale: 2,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        onComplete: () => ripple.remove()
+      });
+    });
+
+    // Background animation on mouse move
+    const handleMouseMove = (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      gsap.to(camera.position, {
+        x: (x - 0.5) * 1.5,
+        y: -(y - 0.5) * 1.5,
+        duration: 4,
+        ease: "power2.out"
+      });
+      
+      gsap.to(pointLight.position, {
+        x: (x - 0.5) * 3,
+        y: -(y - 0.5) * 3,
+        duration: 2,
+        ease: "power2.out"
+      });
+      
+      const logoX = (x - 0.5) * 3;
+      const logoY = (y - 0.5) * 3;
+      gsap.to('.logo-orb', {
+        x: logoX,
+        y: logoY,
+        rotateX: logoY * 0.2,
+        rotateY: logoX * 0.2,
+        duration: 1.5,
+        ease: "power2.out"
+      });
+      
+      gsap.to(quoteContainer, {
+        y: logoY * 0.3,
+        duration: 1.5,
+        ease: "power2.out"
+      });
+    };
+
+    // Touch event handler for mobile devices
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0] || e.changedTouches[0];
+      const x = touch.clientX / window.innerWidth;
+      const y = touch.clientY / window.innerHeight;
+      
+      gsap.to(camera.position, {
+        x: (x - 0.5) * 1.5,
+        y: -(y - 0.5) * 1.5,
+        duration: 4,
+        ease: "power2.out"
+      });
+      
+      gsap.to(pointLight.position, {
+        x: (x - 0.5) * 3,
+        y: -(y - 0.5) * 3,
+        duration: 2,
+        ease: "power2.out"
+      });
+      
+      const logoX = (x - 0.5) * 3;
+      const logoY = (y - 0.5) * 3;
+      gsap.to('.logo-orb', {
+        x: logoX,
+        y: logoY,
+        rotateX: logoY * 0.2,
+        rotateY: logoX * 0.2,
+        duration: 1.5,
+        ease: "power2.out"
+      });
+      
+      gsap.to(quoteContainer, {
+        y: logoY * 0.3,
+        duration: 1.5,
+        ease: "power2.out"
+      });
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('touchmove', handleTouchMove);
+  });
+</script>
+
+<!-- Your existing JavaScript for the main website -->
+<script>
+  // Your existing JavaScript code for the main website goes here
+  // This would include all your current functionality for the header, modals, etc.
+</script>
+</body>
+</html>
 
 <!-- Home Page -->
 <div id="home-page" class="page active">
@@ -1154,7 +2048,7 @@
 
 <!-- About Page -->
 <div id="about-page" class="page">
-  <!-- Hero Section -->
+  <!-- Hero Section - Made mobile friendly -->
   <section class="relative h-screen w-full bg-white overflow-hidden" id="hero-section">
     <div class="absolute inset-0 w-full h-full slider-container">
       <!-- Slides -->
@@ -1178,13 +2072,13 @@
     </div>
   </section>
 
-  <!-- Hogo Fresh in Making Section -->
+  <!-- Hogo Fresh in Making Section - Image enlarged length-wise -->
   <section class="py-12 md:py-20 bg-white overflow-hidden">
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-12 xl:gap-16 max-w-6xl mx-auto">
-        <!-- Image Column - Modified for desktop length -->
+        <!-- Image Column - Enlarged for desktop -->
         <div class="w-full lg:w-1/2 h-full scroll-animate">
-          <div class="relative rounded-xl overflow-hidden shadow-lg h-auto lg:h-[600px]"> <!-- Increased height for desktop -->
+          <div class="relative rounded-xl overflow-hidden shadow-lg h-auto lg:h-[600px] w-full">
             <img src="https://cdn.pixabay.com/photo/2014/03/09/13/49/rice-sacks-283750_1280.jpg" 
                  alt="Hogo Fresh in Making"
                  class="w-full h-full object-cover object-center">
@@ -1222,16 +2116,25 @@
     </div>
   </section>
 
-  <!-- Our Team Section -->
-  <section class="py-12 md:py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
+  <!-- Video Background Section - Behind Our Team -->
+  <section class="relative py-16 md:py-24 bg-gray-100 overflow-hidden">
+    <!-- Video Background Container -->
+    <div class="absolute inset-0 w-full h-full z-0">
+      <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-20">
+        <source src="https://cdn.pixabay.com/video/2024/04/16/208160_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <!-- Our Team Content -->
+    <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8 md:mb-12 scroll-animate">
           <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-3 md:mb-4">Our Team</h2>
           <p class="text-lg md:text-xl text-gray-600">Meet the people behind HoGo Fresh</p>
         </div>
         
-        <div class="professional-card bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-sm border border-gray-100 scroll-animate">
+        <div class="professional-card bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-sm border border-gray-100 scroll-animate">
           <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
             <div class="relative group w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
               <div class="absolute inset-0 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-all duration-300"></div>
@@ -1346,44 +2249,57 @@
     animation: countUp 1s forwards;
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 1023px) {
-    .lg\:flex-row {
-      flex-direction: column;
-    }
-    
-    .lg\:w-1\/2 {
-      width: 100%;
-    }
-    
-    .lg\:h-\[600px\] {
-      height: auto; /* Reset height for mobile */
-    }
-    
-    .py-12 {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    }
-    
-    .py-20 {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
+  /* Video Background Section */
+  .professional-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
+  /* Responsive adjustments for mobile */
   @media (max-width: 767px) {
     #hero-section {
-      height: 100vh;
+      height: 70vh; /* Reduced height for mobile */
     }
     
-    .py-12 {
+    .slider-slide img {
+      object-position: center center; /* Better mobile cropping */
+    }
+    
+    .slider-indicator {
+      width: 10px;
+      height: 10px; /* Slightly larger indicators for mobile */
+    }
+    
+    .py-12, .py-16 {
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
     
-    .py-20 {
+    .py-20, .py-24 {
       padding-top: 3rem;
       padding-bottom: 3rem;
+    }
+    
+    .text-3xl {
+      font-size: 1.75rem; /* Slightly smaller headings */
+    }
+
+    /* Adjust video background section for mobile */
+    .relative.py-16 {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    #hero-section {
+      height: 80vh; /* Medium height for tablets */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #hero-section {
+      height: 100vh; /* Full height for desktop */
     }
   }
 </style>
@@ -2355,7 +3271,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Registration Page -->
 <div id="registration-page" class="page">
-  <section class="pt-32 bg-white">
+  <section class="pt-32" style="background: linear-gradient(rgba(220, 255, 220, 0.3), rgba(240, 255, 240, 0.2));">
       <div class="container mx-auto px-4">
           <div class="text-center mb-12 md:mb-16">
               <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-700 mb-4 section-title">Business Registration</h2>
@@ -2454,7 +3370,6 @@ document.addEventListener('DOMContentLoaded', function() {
                               <li>Food processors and manufacturers</li>
                               <li>Retailers and wholesalers</li>
                               <li>Restaurants and hospitality businesses</li>
-                              </li>
                           </ul>
                       </div>
                   </div>
@@ -2465,7 +3380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
                       </button>
                       <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
-                          <p>Join HoGo Fresh for free we only succeed when you do. Pay a small fee per successful order, nothing upfront. Grow your business risk-free.</p>
+                          <p>Only pay a small fee when your order goes through. No risk, no commitment. We grow when you do.</p>
                       </div>
                   </div>
                   
@@ -2475,12 +3390,11 @@ document.addEventListener('DOMContentLoaded', function() {
                           <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
                       </button>
                       <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
-                          <p>Our optimized cold chain logistics ensure:</p>
+                          <p>Our sourcing starts at the roots, directly from farms and FPOs every day. We also work closely with manufacturers, traders, and other partners to ensure a consistent, high-quality supply.</p>
                           <ul class="list-disc pl-4 md:pl-5 mt-2 space-y-1">
-                              <li>Daily collection from farms</li>
+                            
                               <li>Temperature-controlled transportation</li>
                               <li>3-day delivery guarantee to buyers</li>
-                              </li>
                           </ul>
                       </div>
                   </div>
@@ -2494,10 +3408,53 @@ document.addEventListener('DOMContentLoaded', function() {
                           <p>We currently work with:</p>
                           <ul class="list-disc pl-4 md:pl-5 mt-2 space-y-1">
                               <li>Fruits & vegetables</li>
-                              <li>Dairy products & Poultary </li>
+                              <li>Dairy products & Poultary</li>
                               <li>Fisheries</li>
                               <li>Textile raw materials</li>
                               <li>Grains & pulses</li>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <!-- New FAQ Items -->
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
+                      <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
+                          <span class="text-sm md:text-base">Is registration only for farmers or suppliers?</span>
+                          <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                      </button>
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
+                          <p>No, not at all. Even if you're someone growing or planning to grow, you can reach out to us. Based on your scalability and location, we’ll help you set up and start earning.</p>
+                          
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
+                      <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
+                          <span class="text-sm md:text-base">What payment methods are accepted?</span>
+                          <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                      </button>
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
+                          <p>We offer multiple secure payment options:</p>
+                          <ul class="list-disc pl-4 md:pl-5 mt-2 space-y-1">
+                              <li>UPI payments (PhonePe, GPay, etc.)</li>
+                              <li>Net banking and credit/debit cards</li>
+                              <li>Escrow services for large orders</li>
+                              <li>Corporate credit terms for verified buyers</li>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="border-b border-gray-200 pb-3 md:pb-4">
+                      <button class="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none faq-toggle">
+                          <span class="text-sm md:text-base">Is there a mobile app available?</span>
+                          <i class="fas fa-chevron-down text-primary-600 transition-transform duration-200"></i>
+                      </button>
+                      <div class="hidden mt-2 text-gray-600 faq-content text-xs md:text-sm">
+                          <p> Not yet! we currently don’t have a mobile app. However, if you need local delivery, feel free to contact us through WhatsApp.
+
+But don’t worry, we’re launching our mobile app soon! It won’t just be for businesses, but for everyone to access the best of what we offer.</p>
+                          
                           </ul>
                       </div>
                   </div>
