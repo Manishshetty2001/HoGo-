@@ -2048,23 +2048,30 @@
 
 <!-- About Page -->
 <div id="about-page" class="page">
-  <!-- Hero Section - Made mobile friendly -->
-  <section class="relative h-screen w-full bg-white overflow-hidden" id="hero-section">
-    <div class="absolute inset-0 w-full h-full slider-container">
+  <!-- Hero Section - Corrected version -->
+  <section class="relative w-full bg-white overflow-hidden" id="hero-section">
+    <!-- Slider container with responsive height -->
+    <div class="w-full h-[60vh] md:h-[80vh] lg:h-screen slider-container">
       <!-- Slides -->
-      <div class="slider-slide active">
-        <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" alt="Hero Image 1" class="w-full h-full object-cover object-center" loading="eager">
+      <div class="slider-slide absolute inset-0 transition-opacity duration-1000 opacity-100">
+        <img src="https://i.ibb.co/S42nSNWX/1-orig.jpg" alt="Hero Image 1" 
+             class="w-full h-full object-cover object-center" 
+             loading="eager">
       </div>
-      <div class="slider-slide">
-        <img src="https://i.ibb.co/QFTrfP7F/ca529c35-1760-4847-8e2a-6bb314b2e154.jpg" alt="Hero Image 2" class="w-full h-full object-cover object-center">
+      <div class="slider-slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+        <img src="https://i.ibb.co/QFTrfP7F/ca529c35-1760-4847-8e2a-6bb314b2e154.jpg" alt="Hero Image 2" 
+             class="w-full h-full object-cover object-center">
       </div>
-      <div class="slider-slide">
-        <img src="https://i.ibb.co/spGqjQPx/6d014614-f024-41a6-b923-dd8629909959.jpg" alt="Hero Image 3" class="w-full h-full object-cover object-center">
+      <div class="slider-slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+        <img src="https://i.ibb.co/spGqjQPx/6d014614-f024-41a6-b923-dd8629909959.jpg" alt="Hero Image 3" 
+             class="w-full h-full object-cover object-center">
       </div>
     </div>
     
+    <!-- Overlay -->
     <div class="absolute inset-0 bg-black/10"></div>
     
+    <!-- Indicators -->
     <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
       <button class="slider-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all active" data-slide="0"></button>
       <button class="slider-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-slide="1"></button>
@@ -2195,9 +2202,15 @@
 </div>
 
 <style>
-  /* Hero Slider Styles */
+  /* Hero Section Styles */
+  #hero-section {
+    position: relative;
+    width: 100%;
+  }
+  
   .slider-container {
     position: relative;
+    overflow: hidden;
   }
   
   .slider-slide {
@@ -2206,13 +2219,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
     transition: opacity 1s ease-in-out;
   }
   
-  .slider-slide.active {
-    opacity: 1;
-    z-index: 1;
+  .slider-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   /* Scroll Animation Styles */
@@ -2255,19 +2268,19 @@
     -webkit-backdrop-filter: blur(8px);
   }
 
-  /* Responsive adjustments for mobile */
+  /* Responsive adjustments */
   @media (max-width: 767px) {
     #hero-section {
-      height: 70vh; /* Reduced height for mobile */
+      height: 60vh;
     }
     
     .slider-slide img {
-      object-position: center center; /* Better mobile cropping */
+      object-position: center center;
     }
     
     .slider-indicator {
       width: 10px;
-      height: 10px; /* Slightly larger indicators for mobile */
+      height: 10px;
     }
     
     .py-12, .py-16 {
@@ -2281,10 +2294,9 @@
     }
     
     .text-3xl {
-      font-size: 1.75rem; /* Slightly smaller headings */
+      font-size: 1.75rem;
     }
 
-    /* Adjust video background section for mobile */
     .relative.py-16 {
       padding-top: 2.5rem;
       padding-bottom: 2.5rem;
@@ -2293,13 +2305,13 @@
 
   @media (min-width: 768px) and (max-width: 1023px) {
     #hero-section {
-      height: 80vh; /* Medium height for tablets */
+      height: 80vh;
     }
   }
 
   @media (min-width: 1024px) {
     #hero-section {
-      height: 100vh; /* Full height for desktop */
+      height: 100vh;
     }
   }
 </style>
@@ -2313,10 +2325,11 @@
     let slideInterval;
     
     function showSlide(index) {
-      sliderSlides.forEach(slide => slide.classList.remove('active'));
-      sliderIndicators.forEach(indicator => indicator.classList.remove('active'));
+      sliderSlides.forEach((slide, i) => {
+        slide.style.opacity = i === index ? '1' : '0';
+      });
       
-      sliderSlides[index].classList.add('active');
+      sliderIndicators.forEach(indicator => indicator.classList.remove('active'));
       sliderIndicators[index].classList.add('active');
       currentSlide = index;
     }
@@ -3646,7 +3659,7 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
                               </div>
                               <div>
                                   <h4 class="font-medium text-gray-800 text-sm md:text-base">Phone</h4>
-                                  <a href="tel:+918095924220" class="text-gray-600 hover:text-primary-600 transition text-sm md:text-base">+91 8095924220</a>
+                                  <a href="tel:+918095924220" class="text-gray-600 hover:text-primary-600 transition text-sm md:text-base">+91 9380524220</a>
                               </div>
                           </div>
                           
@@ -3662,19 +3675,19 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
                       </div>
                       
                       <div class="mt-8 md:mt-10">
-                          <h4 class="font-medium text-gray-800 mb-3 md:mb-4 text-sm md:text-base">Follow Us</h4>
+                          <h4 class="font-medium text-gray-800 mb-3 md:mb-4 text-sm md:text-base">Connect With Us</h4>
                           <div class="flex space-x-3 md:space-x-4">
-                              <a href="https://www.linkedin.com/company/hogofresh/" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
+                              <a href="https://www.linkedin.com/company/hogofresh/" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition" title="LinkedIn">
                                   <i class="fab fa-linkedin-in"></i>
                               </a>
-                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
-                                  <i class="fab fa-twitter"></i>
+                              <a href="https://wa.me/919380524220" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition" title="WhatsApp Business">
+                                  <i class="fab fa-whatsapp"></i>
                               </a>
-                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
-                                  <i class="fab fa-facebook-f"></i>
-                              </a>
-                              <a href="#" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition">
+                              <a href="https://www.instagram.com/hogofresh/" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition" title="Instagram">
                                   <i class="fab fa-instagram"></i>
+                              </a>
+                              <a href="https://twitter.com/hogofresh" target="_blank" class="bg-primary-100 hover:bg-primary-200 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-primary-600 transition" title="X (Twitter)">
+                                  <i class="fab fa-x-twitter"></i>
                               </a>
                           </div>
                       </div>
@@ -3740,10 +3753,10 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
                           <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold text-sm md:text-base">North Section</h4>
+                          <h4 class="font-semibold text-sm md:text-base">North Operations</h4>
                       </div>
                       <p class="text-gray-600 text-xs md:text-sm">Hissar, Haryana</p>
-                      <p class="text-gray-600 text-xs md:text-sm"></p>
+                      <p class="text-gray-500 text-xs md:text-sm mt-2">Our northern hub serving Punjab, Haryana, and surrounding regions with fresh produce daily.</p>
                   </div>
                   
                   <div class="professional-card bg-white p-4 md:p-6 rounded-lg md:rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
@@ -3751,10 +3764,10 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
                           <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold text-sm md:text-base">South Section</h4>
+                          <h4 class="font-semibold text-sm md:text-base">South Operations</h4>
                       </div>
                       <p class="text-gray-600 text-xs md:text-sm">Hubballi, Karnataka</p>
-                      <p class="text-gray-600 text-xs md:text-sm"></p>
+                      <p class="text-gray-500 text-xs md:text-sm mt-2">Strategic location for serving Karnataka, Goa, and Maharashtra with the freshest local produce.</p>
                   </div>
                   
                   <div class="professional-card bg-white p-4 md:p-6 rounded-lg md:rounded-xl shadow-sm border border-primary-100 no-move-on-hover">
@@ -3762,10 +3775,10 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
                           <div class="bg-primary-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
                               <i class="fas fa-map-marker-alt text-primary-600"></i>
                           </div>
-                          <h4 class="font-semibold text-sm md:text-base">Pan India Section</h4>
+                          <h4 class="font-semibold text-sm md:text-base">National Headquarters</h4>
                       </div>
-                      <p class="text-gray-600 text-xs md:text-sm">Banglore, Karnataka</p>
-                      <p class="text-gray-600 text-xs md:text-sm"></p>
+                      <p class="text-gray-600 text-xs md:text-sm">Bangalore, Karnataka</p>
+                      <p class="text-gray-500 text-xs md:text-sm mt-2">Our central hub coordinating pan-India operations, quality control, and customer support.</p>
                   </div>
               </div>
           </div>
@@ -3840,276 +3853,115 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize page navigation
-        const pages = document.querySelectorAll('.page');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const homeLink = document.querySelector('.home-link');
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        // Show home page by default
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const elements = {
+        pages: document.querySelectorAll('.page'),
+        navLinks: document.querySelectorAll('.nav-link'),
+        homeLink: document.querySelector('.home-link'),
+        mobileMenuButton: document.getElementById('mobileMenuButton'),
+        mobileMenu: document.getElementById('mobileMenu'),
+        floatingContactBtn: document.getElementById('floatingContactBtn'),
+        header: document.getElementById('mainHeader'),
+        logo: document.getElementById('headerLogo'),
+        contactForm: document.getElementById('contactFormFull'),
+        submitText: document.getElementById('submitTextFull'),
+        submitSpinner: document.getElementById('submitSpinnerFull'),
+        thankYouMessage: document.getElementById('thankYouMessageFull'),
+        sendAnotherBtn: document.getElementById('sendAnotherFull'),
+        partnerModal: document.getElementById('partnerModal'),
+        partnerForm: document.getElementById('partnerForm'),
+        partnerSuccess: document.getElementById('partnerSuccess'),
+        partnerBtns: document.querySelectorAll('#partnerBtn, #partnerBtn2'),
+        registerModal: document.getElementById('registerModal'),
+        registerForm: document.getElementById('registerForm'),
+        registerSuccess: document.getElementById('registerSuccess'),
+        registerBtns: document.querySelectorAll('#registerBtn, #registerBtn2'),
+        closeButtons: document.querySelectorAll('.close-modal'),
+        modals: document.querySelectorAll('.modal'),
+        faqToggles: document.querySelectorAll('.faq-toggle'),
+        bulbToggle: document.getElementById('bulbToggle'),
+        videoSlides: document.querySelectorAll('.video-slide'),
+        slides: [
+            document.getElementById('slide1'),
+            document.getElementById('slide2'),
+            document.getElementById('slide3')
+        ]
+    };
+
+    // Initialize the page
+    function init() {
         showPage('home');
-        
-        // Handle navigation clicks
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const pageId = this.getAttribute('data-page');
-                showPage(pageId);
-                
-                // Close mobile menu if open
-                mobileMenu.classList.remove('active');
-                mobileMenuButton.querySelector('i').classList.remove('fa-times');
-                mobileMenuButton.querySelector('i').classList.add('fa-bars');
-            });
-        });
-        
-        // Home logo click
-        homeLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage('home');
-        });
-        
-        // Mobile menu toggle
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            
-            // Toggle icon between bars and times
-            const icon = this.querySelector('i');
-            if (mobileMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // Floating contact button functionality
-        const floatingContactBtn = document.getElementById('floatingContactBtn');
-        floatingContactBtn.addEventListener('click', function() {
-            showPage('contact');
-        });
-        
-        // Show specific page and hide others
-        function showPage(pageId) {
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            document.getElementById(`${pageId}-page`).classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
-            // Update active nav link
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Update header style based on page
-            const header = document.getElementById('mainHeader');
-            if (pageId === 'home') {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            } else {
-                header.classList.add('scrolled');
-            }
-        }
-        
-        // Header scroll effect
-        const header = document.getElementById('mainHeader');
-        const logo = document.getElementById('headerLogo');
-        
-        window.addEventListener('scroll', function() {
-            const currentPage = document.querySelector('.page.active').id;
-            if (currentPage === 'home-page') {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            }
-        });
-        
-        // Video carousel functionality - removed the slideshow since we only have one video now
-        const videoSlides = document.querySelectorAll('.video-slide');
-        showVideoSlide(0); // Show the first (and only) video
-        
-        function showVideoSlide(index) {
-            videoSlides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-        }
-        
-        // FAQ toggle functionality
-        document.querySelectorAll('.faq-toggle').forEach(button => {
-            button.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                const icon = this.querySelector('i');
-                
-                content.classList.toggle('hidden');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-            });
-        });
-        
-        // Contact form handling
-        document.getElementById('contactFormFull').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            document.getElementById('submitTextFull').textContent = 'Sending...';
-            document.getElementById('submitSpinnerFull').classList.remove('hidden');
-            
-            try {
-                const form = e.target;
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    document.getElementById('contactFormFull').classList.add('hidden');
-                    document.getElementById('thankYouMessageFull').classList.remove('hidden');
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again.');
-            } finally {
-                document.getElementById('submitTextFull').textContent = 'Send Message';
-                document.getElementById('submitSpinnerFull').classList.add('hidden');
-            }
-        });
-        
-        // Reset form to send another message
-        document.getElementById('sendAnotherFull').addEventListener('click', function() {
-            document.getElementById('contactFormFull').reset();
-            document.getElementById('contactFormFull').classList.remove('hidden');
-            document.getElementById('thankYouMessageFull').classList.add('hidden');
+        setupEventListeners();
+        initAnimations();
+        showVideoSlide(0);
+        showSlide(0);
+        startCarousel();
+    }
+
+    // Set up all event listeners
+    function setupEventListeners() {
+        // Navigation
+        elements.navLinks.forEach(link => {
+            link.addEventListener('click', handleNavClick);
         });
 
-        // Partner modal functionality
-        const partnerModal = document.getElementById('partnerModal');
-        const partnerForm = document.getElementById('partnerForm');
-        const partnerSuccess = document.getElementById('partnerSuccess');
-        const partnerBtns = document.querySelectorAll('#partnerBtn, #partnerBtn2');
+        elements.homeLink.addEventListener('click', handleHomeClick);
+        elements.floatingContactBtn.addEventListener('click', () => showPage('contact'));
+        
+        // Mobile menu
+        elements.mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        document.addEventListener('click', handleOutsideClick);
+        
+        // Forms
+        elements.contactForm.addEventListener('submit', handleContactSubmit);
+        elements.sendAnotherBtn.addEventListener('click', resetContactForm);
+        elements.partnerForm.addEventListener('submit', handlePartnerSubmit);
+        elements.registerForm.addEventListener('submit', handleRegisterSubmit);
+        
+        // Modals
+        elements.partnerBtns.forEach(btn => {
+            btn.addEventListener('click', () => openModal('partner'));
+        });
+        
+        elements.registerBtns.forEach(btn => {
+            btn.addEventListener('click', () => openModal('register'));
+        });
+        
+        elements.closeButtons.forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+        
+        elements.modals.forEach(modal => {
+            modal.addEventListener('click', handleModalOutsideClick);
+        });
+        
+        // FAQ toggles
+        elements.faqToggles.forEach(button => {
+            button.addEventListener('click', toggleFAQ);
+        });
+        
+        // Bulb toggle
+        elements.bulbToggle.addEventListener('click', toggleBulb);
+        
+        // Smiley animation
+        document.addEventListener('click', handleSmileyAnimation);
+        
+        // Scroll events
+        window.addEventListener('scroll', handleScroll);
+    }
 
-        partnerBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                partnerModal.classList.add('active');
-                partnerForm.classList.remove('hidden');
-                partnerSuccess.classList.add('hidden');
-            });
+    // Initialize animations
+    function initAnimations() {
+        // Tilt effect
+        VanillaTilt.init(document.querySelectorAll(".professional-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.1,
         });
 
-        // Register modal functionality
-        const registerModal = document.getElementById('registerModal');
-        const registerForm = document.getElementById('registerForm');
-        const registerSuccess = document.getElementById('registerSuccess');
-        const registerBtns = document.querySelectorAll('#registerBtn, #registerBtn2');
-
-        registerBtns.forEach(btn => {
-              btn.addEventListener('click', function() {
-                registerModal.classList.add('active');
-                registerForm.classList.remove('hidden');
-                registerSuccess.classList.add('hidden');
-            });
-        });
-
-        // Close modal when clicking X
-        document.querySelectorAll('.close-modal').forEach(closeBtn => {
-            closeBtn.addEventListener('click', function() {
-                this.closest('.modal').classList.remove('active');
-            });
-        });
-
-        // Close modal when clicking outside
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('active');
-                }
-            });
-        });
-
-        // Form submissions
-        partnerForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            try {
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: new FormData(this),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    this.classList.add('hidden');
-                    partnerSuccess.classList.remove('hidden');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again.');
-            }
-        });
-
-        registerForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            try {
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: new FormData(this),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    this.classList.add('hidden');
-                    registerSuccess.classList.remove('hidden');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again.');
-            }
-        });
-
-        // Count animation for stats
-        const animateCounters = () => {
-            const counters = document.querySelectorAll('.animate-count');
-            const speed = 200;
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const increment = target / speed;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        };
-
-        // Intersection Observer for animations
+        // Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -4122,74 +3974,223 @@ But don’t worry, we’re launching our mobile app soon! It won’t just be for
             });
         }, { threshold: 0.1 });
 
-        // Observe elements that should animate when scrolled into view
         document.querySelectorAll('.scroll-fade-in, .animate-count').forEach(el => {
             observer.observe(el);
         });
+    }
 
-        // Initialize tilt effects on cards
-        VanillaTilt.init(document.querySelectorAll(".professional-card"), {
-            max: 5,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.1,
-        });
+    // Navigation functions
+    function handleNavClick(e) {
+        e.preventDefault();
+        const pageId = this.getAttribute('data-page');
+        showPage(pageId);
+        closeMobileMenu();
+    }
 
-        // Smiley animation for form submissions
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.btn-hover')) {
-                const smiley = document.createElement('div');
-                smiley.className = 'smiley-container';
-                smiley.innerHTML = '😊';
-                smiley.style.left = e.clientX + 'px';
-                smiley.style.top = e.clientY + 'px';
-                document.body.appendChild(smiley);
-                
-                setTimeout(() => {
-                    smiley.remove();
-                }, 1000);
-            }
-        });
+    function handleHomeClick(e) {
+        e.preventDefault();
+        showPage('home');
+    }
 
-        // Bulb toggle functionality
-        document.getElementById('bulbToggle').addEventListener('click', function() {
-            const bulbContainer = document.querySelector('.bg-primary-600.w-20.h-20');
-            bulbContainer.classList.toggle('bulb-on');
-        });
-
-        // Mobile menu close when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('#mobileMenu') && !e.target.closest('#mobileMenuButton')) {
-                mobileMenu.classList.remove('active');
-                mobileMenuButton.querySelector('i').classList.remove('fa-times');
-                mobileMenuButton.querySelector('i').classList.add('fa-bars');
-            }
-        });
-
-        // Image carousel functionality
-        let currentSlide = 0;
-        const slides = [
-            document.getElementById('slide1'),
-            document.getElementById('slide2'),
-            document.getElementById('slide3')
-        ];
+    function showPage(pageId) {
+        // Hide all pages
+        elements.pages.forEach(page => page.classList.remove('active'));
         
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('opacity-0', i !== index);
-                slide.classList.toggle('opacity-100', i === index);
+        // Show requested page
+        document.getElementById(`${pageId}-page`).classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+        
+        // Update active nav link
+        elements.navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('data-page') === pageId);
+        });
+        
+        // Update header style
+        updateHeaderStyle(pageId);
+    }
+
+    function updateHeaderStyle(pageId) {
+        if (pageId === 'home') {
+            elements.header.classList.toggle('scrolled', window.scrollY > 50);
+        } else {
+            elements.header.classList.add('scrolled');
+        }
+    }
+
+    // Mobile menu functions
+    function toggleMobileMenu() {
+        elements.mobileMenu.classList.toggle('active');
+        const icon = elements.mobileMenuButton.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    }
+
+    function closeMobileMenu() {
+        elements.mobileMenu.classList.remove('active');
+        const icon = elements.mobileMenuButton.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+
+    function handleOutsideClick(e) {
+        if (!e.target.closest('#mobileMenu') && !e.target.closest('#mobileMenuButton')) {
+            closeMobileMenu();
+        }
+    }
+
+    // Form handling functions
+    async function handleFormSubmit(form, successElement) {
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
             });
+            
+            if (response.ok) {
+                form.classList.add('hidden');
+                successElement.classList.remove('hidden');
+                return true;
+            }
+            throw new Error('Form submission failed');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was an error submitting your form. Please try again.');
+            return false;
         }
+    }
+
+    async function handleContactSubmit(e) {
+        e.preventDefault();
+        elements.submitText.textContent = 'Sending...';
+        elements.submitSpinner.classList.remove('hidden');
         
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+        await handleFormSubmit(elements.contactForm, elements.thankYouMessage);
+        
+        elements.submitText.textContent = 'Send Message';
+        elements.submitSpinner.classList.add('hidden');
+    }
+
+    async function handlePartnerSubmit(e) {
+        e.preventDefault();
+        await handleFormSubmit(elements.partnerForm, elements.partnerSuccess);
+    }
+
+    async function handleRegisterSubmit(e) {
+        e.preventDefault();
+        await handleFormSubmit(elements.registerForm, elements.registerSuccess);
+    }
+
+    function resetContactForm() {
+        elements.contactForm.reset();
+        elements.contactForm.classList.remove('hidden');
+        elements.thankYouMessage.classList.add('hidden');
+    }
+
+    // Modal functions
+    function openModal(type) {
+        const modal = elements[`${type}Modal`];
+        const form = elements[`${type}Form`];
+        const success = elements[`${type}Success`];
+        
+        modal.classList.add('active');
+        form.classList.remove('hidden');
+        success.classList.add('hidden');
+    }
+
+    function closeModal() {
+        this.closest('.modal').classList.remove('active');
+    }
+
+    function handleModalOutsideClick(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
         }
+    }
+
+    // FAQ functions
+    function toggleFAQ() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('i');
         
-        // Start the carousel
-        showSlide(0);
-        setInterval(nextSlide, 7000); // 7 second interval
-    });
+        content.classList.toggle('hidden');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    }
+
+    // Animation functions
+    function animateCounters() {
+        const counters = document.querySelectorAll('.animate-count');
+        const speed = 200;
+        
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 1);
+            } else {
+                counter.innerText = target;
+            }
+        });
+    }
+
+    function handleSmileyAnimation(e) {
+        if (e.target.closest('.btn-hover')) {
+            const smiley = document.createElement('div');
+            smiley.className = 'smiley-container';
+            smiley.innerHTML = '😊';
+            smiley.style.left = e.clientX + 'px';
+            smiley.style.top = e.clientY + 'px';
+            document.body.appendChild(smiley);
+            
+            setTimeout(() => smiley.remove(), 1000);
+        }
+    }
+
+    function toggleBulb() {
+        document.querySelector('.bg-primary-600.w-20.h-20').classList.toggle('bulb-on');
+    }
+
+    // Video and image carousel functions
+    function showVideoSlide(index) {
+        elements.videoSlides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    let currentSlide = 0;
+    function showSlide(index) {
+        elements.slides.forEach((slide, i) => {
+            slide.classList.toggle('opacity-0', i !== index);
+            slide.classList.toggle('opacity-100', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % elements.slides.length;
+        showSlide(currentSlide);
+    }
+
+    function startCarousel() {
+        setInterval(nextSlide, 7000);
+    }
+
+    // Scroll handler
+    function handleScroll() {
+        const currentPage = document.querySelector('.page.active').id;
+        if (currentPage === 'home-page') {
+            elements.header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+    }
+
+    // Initialize the application
+    init();
+});
 </script>
 </body>
 </html>
